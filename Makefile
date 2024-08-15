@@ -1,0 +1,23 @@
+# Compiler
+CC = gcc
+
+# Compiler flags
+CFLAGS = -Wall -g `sdl2-config --cflags`
+
+# Linker flags
+LDFLAGS = `sdl2-config --libs`
+
+# Source files
+SRCS = ./src/main.c
+
+# Output executable
+TARGET = ./build/game 
+
+# Rules
+all: $(TARGET)
+
+$(TARGET): $(SRCS)
+	$(CC) $(CFLAGS) $(SRCS) -o $(TARGET) $(LDFLAGS)
+
+clean:
+	rm -f $(TARGET)
