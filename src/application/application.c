@@ -10,7 +10,7 @@ struct Application {
 
 struct Application *init_application()
 {
-    struct Application *app = malloc(sizeof(struct Application)); 
+  struct Application *app = malloc(sizeof(struct Application)); 
 
     app->is_running = true;
 
