@@ -1,16 +1,17 @@
-#include "SDL_ttf.h"
+#include <SDL2/SDL_ttf.h>
+#include "../application/application.c"
 
-struct Label {
-  char[256] text;
-  SDL_Surface *surface;
-  SDL_Texture *text;
-  SDL_Color color;
-};
+const SDL_Color WHITE = { 255, 255, 255}; 
 
-struct Label *create_label(TTF_Font* font, char[] text, SDL_Renderer* renderer) 
+void draw_label(int x, int y, TTF_Font* font, char text[], struct Application* app) 
 {
-  struct Label *label = malloc(sizeof(struct Label));
-  Label->surface = TTF_RenderText_Soild(font, text, color);
-  Label->text = SDL_CreateTextureFromSurface()
-  return label
+  SDL_Surface* label_surface = TTF_RenderText_Solid( font, text, WHITE);
+
+  SDL_Texture* label_texture = SDL_CreateTextureFromSurface( app->renderer, label_surface);
+
+  SDL_Rect dest = {x, y, label_surface->w, label_surface->h};
+
+  SDL_RenderCopy( app->renderer, label_texture, NULL, &dest); 
+
+  return;
 }

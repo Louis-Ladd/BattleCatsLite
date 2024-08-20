@@ -2,9 +2,7 @@
 #include <SDL2/SDL_ttf.h>
 #include <stdbool.h>
 
-#include "application/application.c"
-
-const SDL_Color BLACK = {0,0,0};
+#include "render/label.c"
 
 int main()
 {
@@ -12,22 +10,15 @@ int main()
 
     TTF_Font* font;
 
-    font = TTF_OpenFont("./noodle.ttf", 24);
+    font = TTF_OpenFont("src/noodle.ttf", 200);
 
     if (!application)
     {
         printf("Application failed to initalize");
         return 1;
     }
-    
-    SDL_Surface* text; 
-    text = TTF_RenderText_Solid( font, "Battle Cats!", BLACK);
-    
-    SDL_Texture* text_texture;
-    text_texture = SDL_CreateTextureFromSurface( application->renderer, text);
-    
-    SDL_Rect dest = {0, 0, 400, 400};
 
+    draw_label(50, 50, font, "Battle Cats!", application);
 
     while(application->is_running)
     {
@@ -40,10 +31,9 @@ int main()
                     application->is_running = false;
                     break;
             }
-            SDL_UpdateWindowSurface(application->window);
         }
 
-        SDL_RenderCopy( application->renderer, text_texture, NULL, &dest);
+        SDL_UpdateWindowSurface(application->window);
         SDL_RenderPresent( application->renderer );
 
     }
