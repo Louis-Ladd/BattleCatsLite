@@ -1,7 +1,3 @@
-#include <SDL2/SDL.h>
-#include <SDL2/SDL_ttf.h>
-#include <stdbool.h>
-
 struct Application {
   SDL_Window *window;
   SDL_Surface *window_surface;

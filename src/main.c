@@ -1,8 +1,4 @@
-#include <SDL2/SDL.h>
-#include <SDL2/SDL_ttf.h>
-#include <stdbool.h>
-
-#include "render/label.c"
+#include "main.h"
 
 int main()
 {
@@ -35,7 +31,6 @@ int main()
 
         SDL_UpdateWindowSurface(application->window);
         SDL_RenderPresent( application->renderer );
-
     }
 
     return 0;
