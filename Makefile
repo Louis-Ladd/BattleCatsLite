@@ -5,10 +5,10 @@ CC = gcc
 CFLAGS = -Wall -g `sdl2-config --cflags`
 
 # Linker flags
-LDFLAGS = `sdl2-config --libs`
+LDFLAGS = `sdl2-config --libs` -lSDL2_ttf
 
 # Source files
-SRCS = ./src/main.c
+SRCS = ./src/*.c
 
 # Output executable
 TARGET = ./build/game 
@@ -17,7 +17,7 @@ TARGET = ./build/game
 all: $(TARGET)
 
 $(TARGET): $(SRCS)
-	$(CC) $(CFLAGS) $(SRCS) -o $(TARGET) $(LDFLAGS)
+	$(CC) $(CFLAGS) $(SRCS) -o $(TARGET) $(LDFLAGS) 
 
 clean:
 	rm -f $(TARGET)
