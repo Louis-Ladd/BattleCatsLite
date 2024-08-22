@@ -8,7 +8,7 @@ CFLAGS = -Wall -Wno-unused-variable -g `sdl2-config --cflags`
 LDFLAGS = `sdl2-config --libs` -lSDL2_ttf -lSDL2_image 
 
 # Source files
-SRCS = ./src/*.c
+SRCS = $(shell find src -name '*.c')  
 
 # Output executable
 TARGET = ./build/game 

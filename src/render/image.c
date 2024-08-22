@@ -1,9 +1,4 @@
-#include <SDL2/SDL.h>
-
-struct Image {
-    SDL_Texture* texture;
-    SDL_Rect rect;
-};
+#include "image.h"
 
 struct Image *r_CreateImage(SDL_Renderer* renderer, SDL_Surface* image_surface, int x, int y, int w, int h)
 {

@@ -1,14 +1,13 @@
-struct Application {
-  SDL_Window *window;
-  SDL_Surface *window_surface;
-  SDL_Renderer *renderer;
-  SDL_Event window_event;
-  bool is_running;
-};
+#include "application.h"
 
 struct Application *InitApplication()
 {
   struct Application *app = malloc(sizeof(struct Application)); 
+
+  for (int i = 0; i < 322; i++)
+  {
+    app->keys[i] = false;
+  }
 
   app->is_running = true;
 

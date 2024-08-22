@@ -1,9 +1,15 @@
+#ifndef MAIN_H_
+#define MAIN_H_
+
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_ttf.h>
 #include <SDL2/SDL_image.h>
 #include <stdbool.h>
 
-#include "color.c"
-#include "application/application.c"
-#include "render/image.c"
-#include "render/label.c"
+#include "application/application.h"
+#include "color.h"
+#include "input/keyboard.h"
+#include "render/image.h"
+#include "render/label.h"
+
+#endif
