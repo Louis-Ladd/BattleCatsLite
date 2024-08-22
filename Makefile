@@ -2,7 +2,7 @@
 CC = gcc
 
 # Compiler flags
-CFLAGS = -Wall -g `sdl2-config --cflags`
+CFLAGS = -Wall -Wno-unused-variable -g `sdl2-config --cflags`
 
 # Linker flags
 LDFLAGS = `sdl2-config --libs` -lSDL2_ttf

@@ -11,7 +11,7 @@ void draw_label(int x, int y, TTF_Font* font, char text[], struct Application* a
   SDL_RenderCopy( app->renderer, label_texture, NULL, &dest); 
 
   SDL_FreeSurface(label_surface);
-  SDL_DestroyTexturefree(label_texture); 
+  SDL_DestroyTexture(label_texture); 
 
   return;
 }

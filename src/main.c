@@ -6,13 +6,20 @@ int main()
 
     TTF_Font* font;
 
-    font = TTF_OpenFont("src/noodle.ttf", 200);
+    font = TTF_OpenFont("assets/noodle.ttf", 150);
+
 
     if (!application)
     {
         printf("Application failed to initalize");
         return 1;
     }
+
+    SDL_SetRenderDrawColor(application->renderer, 0, 0, 127, 0);
+
+    SDL_RenderClear(application->renderer);
+    
+    SDL_RenderPresent(application->renderer);
 
     draw_label(50, 50, font, "Battle Cats!", application);
 
@@ -29,8 +36,7 @@ int main()
             }
         }
 
-        SDL_UpdateWindowSurface(application->window);
-        SDL_RenderPresent( application->renderer );
+        SDL_RenderPresent( application->renderer ); // Flips our double buffer
     }
 
     return 0;
