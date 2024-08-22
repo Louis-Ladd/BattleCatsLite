@@ -23,6 +23,7 @@ int main()
 
     draw_label(50, 50, font, "Battle Cats!", application);
 
+
     while(application->is_running)
     {
 
