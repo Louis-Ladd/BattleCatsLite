@@ -2,29 +2,26 @@
 
 struct Image {
     SDL_Texture* texture;
-    SDL_Rect* rect;
+    SDL_Rect rect;
 };
 
-struct Image *create_image(SDL_Surface* image_surface, int x, int y, int native_size, int w, int h)
+struct Image *r_CreateImage(SDL_Surface* image_surface, int x, int y, int w, int h)
 {
     struct Image* image = malloc(sizeof(struct Image));
     SDL_Surface* surface = image_surface; 
     SDL_Rect rect;
 
-    if (native_size)
-    {
-        SDL_Rect rect = {x, y, 100, 100};    
-    }
-    else if (x != NULL && y != NULL)
-    {
-        SDL_Rect rect = {x, y, w, h};
-    }
-    else 
-    {
-        return NULL;
-    }
+    rect.w = 100;
+    rect.h = 100;
 
-    image->rect = rect;
+    image->rect.w = rect.w;
+    image->rect.h = rect.h;
 
     return image;
+}
+
+struct Image *r_CreateNativelySizedImage(SDL_Surface* image_surface, int x, int y)
+{
+    //TODO: get native size of image lol
+    return r_CreateImage(image_surface, x, y, 100, 100);
 }

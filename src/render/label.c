@@ -1,8 +1,13 @@
-const SDL_Color WHITE = { 255, 255, 255}; 
-
-void draw_label(int x, int y, TTF_Font* font, char text[], struct Application* app) 
+void r_DrawLabel(int x, int y, TTF_Font* font, char text[], struct Application* app, SDL_Color color) 
 {
-  SDL_Surface* label_surface = TTF_RenderText_Solid( font, text, WHITE);
+  SDL_Surface* label_surface = TTF_RenderText_Solid( font, text, color);
+
+  if (!label_surface)
+  {
+    printf("Unable to draw \"%s\" due to an error\n", text);
+    SDL_FreeSurface(label_surface);
+    return;
+  }
 
   SDL_Texture* label_texture = SDL_CreateTextureFromSurface( app->renderer, label_surface);
 

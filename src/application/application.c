@@ -6,7 +6,7 @@ struct Application {
   bool is_running;
 };
 
-struct Application *init_application()
+struct Application *InitApplication()
 {
   struct Application *app = malloc(sizeof(struct Application)); 
 
@@ -21,6 +21,12 @@ struct Application *init_application()
   if ( TTF_Init() < 0 )
   {
     printf("Failed to initialize fonts\n");
+    return NULL;
+  }
+
+  if (IMG_Init(IMG_INIT_PNG) < 0)
+  {
+    printf("Failed ot initialize SDL2 Image library\n");
     return NULL;
   }
 

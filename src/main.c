@@ -2,11 +2,11 @@
 
 int main()
 {
-    struct Application *application = init_application();
+    struct Application *application = InitApplication();
 
     TTF_Font* font;
 
-    font = TTF_OpenFont("assets/noodle.ttf", 150);
+    font = TTF_OpenFont("assets/noodle.ttf", 125);
 
 
     if (!application)
@@ -15,13 +15,13 @@ int main()
         return 1;
     }
 
-    SDL_SetRenderDrawColor(application->renderer, 0, 0, 127, 0);
+    SDL_SetRenderDraw_SDL_Color(application->renderer, RED);
 
     SDL_RenderClear(application->renderer);
     
     SDL_RenderPresent(application->renderer);
 
-    draw_label(50, 50, font, "Battle Cats!", application);
+    r_DrawLabel(50, 50, font, "Battle Cats!", application, BLUE);
 
 
     while(application->is_running)
