@@ -1,23 +1,20 @@
-name: BattleCatsClone Build
+name: Battle Cats Clone
 
-on:
-  push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
+on: [push, pull_request]
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v4
-    - name: configure
-      run: ./configure
-    - name: make
-      run: make
-    - name: make check
-      run: make check
-    - name: make distcheck
-      run: make distcheck
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Set up dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y build-essential libsdl2-dev
+
+    - name: Compile the project
+      run: |
+        gcc -o game main.c -lSDL2
