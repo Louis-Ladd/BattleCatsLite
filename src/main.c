@@ -41,16 +41,17 @@ int main()
         SDL_SetRenderDraw_SDL_Color(app->renderer, DARK_BLUE);
         SDL_RenderClear(app->renderer);
 
-        /*if (app->keys[SDLK_a])
-        { cat->rect.x -= 10; }
+        if (app->keys[SDLK_a])
+        { cat->rect.x -= 5; }
         if (app->keys[SDLK_d])
-        { cat->rect.x += 10; }
+        { cat->rect.x += 5; }
         if (app->keys[SDLK_w])
-        { cat->rect.y -= 10; }
+        { cat->rect.y -= 5; }
         if (app->keys[SDLK_s])
-        { cat->rect.y += 10; }*/
+        { cat->rect.y += 5; }
 
-        //r_DrawImage(app->renderer, cat);
+        r_DrawLabel(50, 50, font, "Oh hell yeah!", app->renderer, GREEN);
+        r_DrawImage(app->renderer, cat);
 
         SDL_RenderPresent( app->renderer ); // Flips our double buffer
     }
