@@ -33,7 +33,7 @@ struct Application *InitApplication()
   app->window = SDL_CreateWindow("Battle Cats!",
                                   SDL_WINDOWPOS_CENTERED,
                                   SDL_WINDOWPOS_CENTERED,
-                                  680, 480,
+                                  1200, 480,
                                   0);
 
   if(!app->window)

@@ -17,9 +17,7 @@ int main()
 
     struct Image *cat = r_CreateImage(app->renderer, IMG_Load("assets/cat.png"), 50, 50, 100, 100);
 
-    SDL_SetRenderDraw_SDL_Color(app->renderer, RED);
 
-    SDL_RenderClear(app->renderer);
     
     SDL_RenderPresent(app->renderer);
 
@@ -37,7 +35,15 @@ int main()
             }
         }
 
+        SDL_SetRenderDraw_SDL_Color(app->renderer, DARK_BLUE);
+        SDL_RenderClear(app->renderer);
+
+
         r_DrawImage(app->renderer, cat);
+        if (cat->rect.x < 1000)
+        {
+            cat->rect.x += 1;
+        }
         SDL_RenderPresent( app->renderer ); // Flips our double buffer
     }
 
