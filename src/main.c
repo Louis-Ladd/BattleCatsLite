@@ -2,42 +2,43 @@
 
 int main()
 {
-    struct Application *application = InitApplication();
+    struct Application *app = InitApplication();
 
     TTF_Font* font;
 
     font = TTF_OpenFont("assets/noodle.ttf", 125);
 
 
-    if (!application)
+    if (!app)
     {
         printf("Application failed to initalize");
         return 1;
     }
 
-    SDL_SetRenderDraw_SDL_Color(application->renderer, RED);
+    struct Image *cat = r_CreateImage(app->renderer, IMG_Load("assets/cat.png"), 50, 50, 100, 100);
 
-    SDL_RenderClear(application->renderer);
+    SDL_SetRenderDraw_SDL_Color(app->renderer, RED);
+
+    SDL_RenderClear(app->renderer);
     
-    SDL_RenderPresent(application->renderer);
-
-    r_DrawLabel(50, 50, font, "Battle Cats!", application, BLUE);
+    SDL_RenderPresent(app->renderer);
 
 
-    while(application->is_running)
+    while(app->is_running)
     {
 
-        while(SDL_PollEvent(&application->window_event) > 0)
+        while(SDL_PollEvent(&app->window_event) > 0)
         {
-            switch (application->window_event.type)
+            switch (app->window_event.type)
             {
                 case SDL_QUIT:
-                    application->is_running = false;
+                    app->is_running = false;
                     break;
             }
         }
 
-        SDL_RenderPresent( application->renderer ); // Flips our double buffer
+        r_DrawImage(app->renderer, cat);
+        SDL_RenderPresent( app->renderer ); // Flips our double buffer
     }
 
     return 0;
