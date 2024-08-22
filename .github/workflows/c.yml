@@ -17,4 +17,4 @@ jobs:
 
     - name: Compile the project
       run: |
-        gcc -o game main.c -lSDL2
+        make
