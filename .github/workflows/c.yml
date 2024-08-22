@@ -17,4 +17,5 @@ jobs:
 
     - name: Compile the project
       run: |
+        mkdir build
         make
