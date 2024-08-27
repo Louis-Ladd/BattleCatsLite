@@ -5,12 +5,12 @@
 
 struct Image {
     SDL_Texture* texture;
-    SDL_Rect rect;
+    SDL_FRect rect;
 };
 
-struct Image *r_CreateImage(SDL_Renderer* renderer, SDL_Surface* image_surface, int x, int y, int w, int h);
+struct Image *r_CreateImage(SDL_Renderer* renderer, SDL_Surface* image_surface, float x, float y, float w, float h);
 
-struct Image *r_CreateNativelySizedImage(SDL_Renderer* renderer, SDL_Surface* image_surface, int x, int y);
+struct Image *r_CreateNativelySizedImage(SDL_Renderer* renderer, SDL_Surface* image_surface, float x, float y);
 
 void r_DrawImage(SDL_Renderer* renderer, struct Image* image);
 

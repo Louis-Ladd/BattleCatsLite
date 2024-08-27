@@ -8,7 +8,6 @@ int main()
 
     font = TTF_OpenFont("assets/noodle.ttf", 125);
 
-
     if (!app)
     {
         printf("Application failed to initalize");
@@ -21,7 +20,6 @@ int main()
 
     while(app->is_running)
     {
-
         while(SDL_PollEvent(&app->window_event) > 0)
         {
             switch (app->window_event.type)
@@ -42,13 +40,13 @@ int main()
         SDL_RenderClear(app->renderer);
 
         if (app->keys[SDLK_a])
-        { cat->rect.x -= 5; }
+        { cat->rect.x -= 0.1f; }
         if (app->keys[SDLK_d])
-        { cat->rect.x += 5; }
+        { cat->rect.x += 0.1f;; }
         if (app->keys[SDLK_w])
-        { cat->rect.y -= 5; }
+        { cat->rect.y -= 0.1f; }
         if (app->keys[SDLK_s])
-        { cat->rect.y += 5; }
+        { cat->rect.y += 0.1f; }
 
         r_DrawLabel(50, 50, font, "Oh hell yeah!", app->renderer, GREEN);
         r_DrawImage(app->renderer, cat);

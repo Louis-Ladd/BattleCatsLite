@@ -49,5 +49,7 @@ struct Application *InitApplication()
     return NULL;
   }
 
+  app->delta_time = 0.f;
+
   return app;
 } 

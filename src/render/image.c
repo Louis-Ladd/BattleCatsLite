@@ -1,13 +1,13 @@
 #include "image.h"
 
-struct Image *r_CreateImage(SDL_Renderer* renderer, SDL_Surface* image_surface, int x, int y, int w, int h)
+struct Image *r_CreateImage(SDL_Renderer* renderer, SDL_Surface* image_surface, float x, float y, float w, float h)
 {
     struct Image* image = malloc(sizeof(struct Image));
     SDL_Surface* surface = image_surface; 
     SDL_Rect rect;
 
-    rect.w = 100;
-    rect.h = 100;
+    rect.w = 100.f;
+    rect.h = 100.f;
     rect.x = x;
     rect.y = y;
 
@@ -24,12 +24,12 @@ struct Image *r_CreateImage(SDL_Renderer* renderer, SDL_Surface* image_surface, 
     return image;
 }
 
-struct Image *r_CreateNativelySizedImage(SDL_Renderer* renderer, SDL_Surface* image_surface, int x, int y)
+struct Image *r_CreateNativelySizedImage(SDL_Renderer* renderer, SDL_Surface* image_surface, float x, float y)
 {
     return r_CreateImage(renderer, image_surface, x, y, 100, 100);
 }
 
 void r_DrawImage(SDL_Renderer* renderer, struct Image* image)
 {
-    SDL_RenderCopy(renderer, image->texture, NULL, &image->rect);
+    SDL_RenderCopyF(renderer, image->texture, NULL, &image->rect);
 }

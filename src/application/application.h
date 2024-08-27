@@ -13,6 +13,7 @@ struct Application {
   SDL_Event window_event;
   bool is_running;
   bool keys[322];
+  float delta_time;
 };
 
 struct Application *InitApplication();
