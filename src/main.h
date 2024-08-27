@@ -13,7 +13,7 @@
 #include "render/image.h"
 #include "render/label.h"
 #include "render/sprite.h"
-#include "render/cat_enum.h"
+#include "render/sprite_enum.h"
 
 int main();
 

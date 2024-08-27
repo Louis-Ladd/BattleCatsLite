@@ -3,10 +3,10 @@
 
 #include <SDL2/SDL.h>
 #include "image.h"
-#include "cat_enum.h"
+#include "sprite_enum.h"
 
 struct Sprite {
-    enum CatSpriteOffset sprite_offset;
+    int sprite_offset;
     SDL_FRect f_rect;
     float scale;
 };
