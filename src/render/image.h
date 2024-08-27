@@ -5,7 +5,7 @@
 
 struct Image {
     SDL_Texture* texture;
-    SDL_FRect rect;
+    SDL_FRect f_rect;
 };
 
 struct Image *r_CreateImage(SDL_Renderer* renderer, SDL_Surface* image_surface, float x, float y, float w, float h);
