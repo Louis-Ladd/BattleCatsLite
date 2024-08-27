@@ -63,6 +63,5 @@ int main()
         SDL_RenderPresent( app->renderer ); // Flips our double buffer
     }
 
-
     return 0;
 }
