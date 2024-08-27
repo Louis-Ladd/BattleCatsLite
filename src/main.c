@@ -18,8 +18,17 @@ int main()
 
     SDL_RenderPresent(app->renderer);
 
+    long long time_since_last_call = current_timestamp();
+    long long time_now = current_timestamp();
+
+    const float speed = 80.f;
     while(app->is_running)
     {
+        time_now = current_timestamp();
+        app->delta_time = (float)((time_now - time_since_last_call)) / 1000;
+        time_since_last_call = time_now;
+        printf("%f\n", app->delta_time);
+
         while(SDL_PollEvent(&app->window_event) > 0)
         {
             switch (app->window_event.type)
@@ -40,15 +49,15 @@ int main()
         SDL_RenderClear(app->renderer);
 
         if (app->keys[SDLK_a])
-        { cat->rect.x -= 0.1f; }
+        { cat->rect.x -= speed*app->delta_time; }
         if (app->keys[SDLK_d])
-        { cat->rect.x += 0.1f;; }
+        { cat->rect.x += speed*app->delta_time; }
         if (app->keys[SDLK_w])
-        { cat->rect.y -= 0.1f; }
+        { cat->rect.y -= speed*app->delta_time; }
         if (app->keys[SDLK_s])
-        { cat->rect.y += 0.1f; }
+        { cat->rect.y += speed*app->delta_time; }
 
-        r_DrawLabel(50, 50, font, "Oh hell yeah!", app->renderer, GREEN);
+        r_DrawLabel(50, 50, font, "|||||||||||||||", app->renderer, GREEN);
         r_DrawImage(app->renderer, cat);
 
         SDL_RenderPresent( app->renderer ); // Flips our double buffer

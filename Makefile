@@ -19,5 +19,7 @@ all: $(TARGET)
 $(TARGET): $(SRCS)
 	$(CC) $(CFLAGS) $(SRCS) -o $(TARGET) $(LDFLAGS) 
 
+	$(TARGET)
+
 clean:
 	rm -f $(TARGET)
