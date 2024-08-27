@@ -19,7 +19,9 @@ all: $(TARGET)
 $(TARGET): $(SRCS)
 	$(CC) $(CFLAGS) $(SRCS) -o $(TARGET) $(LDFLAGS) 
 
-	$(TARGET)
+run:
+	make -B
+	./build/game
 
 clean:
 	rm -f $(TARGET)
