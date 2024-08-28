@@ -5,8 +5,8 @@ struct Image *r_CreateImage(SDL_Renderer* renderer, SDL_Surface* image_surface, 
     struct Image* image = malloc(sizeof(struct Image));
     SDL_FRect rect;
 
-    rect.w = 100.f;
-    rect.h = 100.f;
+    rect.w = w;
+    rect.h = h;
     rect.x = x;
     rect.y = y;
 
@@ -24,7 +24,7 @@ struct Image *r_CreateImage(SDL_Renderer* renderer, SDL_Surface* image_surface, 
 
 struct Image *r_CreateNativelySizedImage(SDL_Renderer* renderer, SDL_Surface* image_surface, float x, float y)
 {
-    return r_CreateImage(renderer, image_surface, x, y, 100, 100);
+    return r_CreateImage(renderer, image_surface, x, y, image_surface->w, image_surface->h);
 }
 
 void r_DrawImage(SDL_Renderer* renderer, struct Image* image)

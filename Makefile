@@ -1,8 +1,8 @@
 # Compiler
-CC = gcc
+CC = clang
 
 # Compiler flag
-CFLAGS = -Wall -Wno-unused-variable -g `sdl2-config --cflags` 
+CFLAGS = -Wall -Wno-unused-variable -Wextra -Werror -g `sdl2-config --cflags` 
 
 # Linker flags
 LDFLAGS = `sdl2-config --libs` -lSDL2_ttf -lSDL2_image 

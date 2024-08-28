@@ -17,4 +17,8 @@
 
 int main();
 
+void render();
+
+void update();
+
 #endif

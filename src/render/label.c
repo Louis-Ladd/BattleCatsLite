@@ -6,7 +6,7 @@ void r_DrawText(int x, int y, TTF_Font* font, char text[], SDL_Renderer* rendere
 
   if (!label_surface)
   {
-    printf("Unable to draw \"%s\" due to an error\n", text);
+    printf("Unable to draw \"%s\" due to an error. ERROR: %s\n", text, TTF_GetError());
     SDL_FreeSurface(label_surface);
     return;
   }

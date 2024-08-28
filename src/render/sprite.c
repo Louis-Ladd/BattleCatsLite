@@ -8,7 +8,7 @@ struct Sprite *r_CreateSprite(int sprite_offset, float x, float y, float scale)
 {
     struct Sprite* sprite = malloc(sizeof(struct Sprite));
     sprite->sprite_offset = sprite_offset; 
-    SDL_FRect cat_frect = {5, 5, 256*scale, 256*scale};
+    SDL_FRect cat_frect = {x, y, 256*scale, 256*scale};
     sprite->f_rect = cat_frect;
 
     return sprite;

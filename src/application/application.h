@@ -9,6 +9,13 @@
 #include <SDL2/SDL_ttf.h>
 #include <stdbool.h>
 
+enum FontEnum {
+  SMALL_FONT,
+  MEDIUM_FONT,
+  LARGE_FONT,
+  XLARGE_FONT
+};
+
 struct Application {
   SDL_Window *window;
   SDL_Surface *window_surface;
@@ -16,6 +23,7 @@ struct Application {
   SDL_Event window_event;
   bool is_running;
   bool keys[322];
+  TTF_Font* fonts[4];
   float delta_time;
   int fps;
   int timer;

@@ -23,6 +23,11 @@ struct Application *InitApplication()
     return NULL;
   }
 
+  app->fonts[SMALL_FONT] = TTF_OpenFont("assets/noodle.ttf", 16);
+  app->fonts[MEDIUM_FONT] = TTF_OpenFont("assets/noodle.ttf", 32);
+  app->fonts[LARGE_FONT] = TTF_OpenFont("assets/noodle.ttf", 64);  
+  app->fonts[XLARGE_FONT] = TTF_OpenFont("assets/noodle.ttf", 128);
+
   if (IMG_Init(IMG_INIT_PNG) < 0)
   {
     printf("Failed ot initialize SDL2 Image library\n");
