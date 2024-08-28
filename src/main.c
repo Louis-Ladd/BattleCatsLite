@@ -21,9 +21,12 @@ int main()
 
     SDL_RenderPresent(app->renderer);
 
-    struct Sprite* cat = r_CreateSprite(CAT, 50, 50, 0.2f);
+    struct Sprite* cat = r_CreateSprite(1, 50, 50, 0.2f);
 
-    struct Label* battle_cats = r_CreateLabel(app->renderer, 50, 50, "Battle Cats!", font, ORANGE);
+    struct Label* battle_cats = r_CreateLabel(app->renderer, SCREEN_WIDTH, 50, "Battle Cats!", font, ORANGE);
+
+    int fps_count = 0;
+    long long fps_timer = current_timestamp();
 
     long long time_since_last_call = current_timestamp();
     long long time_now = current_timestamp();
@@ -68,16 +71,27 @@ int main()
 
         r_DrawLabel(app->renderer, battle_cats);
 
-        if (battle_cats->rect.x < SCREEN_WIDTH)
+        if (battle_cats->rect.x > 0 - battle_cats->rect.w)
         {
-            battle_cats->rect.x += 100*app->delta_time;
+            battle_cats->rect.x -= 100*app->delta_time;
         }
         else 
         {
-            battle_cats->rect.x = 0 - battle_cats->rect.w;
+            battle_cats->rect.x = SCREEN_WIDTH;
         }
 
         SDL_RenderPresent( app->renderer ); // Flips our double buffer
+
+        app->timer ++;
+        fps_count ++;
+        if (((float)(current_timestamp()- fps_timer))/1000.f >= 1)
+        {
+            app->fps = fps_count;
+            fps_count = 0;
+            fps_timer = current_timestamp();
+        }
+
+        printf("FPS: %i\n", app->fps);
     }
 
     return 0;

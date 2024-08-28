@@ -50,6 +50,7 @@ struct Application *InitApplication()
   }
 
   app->delta_time = 0.f;
+  app->timer = 0;
 
   return app;
 } 

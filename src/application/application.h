@@ -17,6 +17,8 @@ struct Application {
   bool is_running;
   bool keys[322];
   float delta_time;
+  int fps;
+  int timer;
 };
 
 struct Application *InitApplication();

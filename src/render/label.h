@@ -22,5 +22,4 @@ void r_DrawLabel(SDL_Renderer* renderer, struct Label* label);
 
 void r_DestroyLabel(struct Label* label);
 
-
 #endif
