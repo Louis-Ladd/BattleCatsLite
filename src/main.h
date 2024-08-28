@@ -21,4 +21,6 @@ void render();
 
 void update();
 
+void handle_events();
+
 #endif
