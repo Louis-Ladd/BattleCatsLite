@@ -15,5 +15,6 @@ struct Sprite *r_CreateSprite(int sprite_offset, float x, float y, float scale);
 
 void r_DrawSprite(SDL_Renderer* renderer, struct Image *sprite_sheet, struct Sprite *sprite);
 
+void r_DestroySprite(struct Sprite* sprite);
 
 #endif

@@ -25,3 +25,8 @@ void r_DrawSprite(SDL_Renderer* renderer, struct Image *sprite_sheet, struct Spr
 
     SDL_RenderCopyF(renderer, sprite_sheet->texture, &sprite_rect, &sprite->f_rect);
 }
+
+void r_DestroySprite(struct Sprite* sprite)
+{
+    free(sprite);
+}
