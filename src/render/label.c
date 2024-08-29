@@ -21,9 +21,9 @@ void r_DrawText(int x, int y, TTF_Font* font, char text[], SDL_Renderer* rendere
   SDL_DestroyTexture(label_texture); 
 }
 
-struct Label *r_CreateLabel(SDL_Renderer* renderer, float x, float y, char text[], TTF_Font* font, SDL_Color color)
+Label *r_CreateLabel(SDL_Renderer* renderer, float x, float y, char text[], TTF_Font* font, SDL_Color color)
 {
-  struct Label* label = malloc(sizeof(struct Label));
+  Label* label = malloc(sizeof(Label));
 
   label->text = malloc((strlen(text) + 1) * sizeof(char));
 
@@ -49,12 +49,12 @@ void r_UpdateLabel()
   printf("Not Implemented!!!");
 }
 
-void r_RenderLabel(SDL_Renderer* renderer, struct Label* label)
+void r_RenderLabel(SDL_Renderer* renderer, Label* label)
 {
   SDL_RenderCopyF(renderer, label->texture, NULL, &label->rect);
 }
 
-void r_DestroyLabel(struct Label* label)
+void r_DestroyLabel(Label* label)
 {
   SDL_DestroyTexture(label->texture);
   free(label->text); 

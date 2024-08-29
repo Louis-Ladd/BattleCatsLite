@@ -1,8 +1,8 @@
 #include "image.h"
 
-struct Image *r_CreateImage(SDL_Renderer* renderer, SDL_Surface* image_surface, float x, float y, float w, float h)
+Image *r_CreateImage(SDL_Renderer* renderer, SDL_Surface* image_surface, float x, float y, float w, float h)
 {
-    struct Image* image = malloc(sizeof(struct Image));
+    Image* image = malloc(sizeof(Image));
     SDL_FRect rect;
 
     rect.w = w;
@@ -22,17 +22,17 @@ struct Image *r_CreateImage(SDL_Renderer* renderer, SDL_Surface* image_surface, 
     return image;
 }
 
-struct Image *r_CreateNativelySizedImage(SDL_Renderer* renderer, SDL_Surface* image_surface, float x, float y)
+Image *r_CreateNativelySizedImage(SDL_Renderer* renderer, SDL_Surface* image_surface, float x, float y)
 {
     return r_CreateImage(renderer, image_surface, x, y, image_surface->w, image_surface->h);
 }
 
-void r_DrawImage(SDL_Renderer* renderer, struct Image* image)
+void r_DrawImage(SDL_Renderer* renderer, Image* image)
 {
     SDL_RenderCopyF(renderer, image->texture, NULL, &image->f_rect);
 }
 
-void r_DestroyImage(struct Image* image)
+void r_DestroyImage(Image* image)
 {
     SDL_DestroyTexture(image->texture);
     free(image);

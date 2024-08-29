@@ -22,7 +22,7 @@ enum ContextEnum {
   LEVEL_TWO
 };
 
-struct Application {
+typedef struct {
   SDL_Window* window;
   SDL_Surface* window_surface;
   SDL_Renderer* renderer;
@@ -34,8 +34,8 @@ struct Application {
   int current_context;
   int fps;
   int timer;
-};
+} Application;
 
-struct Application *InitApplication();
+Application *InitApplication();
 
 #endif

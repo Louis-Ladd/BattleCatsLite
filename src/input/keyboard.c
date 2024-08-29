@@ -2,7 +2,7 @@
 
 #define MAX_KEYS 322
 
-void HandleKeyboardInput(struct Application* app) 
+void HandleKeyboardInput(Application* app) 
 {
     int keycode = app->window_event.key.keysym.sym;
 

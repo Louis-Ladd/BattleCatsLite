@@ -1,8 +1,8 @@
 #include "button.h"
 
-struct Button* CreateButton(struct Application* app, float x, float y, float w, float h, SDL_Color color)
+Button* CreateButton(Application* app, float x, float y, float w, float h, SDL_Color color)
 {
-    struct Button* button = malloc(sizeof(struct Button));
+    Button* button = malloc(sizeof(Button));
 
     button->label = r_CreateLabel(app->renderer, x + (w/2), y + (h/2), "Text :D", app->fonts[SMALL_FONT], color);
 
@@ -13,7 +13,7 @@ struct Button* CreateButton(struct Application* app, float x, float y, float w, 
     return button;
 }
 
-void r_RenderButton(SDL_Renderer* renderer, struct Button* button)
+void r_RenderButton(SDL_Renderer* renderer, Button* button)
 {
     r_RenderLabel(renderer, button->label); 
 

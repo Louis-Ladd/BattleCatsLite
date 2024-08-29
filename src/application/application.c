@@ -1,8 +1,8 @@
 #include "application.h"
 
-struct Application *InitApplication()
+Application *InitApplication()
 {
-  struct Application *app = malloc(sizeof(struct Application)); 
+  Application *app = malloc(sizeof(Application)); 
 
   for (int i = 0; i < 322; i++)
   {

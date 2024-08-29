@@ -1,6 +1,6 @@
 #include "main.h"
 
-struct Application* app;
+Application* app;
 
 int main()
 {

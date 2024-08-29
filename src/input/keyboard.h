@@ -6,6 +6,6 @@
 
 #include "../application/application.h"
 
-void HandleKeyboardInput(struct Application* app);
+void HandleKeyboardInput(Application* app);
 
 #endif
