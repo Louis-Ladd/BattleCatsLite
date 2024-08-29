@@ -10,8 +10,10 @@ typedef struct {
 // Other elements like images, text, etc
 } MainMenu;
 
-void InitMainMenu(SDL_Renderer* renderer, MainMenu *menu); 
+MainMenu* InitMainMenu(Application* App); 
 
-void RenderMainMenu(Application* app);
+void RenderMainMenu(Application* app, MainMenu* menu);
+
+void DestroyMainMenu(MainMenu* menu); 
 
 #endif

@@ -1,10 +1,12 @@
 #include "button.h"
 
-Button* CreateButton(Application* app, float x, float y, float w, float h, SDL_Color color)
+Button* CreateButton(Application* app, float x, float y, float w, float h, char button_text[], SDL_Color button_color, SDL_Color text_color)
 {
     Button* button = malloc(sizeof(Button));
 
-    button->label = r_CreateLabel(app->renderer, x + (w/2), y + (h/2), "Text :D", app->fonts[SMALL_FONT], color);
+    button->color = button_color;
+
+    button->label = r_CreateLabel(app->renderer, x + 5, y + (h/2), button_text, app->fonts[LARGE_FONT], text_color);
 
     SDL_FRect button_rect = {x, y, w, h};
 
@@ -15,9 +17,9 @@ Button* CreateButton(Application* app, float x, float y, float w, float h, SDL_C
 
 void r_RenderButton(SDL_Renderer* renderer, Button* button)
 {
-    r_RenderLabel(renderer, button->label); 
 
     SDL_SetRenderDraw_SDL_Color(renderer, button->color);
     SDL_RenderFillRectF(renderer, &button->f_rect);
+    r_RenderLabel(renderer, button->label); 
     SDL_SetRenderDraw_SDL_Color(renderer, BLACK); //Whenever we're done rendering something, we clean up by setting draw color to black. 
 }

@@ -1,6 +1,7 @@
 #include "main.h"
 
 Application* app;
+MainMenu* main_menu;
 
 int main()
 {
@@ -11,6 +12,8 @@ int main()
         printf("Application failed to initalize");
         return 1;
     }
+
+    main_menu = InitMainMenu(app); 
 
     int fps_count = 0;
     long long fps_timer = current_timestamp();
@@ -49,6 +52,12 @@ int main()
 
 void render()
 {
+    switch (app->current_context)
+    {
+        case MAIN_MENU:
+            RenderMainMenu(app, main_menu);
+            break;
+    }
 }
 
 void update()
@@ -59,6 +68,8 @@ void handle_events()
 {
     while(SDL_PollEvent(&app->window_event) > 0)
     {
+        //TODO: Pull this out into it's own file and organize it better.
+        //      Two levels of switch cases is not optimal.
         switch (app->window_event.type)
         {
             case SDL_QUIT:
@@ -69,6 +80,14 @@ void handle_events()
                 break;
             case SDL_KEYUP:
                 HandleKeyboardInput( app );
+                break;
+            case SDL_MOUSEBUTTONDOWN:
+                switch (app->current_context)
+                {
+                    case MAIN_MENU:
+                        HandleMouseInputMainMenu(app->window_event, main_menu);
+                        break;
+                }
                 break;
         }
     }

@@ -57,5 +57,7 @@ Application *InitApplication()
   app->delta_time = 0.f;
   app->timer = 0;
 
+  app->current_context = MAIN_MENU;
+
   return app;
 } 

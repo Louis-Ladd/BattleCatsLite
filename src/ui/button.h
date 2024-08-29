@@ -12,7 +12,7 @@ typedef struct {
     void (*on_click)(void); // I have a very interesting journy ahead of me...
 } Button;
 
-Button* CreateButton(Application* app, float x, float y, float w, float h, SDL_Color color);
+Button* CreateButton(Application* app, float x, float y, float w, float h, char button_text[], SDL_Color button_color, SDL_Color text_color);
 
 void r_RenderButton(SDL_Renderer* renderer, Button* button);
 

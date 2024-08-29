@@ -8,6 +8,7 @@
 
 extern const SDL_Color BLACK;
 extern const SDL_Color WHITE;
+extern const SDL_Color GRAY;
 extern const SDL_Color RED;
 extern const SDL_Color GREEN;
 extern const SDL_Color BLUE;
