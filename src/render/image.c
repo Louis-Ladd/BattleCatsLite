@@ -31,3 +31,9 @@ void r_DrawImage(SDL_Renderer* renderer, struct Image* image)
 {
     SDL_RenderCopyF(renderer, image->texture, NULL, &image->f_rect);
 }
+
+void r_DestroyImage(struct Image* image)
+{
+    SDL_DestroyTexture(image->texture);
+    free(image);
+}

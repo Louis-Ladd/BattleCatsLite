@@ -14,4 +14,6 @@ struct Image *r_CreateNativelySizedImage(SDL_Renderer* renderer, SDL_Surface* im
 
 void r_DrawImage(SDL_Renderer* renderer, struct Image* image);
 
+void r_DestroyImage( struct Image* image )
+
 #endif
