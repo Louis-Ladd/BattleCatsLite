@@ -16,15 +16,22 @@ enum FontEnum {
   XLARGE_FONT
 };
 
+enum ContextEnum {
+  MAIN_MENU,
+  LEVEL_ONE,
+  LEVEL_TWO
+};
+
 struct Application {
-  SDL_Window *window;
-  SDL_Surface *window_surface;
-  SDL_Renderer *renderer;
+  SDL_Window* window;
+  SDL_Surface* window_surface;
+  SDL_Renderer* renderer;
   SDL_Event window_event;
   bool is_running;
   bool keys[322];
   TTF_Font* fonts[4];
   float delta_time;
+  int current_context;
   int fps;
   int timer;
 };

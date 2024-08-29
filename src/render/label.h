@@ -18,7 +18,7 @@ struct Label *r_CreateLabel(SDL_Renderer* renderer, float x, float y, char text[
 
 void r_UpdateLabel();
 
-void r_DrawLabel(SDL_Renderer* renderer, struct Label* label);
+void r_RenderLabel(SDL_Renderer* renderer, struct Label* label);
 
 void r_DestroyLabel(struct Label* label);
 

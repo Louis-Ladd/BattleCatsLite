@@ -15,6 +15,9 @@
 #include "render/sprite.h"
 #include "render/sprite_enum.h"
 
+//Levels and menus
+#include "main_menu/main_menu.h"
+
 int main();
 
 void render();

@@ -49,7 +49,7 @@ void r_UpdateLabel()
   printf("Not Implemented!!!");
 }
 
-void r_DrawLabel(SDL_Renderer* renderer, struct Label* label)
+void r_RenderLabel(SDL_Renderer* renderer, struct Label* label)
 {
   SDL_RenderCopyF(renderer, label->texture, NULL, &label->rect);
 }

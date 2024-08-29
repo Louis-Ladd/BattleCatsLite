@@ -49,15 +49,10 @@ int main()
 
 void render()
 {
-    r_DrawText(10, 10, app->fonts[SMALL_FONT], "Small Font", app->renderer, GREEN);
-    r_DrawText(10, 26, app->fonts[MEDIUM_FONT], "Medium Font", app->renderer, GREEN);
-    r_DrawText(10, 58, app->fonts[LARGE_FONT], "Large Font", app->renderer, GREEN);
-    r_DrawText(10, 128, app->fonts[XLARGE_FONT], "Extra Large Font", app->renderer, GREEN);
 }
 
 void update()
 {
-    printf("FPS: %i\n", app->fps);
 } 
 
 void handle_events()
