@@ -77,13 +77,10 @@ void handle_events()
             case SDL_QUIT:
                 app->is_running = false;
                 break;
-            case SDL_KEYDOWN:
+            case SDL_KEYDOWN ... SDL_KEYUP: // This syntax is radical
                 HandleKeyboardInput( app );
                 break;
-            case SDL_KEYUP:
-                HandleKeyboardInput( app );
-                break;
-            case SDL_MOUSEBUTTONDOWN:
+            case SDL_MOUSEBUTTONDOWN ... SDL_MOUSEBUTTONUP:
                 switch (app->current_context)
                 {
                     case MAIN_MENU:
