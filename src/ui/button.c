@@ -12,12 +12,18 @@ Button* CreateButton(Application* app, float x, float y, float w, float h, char 
 
     button->f_rect = button_rect;
 
+    button->onClick = NULL;
+
     return button;
+}
+
+void SetButtonFuncPointer(Button* button, void (*f)(Application* app))
+{
+    button->onClick = f;
 }
 
 void r_RenderButton(SDL_Renderer* renderer, Button* button)
 {
-
     SDL_SetRenderDraw_SDL_Color(renderer, button->color);
     SDL_RenderFillRectF(renderer, &button->f_rect);
     r_RenderLabel(renderer, button->label); 

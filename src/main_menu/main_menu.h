@@ -3,6 +3,7 @@
 
 #define MAX_BUTTON_COUNT 3
 
+#include "button_events.h"
 #include "../ui/button.h"
 
 typedef struct {

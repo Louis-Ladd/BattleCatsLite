@@ -57,6 +57,8 @@ void render()
         case MAIN_MENU:
             RenderMainMenu(app, main_menu);
             break;
+        case LEVEL_ONE:
+            break;
     }
 }
 
@@ -85,7 +87,7 @@ void handle_events()
                 switch (app->current_context)
                 {
                     case MAIN_MENU:
-                        HandleMouseInputMainMenu(app->window_event, main_menu);
+                        HandleMouseInputMainMenu(app, main_menu);
                         break;
                 }
                 break;
