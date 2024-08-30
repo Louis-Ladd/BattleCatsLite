@@ -10,6 +10,7 @@ void HandleKeyboardInput(Application* app)
     { 
        return;
     } 
+
     switch (app->window_event.type)
     {
         case SDL_KEYDOWN:

@@ -1,8 +1,8 @@
 #ifndef APPLICATION_H_
 #define APPLICATION_H_
 
-#define SCREEN_WIDTH 1200
-#define SCREEN_HEIGHT 480
+#define SCREEN_WIDTH 1280 
+#define SCREEN_HEIGHT 720 
 
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>

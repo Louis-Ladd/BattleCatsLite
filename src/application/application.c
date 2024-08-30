@@ -46,6 +46,8 @@ Application *InitApplication()
     return NULL;
   }
 
+  SDL_SetWindowResizable(app->window, SDL_FALSE);
+
   app->renderer = SDL_CreateRenderer(app->window, -1, SDL_RENDERER_SOFTWARE);
 
   if (!app->renderer)
