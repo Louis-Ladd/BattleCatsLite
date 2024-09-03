@@ -15,7 +15,7 @@ SRCS = $(shell find src -name '*.c')
 TARGET = ./build/game
 
 
-.PHONY: all 
+.PHONY: lib all 
 
 all: lib game 
 
