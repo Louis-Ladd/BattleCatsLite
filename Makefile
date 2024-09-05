@@ -1,34 +1,26 @@
-# Compiler
 CC = clang
 
 # Compiler flag
-CFLAGS = -Wall -Wno-unused-variable -Wextra -Werror -g  
-CFLAGS += -Ilib/SDL/include -Ilib/SDL_ttf -Ilib/SDL_image/include 
+CFLAGS = -Wall -Wno-unused-variable -Wextra -Werror -g `sdl2-config --cflags` 
 
 # Linker flags
-LDFLAGS = -Llib/SDL/build -Llib/SDL_ttf/build -Llib/SDL_image/build -lSDL2 -lSDL2_ttf -lSDL_image -lm  
+LDFLAGS = `sdl2-config --libs` -lSDL2_ttf -lSDL2_image 
 
 # Source files
 SRCS = $(shell find src -name '*.c')  
 
 # Output executable
-TARGET = ./build/game
+TARGET = ./build/game 
 
+# Rules
+all: $(TARGET)
 
-.PHONY: lib all 
-
-all: lib game 
-
-lib:
-	cd lib/SDL && mkdir -p build && cd build && cmake -S .. && make 
-	cd lib/SDL_ttf && mkdir -p build && cd build && cmake -S .. && make
-	cd lib/SDL_image && mkdir -p build && cd build && cmake -S .. && make
-
-game: 
+$(TARGET): $(SRCS)
 	$(CC) $(CFLAGS) $(SRCS) -o $(TARGET) $(LDFLAGS) 
 
 run:
-	$(TARGET)
+	make -B
+	./build/game
 
 clean:
-	rm -rf build/*
+	rm -f $(TARGET)
