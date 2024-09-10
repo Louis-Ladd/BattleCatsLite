@@ -1,4 +1,5 @@
 #include "scene_manager.h"
+#include "scene.h"
 
 SceneManager* InitSceneManager()
 {
@@ -17,7 +18,7 @@ void AddScene(SceneManager* scene_manager, Scene* scene)
     {
         if (scene_manager->scenes[i])
         {
-            if (i == SCENE_COUNT)
+            if (i == SCENE_COUNT - 1)
             {
                 printf("Warning: Attempted to add a scene but we don't have room!");
                 return;
@@ -30,7 +31,7 @@ void AddScene(SceneManager* scene_manager, Scene* scene)
     }
 }
 
-// We have responsiblity for cleanup!!!
+// We have responsiblity for cleanup!!!!
 void RemoveScene(SceneManager* scene_manager, Scene* scene)
 {
     for (int i = 0; i < SCENE_COUNT; i++)
@@ -45,5 +46,6 @@ void RemoveScene(SceneManager* scene_manager, Scene* scene)
 
 void DestroySceneManager(SceneManager* scene_manager)
 {
-    //TODO: Go through all scenes and clean them up
+    //TODO: Go through all scenes and clean them up!!!
+    free(scene_manager);
 }

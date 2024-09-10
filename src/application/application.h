@@ -9,8 +9,6 @@
 #include <SDL2/SDL_ttf.h>
 #include <stdbool.h>
 
-#include "../scene/scene_manager.h"
-
 enum FontEnum {
   SMALL_FONT,
   MEDIUM_FONT,
@@ -29,7 +27,6 @@ typedef struct {
   SDL_Surface* window_surface;
   SDL_Renderer* renderer;
   SDL_Event window_event;
-  SceneManager* scene_manager;
   bool is_running;
   bool keys[322];
   TTF_Font* fonts[4];

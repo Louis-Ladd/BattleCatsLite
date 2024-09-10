@@ -7,13 +7,14 @@
 
 typedef struct {
     int sprite_offset;
+    Image* sprite_sheet;
     SDL_FRect f_rect;
     float scale;
 } Sprite;
 
-Sprite *r_CreateSprite(int sprite_offset, float x, float y, float scale);
+Sprite *r_CreateSprite(int sprite_offset, Image* sprice_sheet, float x, float y, float scale);
 
-void r_DrawSprite(SDL_Renderer* renderer, Image *sprite_sheet, Sprite *sprite);
+void r_DrawSprite(SDL_Renderer* renderer, Sprite *sprite);
 
 void r_DestroySprite(Sprite* sprite);
 

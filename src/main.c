@@ -2,6 +2,7 @@
 
 Application* app;
 MainMenu* main_menu;
+SceneManager* scene_manager;
 
 int main()
 {
@@ -14,6 +15,10 @@ int main()
     }
 
     main_menu = InitMainMenu(app); 
+
+    scene_manager = InitSceneManager(); 
+
+    create_level_one(app->renderer, scene_manager);
 
     int fps_count = 0;
     long long fps_timer = current_timestamp();
@@ -58,6 +63,7 @@ void render()
             RenderMainMenu(app, main_menu);
             break;
         case LEVEL_ONE:
+            RenderScene(app->renderer, scene_manager->scenes[0]);
             break;
     }
 }

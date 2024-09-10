@@ -15,9 +15,11 @@
 #include "render/label.h"
 #include "render/sprite.h"
 #include "render/sprite_enum.h"
+#include "scene/scene_manager.h"
 
 //Levels and menus
 #include "main_menu/main_menu.h"
+#include "levels/level.h"
 
 int main();
 

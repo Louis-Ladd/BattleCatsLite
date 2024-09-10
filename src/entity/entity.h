@@ -15,4 +15,6 @@ typedef struct {
     bool is_enemy;
 } Entity;
 
+Entity* CreateEntity(EntityID id, Sprite* sprite, u8 current_frame, u16 health, bool is_enemy);
+
 #endif
