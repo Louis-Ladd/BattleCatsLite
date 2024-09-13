@@ -15,4 +15,6 @@ Scene* CreateScene();
 
 void RenderScene(SDL_Renderer* renderer, Scene* scene);
 
+void DestroyScene(Scene* scene);
+
 #endif

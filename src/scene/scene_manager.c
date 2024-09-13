@@ -38,7 +38,7 @@ void RemoveScene(SceneManager* scene_manager, Scene* scene)
     {
         if (scene == scene_manager->scenes[i])
         {
-            free(scene); //TODO: The scenes will still have references we need to clean up!
+            DestroyScene(scene);
             scene_manager->scenes[i] = NULL;
         }
     }

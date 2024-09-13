@@ -16,3 +16,11 @@ void RenderScene(SDL_Renderer* renderer, Scene* scene)
         r_DrawSprite(renderer, scene->entities[i]->sprite);
     }
 }
+
+void DestroyScene(Scene* scene)
+{
+    for (int i = 0; i < scene->entity_count; i++)
+    {
+        DestroyEntity(scene->entities[i]);
+    }
+}

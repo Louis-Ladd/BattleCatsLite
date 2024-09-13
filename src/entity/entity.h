@@ -17,4 +17,6 @@ typedef struct {
 
 Entity* CreateEntity(EntityID id, Sprite* sprite, u8 current_frame, u16 health, bool is_enemy);
 
+void DestroyEntity(Entity* entity);
+
 #endif

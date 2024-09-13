@@ -12,3 +12,9 @@ Entity* CreateEntity(EntityID id, Sprite* sprite, u8 current_frame, u16 health, 
 
     return entity;
 }
+
+void DestroyEntity(Entity* entity)
+{
+    r_DestroySprite(entity->sprite);
+    free(entity);
+}

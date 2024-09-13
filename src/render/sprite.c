@@ -4,13 +4,13 @@ const int SPRITE_SIZE = 256;
 const int COLUMNS = 2560 / SPRITE_SIZE;
 const int ROWS = 2560 / SPRITE_SIZE;
 
-//Writing this code made me thirsty for a sprite 
+//Writing this code made me thirsty for a sprite
 
-Sprite *r_CreateSprite(int sprite_offset, Image* sprite_sheet, float x, float y, float scale)
+Sprite* r_CreateSprite(int sprite_offset, Image* sprite_sheet, float x, float y, float scale)
 {
     Sprite* sprite = malloc(sizeof(Sprite));
     sprite->sprite_sheet = sprite_sheet;
-    sprite->sprite_offset = sprite_offset; 
+    sprite->sprite_offset = sprite_offset;
     SDL_FRect cat_frect = {x, y, 256*scale, 256*scale};
     sprite->f_rect = cat_frect;
 

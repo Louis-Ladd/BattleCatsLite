@@ -1,6 +1,6 @@
 #include "image.h"
 
-Image *r_CreateImage(SDL_Renderer* renderer, SDL_Surface* image_surface, float x, float y, float w, float h)
+Image* r_CreateImage(SDL_Renderer* renderer, SDL_Surface* image_surface, float x, float y, float w, float h)
 {
     Image* image = malloc(sizeof(Image));
     SDL_FRect rect;
@@ -22,7 +22,7 @@ Image *r_CreateImage(SDL_Renderer* renderer, SDL_Surface* image_surface, float x
     return image;
 }
 
-Image *r_CreateNativelySizedImage(SDL_Renderer* renderer, SDL_Surface* image_surface, float x, float y)
+Image* r_CreateNativelySizedImage(SDL_Renderer* renderer, SDL_Surface* image_surface, float x, float y)
 {
     return r_CreateImage(renderer, image_surface, x, y, image_surface->w, image_surface->h);
 }

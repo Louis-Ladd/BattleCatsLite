@@ -14,7 +14,7 @@ typedef struct {
 
 void r_DrawText(int x, int y, TTF_Font* font, char text[], SDL_Renderer* renderer, SDL_Color color);
 
-Label *r_CreateLabel(SDL_Renderer* renderer, float x, float y, char text[], TTF_Font* font, SDL_Color color);
+Label* r_CreateLabel(SDL_Renderer* renderer, float x, float y, char text[], TTF_Font* font, SDL_Color color);
 
 void r_UpdateLabel();
 
