@@ -1,4 +1,6 @@
 #include "main.h"
+#include "application/application.h"
+#include "main_menu/main_menu.h"
 
 Application* app;
 MainMenu* main_menu;
@@ -14,9 +16,9 @@ int main()
         return 1;
     }
 
-    main_menu = InitMainMenu(app); 
+    main_menu = InitMainMenu(app);
 
-    scene_manager = InitSceneManager(); 
+    scene_manager = InitSceneManager();
 
     create_level_one(app->renderer, scene_manager);
 
@@ -70,7 +72,15 @@ void render()
 
 void update()
 {
-} 
+    switch (app->current_context)
+    {
+        case MAIN_MENU:
+            break;
+        case LEVEL_ONE:
+            UpdateScene(scene_manager->scenes[0]);
+            break;
+    }
+}
 
 void handle_events()
 {

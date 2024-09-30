@@ -11,6 +11,7 @@ Sprite* r_CreateSprite(int sprite_offset, Image* sprite_sheet, float x, float y,
     Sprite* sprite = malloc(sizeof(Sprite));
     sprite->sprite_sheet = sprite_sheet;
     sprite->sprite_offset = sprite_offset;
+    sprite->scale = scale;
     SDL_FRect cat_frect = {x, y, 256*scale, 256*scale};
     sprite->f_rect = cat_frect;
 

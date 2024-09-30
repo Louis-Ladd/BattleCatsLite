@@ -8,15 +8,18 @@
 typedef u16 EntityID;
 
 typedef struct {
-    EntityID id; 
-    Sprite* sprite; // Stores positional data 
+    EntityID id;
+    Sprite* sprite; // Stores positional data
     u8 current_frame;
     u16 health;
     bool is_enemy;
+    Vec2 velocity;
 } Entity;
 
-Entity* CreateEntity(EntityID id, Sprite* sprite, u8 current_frame, u16 health, bool is_enemy);
+Entity* e_CreateEntity(EntityID id, Sprite* sprite, u8 current_frame, u16 health, bool is_enemy);
 
-void DestroyEntity(Entity* entity);
+void e_ApplyVelocity(Entity* entity);
+
+void e_DestroyEntity(Entity* entity);
 
 #endif

@@ -1,4 +1,5 @@
 #include "scene.h"
+#include <time.h>
 
 Scene* CreateScene()
 {
@@ -17,10 +18,35 @@ void RenderScene(SDL_Renderer* renderer, Scene* scene)
     }
 }
 
+void UpdateScene(Scene* scene)
+{
+    Entity* entity = NULL;
+    for (int i = 0; i < scene->entity_count; i++)
+    {
+        entity = scene->entities[i];
+        if (!entity)
+        { return; }
+
+        if (entity->sprite->f_rect.y <= 480.0f - entity->sprite->f_rect.h * entity->sprite->scale)
+        {
+            if (entity->velocity.y < 0.8f)
+            {
+                entity->velocity.y += 0.1f;
+            }
+        }
+        else
+        {
+            entity->velocity.y = 0;
+        }
+
+        e_ApplyVelocity(entity);
+    }
+}
+
 void DestroyScene(Scene* scene)
 {
     for (int i = 0; i < scene->entity_count; i++)
     {
-        DestroyEntity(scene->entities[i]);
+        e_DestroyEntity(scene->entities[i]);
     }
 }
