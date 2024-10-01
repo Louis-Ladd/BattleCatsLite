@@ -8,7 +8,7 @@ const int ROWS = 2560 / SPRITE_SIZE;
 
 Sprite* r_CreateSprite(int sprite_offset, Image* sprite_sheet, float x, float y, float scale)
 {
-    Sprite* sprite = malloc(sizeof(Sprite));
+    Sprite* sprite = malloc(sizeof(*sprite));
     sprite->sprite_sheet = sprite_sheet;
     sprite->sprite_offset = sprite_offset;
     sprite->scale = scale;

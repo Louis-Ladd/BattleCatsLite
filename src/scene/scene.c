@@ -3,7 +3,7 @@
 
 Scene* CreateScene()
 {
-    Scene* scene = malloc(sizeof(Scene));
+    Scene* scene = malloc(sizeof(*scene));
 
     return scene;
 }

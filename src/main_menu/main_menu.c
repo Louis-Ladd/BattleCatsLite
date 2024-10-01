@@ -2,7 +2,7 @@
 
 MainMenu* InitMainMenu(Application* app)
 {
-    MainMenu* menu = malloc(sizeof(MainMenu));
+    MainMenu* menu = malloc(sizeof(*menu));
 
     for (int i = 0; i < MAX_BUTTON_COUNT; i++)
     {

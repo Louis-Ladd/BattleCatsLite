@@ -1,9 +1,8 @@
 #include "application.h"
-#include "../scene/scene_manager.h"
 
 Application *InitApplication()
 {
-  Application *app = malloc(sizeof(Application)); 
+  Application *app = malloc(sizeof(*app));
 
   for (int i = 0; i < 322; i++)
   {
@@ -26,7 +25,7 @@ Application *InitApplication()
 
   app->fonts[SMALL_FONT] = TTF_OpenFont("assets/noodle.ttf", 16);
   app->fonts[MEDIUM_FONT] = TTF_OpenFont("assets/noodle.ttf", 32);
-  app->fonts[LARGE_FONT] = TTF_OpenFont("assets/noodle.ttf", 64);  
+  app->fonts[LARGE_FONT] = TTF_OpenFont("assets/noodle.ttf", 64);
   app->fonts[XLARGE_FONT] = TTF_OpenFont("assets/noodle.ttf", 128);
 
   if (IMG_Init(IMG_INIT_PNG) < 0)
@@ -63,4 +62,4 @@ Application *InitApplication()
   app->current_context = MAIN_MENU;
 
   return app;
-} 
+}

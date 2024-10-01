@@ -2,7 +2,7 @@
 
 Image* r_CreateImage(SDL_Renderer* renderer, SDL_Surface* image_surface, float x, float y, float w, float h)
 {
-    Image* image = malloc(sizeof(Image));
+    Image* image = malloc(sizeof(*image));
     SDL_FRect rect;
 
     rect.w = w;
