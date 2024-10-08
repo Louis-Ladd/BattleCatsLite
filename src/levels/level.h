@@ -5,6 +5,7 @@
 #include "../render/sprite.h"
 #include "../render/label.h"
 #include "../render/image.h"
+#include "../cats/cat.h"
 #include "../entity/entity.h"
 #include "SDL2/SDL_image.h"
 

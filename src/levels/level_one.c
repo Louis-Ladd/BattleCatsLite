@@ -14,12 +14,12 @@ void create_level_one(SDL_Renderer* renderer, SceneManager* scene_manager)
         scene->entities[i] = NULL;
     }
 
-    Sprite* sprite = r_CreateSprite(1, friendly_sprite_sheet, 50, 50, 1);
-    Entity* entity = e_CreateEntity(0, sprite, 0, 100, false);
+    Entity* entity = e_CreateGenericGoodCat(0, friendly_sprite_sheet);
+    entity->speed = 50;
     scene->entities[0] = entity;
 
-    sprite = r_CreateSprite(0, friendly_sprite_sheet, 100, 100, 1);
-    entity = e_CreateEntity(1, sprite, 0, 100, false);
+    entity = e_CreateGenericBadCat(1, friendly_sprite_sheet);
+    entity->speed = 50;
     scene->entities[1] = entity;
 
 

@@ -5,4 +5,6 @@
 #include "vec2.h"
 #include "current_time.h"
 
+double clamp(double d, double min, double max);
+
 #endif

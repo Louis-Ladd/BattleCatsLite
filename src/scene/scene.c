@@ -1,5 +1,5 @@
 #include "scene.h"
-#include <time.h>
+#include <SDL2/SDL_keycode.h>
 
 Scene* CreateScene()
 {
@@ -12,13 +12,28 @@ void RenderScene(SDL_Renderer* renderer, Scene* scene)
 {
     for (int i = 0; i < scene->entity_count; i++)
     {
-        if (scene->entities[i] == NULL)
+        if (!scene->entities[i])
         { continue; }
-        r_DrawSprite(renderer, scene->entities[i]->sprite);
+
+        r_RenderEntity(renderer, scene->entities[i]);
     }
 }
 
-void UpdateScene(Scene* scene)
+void AddEntity(Scene* scene, Entity* entity)
+{
+    for (int i = 0; i < scene->entity_count; i++)
+    {
+        if (scene->entities[i] != NULL)
+        { continue; }
+
+        scene->entities[i] = entity;
+        scene->entities[i]->id = i;
+        return;
+    }
+    // TODO: Do something if we were unable to add the entity
+}
+
+void UpdateScene(Application* app, Scene* scene)
 {
     Entity* entity = NULL;
     for (int i = 0; i < scene->entity_count; i++)
@@ -27,19 +42,24 @@ void UpdateScene(Scene* scene)
         if (!entity)
         { return; }
 
-        if (entity->sprite->f_rect.y <= 480.0f - entity->sprite->f_rect.h * entity->sprite->scale)
+        for (int j = 0; j < scene->entity_count; j++)
         {
-            if (entity->velocity.y < 0.8f)
+            if (!scene->entities[j])
+            { continue; }
+
+            if (entity->is_enemy)
             {
-                entity->velocity.y += 0.1f;
+                e_UpdateBadCat(entity, scene->entities[j]);
+            }
+            else
+            {
+                e_UpdateGoodCat(entity, scene->entities[j]);
             }
         }
-        else
-        {
-            entity->velocity.y = 0;
-        }
 
-        e_ApplyVelocity(entity);
+        e_EntityGravity(entity);
+        e_ApplyEntropy(entity);
+        e_ApplyVelocity(app, entity);
     }
 }
 

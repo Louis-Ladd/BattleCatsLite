@@ -1,9 +1,13 @@
 #ifndef SCENE_H_
 #define SCENE_H_
 
+#include "SDL2/SDL.h"
 #include "../entity/entity.h"
 #include "../render/sprite.h"
-#include "SDL2/SDL.h"
+#include "../input/keyboard.h"
+#include "../application/application.h"
+#include "../entity/entity_behavior.h"
+#include "../cats/cat.h"
 
 typedef struct {
     u16 entity_count;
@@ -15,7 +19,9 @@ Scene* CreateScene();
 
 void RenderScene(SDL_Renderer* renderer, Scene* scene);
 
-void UpdateScene(Scene* scene);
+void AddEntity(Scene* scene, Entity* entity);
+
+void UpdateScene(Application* app, Scene* scene);
 
 void DestroyScene(Scene* scene);
 

@@ -77,7 +77,7 @@ void update()
         case MAIN_MENU:
             break;
         case LEVEL_ONE:
-            UpdateScene(scene_manager->scenes[0]);
+            UpdateScene(app, scene_manager->scenes[0]);
             break;
     }
 }
