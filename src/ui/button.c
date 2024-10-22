@@ -1,12 +1,14 @@
 #include "button.h"
 
-Button* CreateButton(Application* app, float x, float y, float w, float h, char button_text[], SDL_Color button_color, SDL_Color text_color)
+#include "../application.h"
+
+Button* CreateButton(float x, float y, float w, float h, char button_text[], SDL_Color button_color, SDL_Color text_color)
 {
     Button* button = malloc(sizeof(*button));
 
     button->color = button_color;
 
-    button->label = r_CreateLabel(app->renderer, x + 5, y + (h/2), button_text, app->fonts[LARGE_FONT], text_color);
+    button->label = r_CreateLabel(application.renderer, x + 5, y + (h/2), button_text, application.fonts[LARGE_FONT], text_color);
 
     SDL_FRect button_rect = {x, y, w, h};
 
@@ -17,7 +19,7 @@ Button* CreateButton(Application* app, float x, float y, float w, float h, char 
     return button;
 }
 
-void SetButtonFuncPointer(Button* button, void (*f)(Application* app))
+void SetButtonFuncPointer(Button* button, void (*f)(void))
 {
     button->onClick = f;
 }

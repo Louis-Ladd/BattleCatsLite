@@ -4,9 +4,8 @@
 #include <SDL2/SDL_events.h>
 #include <SDL2/SDL_version.h>
 
-#include "../application/application.h"
 #include "../main_menu/main_menu.h"
 
-void HandleMouseInputMainMenu(Application* app, MainMenu* menu);
+void HandleMouseInputMainMenu(MainMenu* menu);
 
 #endif

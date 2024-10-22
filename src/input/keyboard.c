@@ -1,23 +1,25 @@
 #include "keyboard.h"
 
+#include "../application.h"
+
 #define MAX_KEYS 322
 
-void HandleKeyboardInput(Application* app) 
+void HandleKeyboardInput()
 {
-    int keycode = app->window_event.key.keysym.sym;
+    int keycode = application.window_event.key.keysym.sym;
 
-    if (keycode <= 0 || keycode > MAX_KEYS) 
-    { 
+    if (keycode <= 0 || keycode > MAX_KEYS)
+    {
        return;
-    } 
+    }
 
-    switch (app->window_event.type)
+    switch (application.window_event.type)
     {
         case SDL_KEYDOWN:
-            app->keys[keycode] = true;
+            application.keys[keycode] = true;
             break;
         case SDL_KEYUP:
-            app->keys[keycode] = false;
+            application.keys[keycode] = false;
             break;
     }
 }

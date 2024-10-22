@@ -1,12 +1,13 @@
 #include "button_events.h"
-#include "../application/application.h"
 
-void start(Application* app)
+#include "../application.h"
+
+void start()
 {
-    app->current_context += 1;
+    application.current_context += 1;
 }
 
-void quit(Application* app)
+void quit()
 {
-    app->is_running = false;
+    application.is_running = false;
 }

@@ -1,8 +1,8 @@
 #ifndef APPLICATION_H_
 #define APPLICATION_H_
 
-#define SCREEN_WIDTH 1280 
-#define SCREEN_HEIGHT 720 
+#define SCREEN_WIDTH 1280
+#define SCREEN_HEIGHT 720
 
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
@@ -22,7 +22,7 @@ enum ContextEnum {
   LEVEL_TWO
 };
 
-typedef struct {
+struct Application {
   SDL_Window* window;
   SDL_Surface* window_surface;
   SDL_Renderer* renderer;
@@ -34,8 +34,10 @@ typedef struct {
   int current_context;
   int fps;
   int timer;
-} Application;
+};
 
-Application *InitApplication();
+int InitApplication(struct Application* application);
+
+extern struct Application application;
 
 #endif

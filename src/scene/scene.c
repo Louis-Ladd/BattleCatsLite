@@ -33,7 +33,7 @@ void AddEntity(Scene* scene, Entity* entity)
     // TODO: Do something if we were unable to add the entity
 }
 
-void UpdateScene(Application* app, Scene* scene)
+void UpdateScene(Scene* scene)
 {
     Entity* entity = NULL;
     for (int i = 0; i < scene->entity_count; i++)
@@ -46,6 +46,8 @@ void UpdateScene(Application* app, Scene* scene)
         {
             if (!scene->entities[j])
             { continue; }
+            if (entity == scene->entities[j])
+            { continue;}
 
             if (entity->is_enemy)
             {
@@ -59,7 +61,7 @@ void UpdateScene(Application* app, Scene* scene)
 
         e_EntityGravity(entity);
         e_ApplyEntropy(entity);
-        e_ApplyVelocity(app, entity);
+        e_ApplyVelocity(entity);
     }
 }
 

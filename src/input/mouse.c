@@ -1,5 +1,7 @@
 #include "mouse.h"
 
+#include "../application.h"
+
 #if SDL_VERSION_ATLEAST(2, 0, 22)
     //Why the hell doesn't ubuntu's pre-built SDL2 package not have this?
 #else
@@ -10,15 +12,15 @@ SDL_FORCE_INLINE SDL_bool SDL_PointInFRect(const SDL_FPoint *p, const SDL_FRect 
 }
 #endif
 
-void HandleMouseInputMainMenu(Application* app, MainMenu* menu)
+void HandleMouseInputMainMenu(MainMenu* menu)
 {
-    if (app->window_event.type != SDL_MOUSEBUTTONDOWN)
+    if (application.window_event.type != SDL_MOUSEBUTTONDOWN)
     { return; }
 
     SDL_FPoint mouse_position;
 
-    mouse_position.x = app->window_event.motion.x; 
-    mouse_position.y = app->window_event.motion.y;
+    mouse_position.x = application.window_event.motion.x;
+    mouse_position.y = application.window_event.motion.y;
 
     for (int i = 0; i < MAX_BUTTON_COUNT; i++)
     {
@@ -27,12 +29,11 @@ void HandleMouseInputMainMenu(Application* app, MainMenu* menu)
 
         if (!SDL_PointInFRect(&mouse_position, &menu->buttons[i]->f_rect))
         { continue; }
-        
+
         if (menu->buttons[i]->onClick)
         {
-            menu->buttons[i]->onClick(app);
+            menu->buttons[i]->onClick();
         }
         printf("Clicked on: %s\n", menu->buttons[i]->label->text);
     }
-
 }

@@ -7,14 +7,14 @@
 #include "../ui/button.h"
 
 typedef struct {
-    Button* buttons[MAX_BUTTON_COUNT]; 
+    Button* buttons[MAX_BUTTON_COUNT];
 // Other elements like images, text, etc
 } MainMenu;
 
-MainMenu* InitMainMenu(Application* App); 
+MainMenu* InitMainMenu();
 
-void RenderMainMenu(Application* app, MainMenu* menu);
+void RenderMainMenu(MainMenu* menu);
 
-void DestroyMainMenu(MainMenu* menu); 
+void DestroyMainMenu(MainMenu* menu);
 
 #endif

@@ -1,6 +1,8 @@
 #include "entity.h"
 #include <SDL2/SDL_render.h>
 
+#include "../application.h"
+
 Entity* e_CreateEntity(EntityID id, Sprite* sprite, u8 current_frame, u16 health, bool is_enemy)
 {
     Entity* entity = malloc(sizeof(*entity));
@@ -29,10 +31,10 @@ void r_RenderEntity(SDL_Renderer* renderer, Entity* entity)
     r_DrawSprite(renderer, entity->sprite);
 }
 
-void e_ApplyVelocity(Application* app, Entity* entity)
+void e_ApplyVelocity(Entity* entity)
 {
-    entity->position.x += entity->velocity.x * app->delta_time;
-    entity->position.y += entity->velocity.y * app->delta_time;
+    entity->position.x += entity->velocity.x * application.delta_time;
+    entity->position.y += entity->velocity.y * application.delta_time;
 }
 
 void e_DestroyEntity(Entity* entity)

@@ -5,7 +5,6 @@
 #include "../entity/entity.h"
 #include "../render/sprite.h"
 #include "../input/keyboard.h"
-#include "../application/application.h"
 #include "../entity/entity_behavior.h"
 #include "../cats/cat.h"
 
@@ -21,7 +20,7 @@ void RenderScene(SDL_Renderer* renderer, Scene* scene);
 
 void AddEntity(Scene* scene, Entity* entity);
 
-void UpdateScene(Application* app, Scene* scene);
+void UpdateScene(Scene* scene);
 
 void DestroyScene(Scene* scene);
 
