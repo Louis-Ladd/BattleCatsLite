@@ -7,18 +7,15 @@ SceneManager* scene_manager;
 
 struct Application application;
 
-int main()
-{
+int main() {
     int application_status = InitApplication(&application);
 
-    if (application_status > 0)
-    {
+    if (application_status > 0) {
         printf("Application failed to initalize");
         return 1;
     }
 
     main_menu = InitMainMenu();
-
     scene_manager = InitSceneManager();
 
     create_level_one(application.renderer, scene_manager);
@@ -29,10 +26,10 @@ int main()
     long long time_since_last_call = current_timestamp();
     long long time_now = current_timestamp();
 
-    while(application.is_running)
-    {
+    while (application.is_running) {
         time_now = current_timestamp();
-        application.delta_time = (float)((time_now - time_since_last_call)) / 1000;
+        application.delta_time =
+            (float)((time_now - time_since_last_call)) / 1000;
         time_since_last_call = time_now;
 
         handle_events();
@@ -43,12 +40,11 @@ int main()
         update();
         render();
 
-        SDL_RenderPresent( application.renderer ); // Flips our double buffer
+        SDL_RenderPresent(application.renderer); // Flips our double buffer
 
-        application.timer ++;
-        fps_count ++;
-        if (((float)(current_timestamp()- fps_timer))/1000.f >= 1)
-        {
+        application.timer++;
+        fps_count++;
+        if (((float)(current_timestamp() - fps_timer)) / 1000.f >= 1) {
             application.fps = fps_count;
             fps_count = 0;
             fps_timer = current_timestamp();
@@ -58,53 +54,46 @@ int main()
     return 0;
 }
 
-void render()
-{
-    switch (application.current_context)
-    {
-        case MAIN_MENU:
-            RenderMainMenu(main_menu);
-            break;
-        case LEVEL_ONE:
-            RenderScene(application.renderer, scene_manager->scenes[0]);
-            break;
+void render() {
+    switch (application.current_context) {
+    case MAIN_MENU:
+        RenderMainMenu(main_menu);
+        break;
+    case LEVEL_ONE:
+        RenderScene(application.renderer, scene_manager->scenes[0]);
+        break;
     }
 }
 
-void update()
-{
-    switch (application.current_context)
-    {
-        case MAIN_MENU:
-            break;
-        case LEVEL_ONE:
-            UpdateScene(scene_manager->scenes[0]);
-            break;
+void update() {
+    switch (application.current_context) {
+    case MAIN_MENU:
+        break;
+    case LEVEL_ONE:
+        UpdateScene(scene_manager->scenes[0]);
+        break;
     }
 }
 
-void handle_events()
-{
-    while(SDL_PollEvent(&application.window_event) > 0)
-    {
-        //TODO: Pull this out into it's own file and organize it better.
-        //      Two levels of switch cases is not optimal.
-        switch (application.window_event.type)
-        {
-            case SDL_QUIT:
-                application.is_running = false;
+void handle_events() {
+    while (SDL_PollEvent(&application.window_event) > 0) {
+        // TODO: Pull this out into it's own file and organize it
+        // better.
+        //       Two levels of switch cases is not optimal.
+        switch (application.window_event.type) {
+        case SDL_QUIT:
+            application.is_running = false;
+            break;
+        case SDL_KEYDOWN ... SDL_KEYUP: // This syntax is radical
+            HandleKeyboardInput();
+            break;
+        case SDL_MOUSEBUTTONDOWN ... SDL_MOUSEBUTTONUP:
+            switch (application.current_context) {
+            case MAIN_MENU:
+                HandleMouseInputMainMenu(main_menu);
                 break;
-            case SDL_KEYDOWN ... SDL_KEYUP: // This syntax is radical
-                HandleKeyboardInput();
-                break;
-            case SDL_MOUSEBUTTONDOWN ... SDL_MOUSEBUTTONUP:
-                switch (application.current_context)
-                {
-                    case MAIN_MENU:
-                        HandleMouseInputMainMenu(main_menu);
-                        break;
-                }
-                break;
+            }
+            break;
         }
     }
 }

@@ -2,12 +2,6 @@
 
 #include "../application.h"
 
-void start()
-{
-    application.current_context += 1;
-}
+void start() { application.current_context += 1; }
 
-void quit()
-{
-    application.is_running = false;
-}
+void quit() { application.is_running = false; }

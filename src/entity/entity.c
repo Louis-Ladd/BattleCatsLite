@@ -3,8 +3,8 @@
 
 #include "../application.h"
 
-Entity* e_CreateEntity(EntityID id, Sprite* sprite, u8 current_frame, u16 health, bool is_enemy)
-{
+Entity* e_CreateEntity(EntityID id, Sprite* sprite, u8 current_frame,
+                       u16 health, bool is_enemy) {
     Entity* entity = malloc(sizeof(*entity));
 
     entity->id = id;
@@ -20,25 +20,26 @@ Entity* e_CreateEntity(EntityID id, Sprite* sprite, u8 current_frame, u16 health
     return entity;
 }
 
-void r_RenderEntity(SDL_Renderer* renderer, Entity* entity)
-{
-    if (!entity)
-    { return; }
+void r_RenderEntity(SDL_Renderer* renderer, Entity* entity) {
+    if (!entity) {
+        return;
+    }
 
-    entity->sprite->f_rect.x = entity->position.x-(entity->sprite->f_rect.w * entity->sprite->scale)/2;
-    entity->sprite->f_rect.y = entity->position.y-(entity->sprite->f_rect.h * entity->sprite->scale);
+    entity->sprite->f_rect.x =
+        entity->position.x -
+        (entity->sprite->f_rect.w * entity->sprite->scale) / 2;
+    entity->sprite->f_rect.y =
+        entity->position.y - (entity->sprite->f_rect.h * entity->sprite->scale);
 
     r_DrawSprite(renderer, entity->sprite);
 }
 
-void e_ApplyVelocity(Entity* entity)
-{
+void e_ApplyVelocity(Entity* entity) {
     entity->position.x += entity->velocity.x * application.delta_time;
     entity->position.y += entity->velocity.y * application.delta_time;
 }
 
-void e_DestroyEntity(Entity* entity)
-{
+void e_DestroyEntity(Entity* entity) {
     r_DestroySprite(entity->sprite);
     free(entity);
 }

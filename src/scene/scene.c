@@ -1,30 +1,27 @@
 #include "scene.h"
 #include <SDL2/SDL_keycode.h>
 
-Scene* CreateScene()
-{
+Scene* CreateScene() {
     Scene* scene = malloc(sizeof(*scene));
 
     return scene;
 }
 
-void RenderScene(SDL_Renderer* renderer, Scene* scene)
-{
-    for (int i = 0; i < scene->entity_count; i++)
-    {
-        if (!scene->entities[i])
-        { continue; }
+void RenderScene(SDL_Renderer* renderer, Scene* scene) {
+    for (int i = 0; i < scene->entity_count; i++) {
+        if (!scene->entities[i]) {
+            continue;
+        }
 
         r_RenderEntity(renderer, scene->entities[i]);
     }
 }
 
-void AddEntity(Scene* scene, Entity* entity)
-{
-    for (int i = 0; i < scene->entity_count; i++)
-    {
-        if (scene->entities[i] != NULL)
-        { continue; }
+void AddEntity(Scene* scene, Entity* entity) {
+    for (int i = 0; i < scene->entity_count; i++) {
+        if (scene->entities[i] != NULL) {
+            continue;
+        }
 
         scene->entities[i] = entity;
         scene->entities[i]->id = i;
@@ -33,28 +30,25 @@ void AddEntity(Scene* scene, Entity* entity)
     // TODO: Do something if we were unable to add the entity
 }
 
-void UpdateScene(Scene* scene)
-{
+void UpdateScene(Scene* scene) {
     Entity* entity = NULL;
-    for (int i = 0; i < scene->entity_count; i++)
-    {
+    for (int i = 0; i < scene->entity_count; i++) {
         entity = scene->entities[i];
-        if (!entity)
-        { return; }
+        if (!entity) {
+            return;
+        }
 
-        for (int j = 0; j < scene->entity_count; j++)
-        {
-            if (!scene->entities[j])
-            { continue; }
-            if (entity == scene->entities[j])
-            { continue;}
-
-            if (entity->is_enemy)
-            {
-                e_UpdateBadCat(entity, scene->entities[j]);
+        for (int j = 0; j < scene->entity_count; j++) {
+            if (!scene->entities[j]) {
+                continue;
             }
-            else
-            {
+            if (entity == scene->entities[j]) {
+                continue;
+            }
+
+            if (entity->is_enemy) {
+                e_UpdateBadCat(entity, scene->entities[j]);
+            } else {
                 e_UpdateGoodCat(entity, scene->entities[j]);
             }
         }
@@ -65,10 +59,8 @@ void UpdateScene(Scene* scene)
     }
 }
 
-void DestroyScene(Scene* scene)
-{
-    for (int i = 0; i < scene->entity_count; i++)
-    {
+void DestroyScene(Scene* scene) {
+    for (int i = 0; i < scene->entity_count; i++) {
         e_DestroyEntity(scene->entities[i]);
     }
 }

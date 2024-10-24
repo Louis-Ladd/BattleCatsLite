@@ -3,12 +3,12 @@
 
 #define MAX_BUTTON_COUNT 3
 
-#include "button_events.h"
 #include "../ui/button.h"
+#include "button_events.h"
 
 typedef struct {
     Button* buttons[MAX_BUTTON_COUNT];
-// Other elements like images, text, etc
+    // Other elements like images, text, etc
 } MainMenu;
 
 MainMenu* InitMainMenu();

@@ -8,9 +8,11 @@ typedef struct {
     SDL_FRect f_rect;
 } Image;
 
-Image* r_CreateImage(SDL_Renderer* renderer, SDL_Surface* image_surface, float x, float y, float w, float h);
+Image* r_CreateImage(SDL_Renderer* renderer, SDL_Surface* image_surface,
+                     float x, float y, float w, float h);
 
-Image* r_CreateNativelySizedImage(SDL_Renderer* renderer, SDL_Surface* image_surface, float x, float y);
+Image* r_CreateNativelySizedImage(SDL_Renderer* renderer,
+                                  SDL_Surface* image_surface, float x, float y);
 
 void r_DrawImage(SDL_Renderer* renderer, Image* image);
 

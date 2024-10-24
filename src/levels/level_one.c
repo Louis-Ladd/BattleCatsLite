@@ -1,16 +1,15 @@
 #include "level.h"
 
-void create_level_one(SDL_Renderer* renderer, SceneManager* scene_manager)
-{
+void create_level_one(SDL_Renderer* renderer, SceneManager* scene_manager) {
     Scene* scene = CreateScene();
 
-    Image* friendly_sprite_sheet = r_CreateImage(renderer, IMG_Load("./assets/catspritesheet.png"), 0, 0, 2560, 2560);
+    Image* friendly_sprite_sheet = r_CreateImage(
+        renderer, IMG_Load("./assets/catspritesheet.png"), 0, 0, 2560, 2560);
 
     scene->entity_count = 64;
     scene->entities = malloc(sizeof(Entity) * scene->entity_count);
 
-    for (int i = 0; i < scene->entity_count; i++)
-    {
+    for (int i = 0; i < scene->entity_count; i++) {
         scene->entities[i] = NULL;
     }
 
@@ -21,7 +20,6 @@ void create_level_one(SDL_Renderer* renderer, SceneManager* scene_manager)
     entity = e_CreateGenericBadCat(1, friendly_sprite_sheet);
     entity->speed = 50;
     scene->entities[1] = entity;
-
 
     AddScene(scene_manager, scene);
 }
