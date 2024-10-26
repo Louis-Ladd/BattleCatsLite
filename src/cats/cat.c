@@ -1,4 +1,5 @@
 #include "cat.h"
+#include "../log.h"
 
 Entity* e_CreateGenericGoodCat(EntityID id, Image* sprite_sheet) {
     Sprite* sprite = r_CreateSprite(0, sprite_sheet, 1280.0f, 700.0f, 1.0f);
@@ -27,6 +28,7 @@ void e_UpdateGoodCat(Entity* self, Entity* other) {
     }
 
     if (DistanceVec2(self->position, other->position) < 200) {
+        LOG("Good cat attacking entity with ID %i", other->id);
         e_GoodCatAttack(self, other);
     }
 

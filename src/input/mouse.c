@@ -1,6 +1,6 @@
 #include "mouse.h"
-
 #include "../application.h"
+#include "../log.h"
 
 #if SDL_VERSION_ATLEAST(2, 0, 22)
 // Why the hell doesn't ubuntu's pre-built SDL2 package not have this?
@@ -36,6 +36,6 @@ void HandleMouseInputMainMenu(MainMenu* menu) {
         if (menu->buttons[i]->onClick) {
             menu->buttons[i]->onClick();
         }
-        printf("Clicked on: %s\n", menu->buttons[i]->label->text);
+        LOG("Clicked on: %s", menu->buttons[i]->label->text);
     }
 }

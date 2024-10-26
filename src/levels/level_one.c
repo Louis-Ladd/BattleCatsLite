@@ -1,10 +1,12 @@
+#include "../application.h"
 #include "level.h"
 
-void create_level_one(SDL_Renderer* renderer, SceneManager* scene_manager) {
+void create_level_one(SceneManager* scene_manager) {
     Scene* scene = CreateScene();
 
     Image* friendly_sprite_sheet = r_CreateImage(
-        renderer, IMG_Load("./assets/catspritesheet.png"), 0, 0, 2560, 2560);
+        application.renderer, IMG_Load("./assets/catspritesheet.png"), 0, 0,
+        2560, 2560);
 
     scene->entity_count = 64;
     scene->entities = malloc(sizeof(Entity) * scene->entity_count);

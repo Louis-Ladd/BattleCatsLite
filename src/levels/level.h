@@ -9,6 +9,6 @@
 #include "../scene/scene_manager.h"
 #include "SDL2/SDL_image.h"
 
-void create_level_one(SDL_Renderer* renderer, SceneManager* scene_manager);
+void create_level_one(SceneManager* scene_manager);
 
 #endif

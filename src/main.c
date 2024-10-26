@@ -18,13 +18,15 @@ int main() {
     main_menu = InitMainMenu();
     scene_manager = InitSceneManager();
 
-    create_level_one(application.renderer, scene_manager);
+    create_level_one(scene_manager);
 
     int fps_count = 0;
     long long fps_timer = current_timestamp();
 
     long long time_since_last_call = current_timestamp();
     long long time_now = current_timestamp();
+
+    LOG("Application Starting...");
 
     while (application.is_running) {
         time_now = current_timestamp();

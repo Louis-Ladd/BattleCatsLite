@@ -9,6 +9,7 @@
 #include "color.h"
 #include "input/keyboard.h"
 #include "input/mouse.h"
+#include "log.h"
 #include "render/image.h"
 #include "render/label.h"
 #include "render/sprite.h"

@@ -1,4 +1,5 @@
 #include "sprite.h"
+#include "../log.h"
 
 const int SPRITE_SIZE = 256;
 const int COLUMNS = 2560 / SPRITE_SIZE;
@@ -14,6 +15,8 @@ Sprite* r_CreateSprite(int sprite_offset, Image* sprite_sheet, float x, float y,
     sprite->scale = scale;
     SDL_FRect cat_frect = {x, y, 256 * scale, 256 * scale};
     sprite->f_rect = cat_frect;
+
+    LOG("Created sprite with offset %i", sprite_offset);
 
     return sprite;
 }

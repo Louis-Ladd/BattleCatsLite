@@ -33,6 +33,7 @@ void r_RenderEntity(SDL_Renderer* renderer, Entity* entity) {
         (entity->sprite->f_rect.w * entity->sprite->scale) / 2;
     entity->sprite->f_rect.y =
         entity->position.y - (entity->sprite->f_rect.h * entity->sprite->scale);
+    // TODO: Add animation support
 
     r_DrawSprite(renderer, entity->sprite);
 

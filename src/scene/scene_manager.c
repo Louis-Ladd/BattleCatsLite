@@ -37,6 +37,6 @@ void RemoveScene(SceneManager* scene_manager, Scene* scene) {
 }
 
 void DestroySceneManager(SceneManager* scene_manager) {
-    // TODO: Go through all scenes and clean them up!!!
+    // TODO: Go through all scenes and clean them up properly!!!
     free(scene_manager);
 }
