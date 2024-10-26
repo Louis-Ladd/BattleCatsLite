@@ -7,7 +7,13 @@
 
 typedef u16 EntityID;
 
+typedef struct Entity Entity;
+
 typedef struct {
+    void (*update)(Entity* self, Entity* other);
+} EntityBehavior;
+
+struct Entity {
     EntityID id;
     Sprite* sprite;
     u8 current_frame;
@@ -16,10 +22,12 @@ typedef struct {
     bool is_enemy;
     Vec2 position;
     Vec2 velocity;
-} Entity;
+    EntityBehavior behavior;
+};
 
 Entity* e_CreateEntity(EntityID id, Sprite* sprite, u8 current_frame,
-                       u16 health, bool is_enemy);
+                       u16 health, bool is_enemy,
+                       void (*update_func)(Entity* self, Entity* other));
 
 void r_RenderEntity(SDL_Renderer* renderer, Entity* entity);
 

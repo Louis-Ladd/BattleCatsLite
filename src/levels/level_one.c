@@ -14,11 +14,9 @@ void create_level_one(SDL_Renderer* renderer, SceneManager* scene_manager) {
     }
 
     Entity* entity = e_CreateGenericGoodCat(0, friendly_sprite_sheet);
-    entity->speed = 50;
     scene->entities[0] = entity;
 
     entity = e_CreateGenericBadCat(1, friendly_sprite_sheet);
-    entity->speed = 50;
     scene->entities[1] = entity;
 
     AddScene(scene_manager, scene);

@@ -42,15 +42,8 @@ void UpdateScene(Scene* scene) {
             if (!scene->entities[j]) {
                 continue;
             }
-            if (entity == scene->entities[j]) {
-                continue;
-            }
 
-            if (entity->is_enemy) {
-                e_UpdateBadCat(entity, scene->entities[j]);
-            } else {
-                e_UpdateGoodCat(entity, scene->entities[j]);
-            }
+            entity->behavior.update(entity, scene->entities[j]);
         }
 
         e_EntityGravity(entity);

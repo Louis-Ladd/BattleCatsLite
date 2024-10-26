@@ -4,7 +4,9 @@
 #include "../application.h"
 
 Entity* e_CreateEntity(EntityID id, Sprite* sprite, u8 current_frame,
-                       u16 health, bool is_enemy) {
+                       u16 health, bool is_enemy,
+                       void (*update_func)(Entity* self, Entity* other)) {
+
     Entity* entity = malloc(sizeof(*entity));
 
     entity->id = id;
@@ -16,6 +18,7 @@ Entity* e_CreateEntity(EntityID id, Sprite* sprite, u8 current_frame,
     entity->position.y = sprite->f_rect.y;
     entity->velocity.x = 0;
     entity->velocity.y = 0;
+    entity->behavior.update = update_func;
 
     return entity;
 }
@@ -32,6 +35,8 @@ void r_RenderEntity(SDL_Renderer* renderer, Entity* entity) {
         entity->position.y - (entity->sprite->f_rect.h * entity->sprite->scale);
 
     r_DrawSprite(renderer, entity->sprite);
+
+    // TODO: add health bars
 }
 
 void e_ApplyVelocity(Entity* entity) {

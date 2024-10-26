@@ -11,8 +11,8 @@ int main() {
     int application_status = InitApplication(&application);
 
     if (application_status > 0) {
-        printf("Application failed to initalize");
-        return 1;
+        fprintf(stderr, "Application failed to initalize\n");
+        return application_status;
     }
 
     main_menu = InitMainMenu();
@@ -56,22 +56,22 @@ int main() {
 
 void render() {
     switch (application.current_context) {
-    case MAIN_MENU:
-        RenderMainMenu(main_menu);
-        break;
-    case LEVEL_ONE:
-        RenderScene(application.renderer, scene_manager->scenes[0]);
-        break;
+        case MAIN_MENU:
+            RenderMainMenu(main_menu);
+            break;
+        case LEVEL_ONE:
+            RenderScene(application.renderer, scene_manager->scenes[0]);
+            break;
     }
 }
 
 void update() {
     switch (application.current_context) {
-    case MAIN_MENU:
-        break;
-    case LEVEL_ONE:
-        UpdateScene(scene_manager->scenes[0]);
-        break;
+        case MAIN_MENU:
+            break;
+        case LEVEL_ONE:
+            UpdateScene(scene_manager->scenes[0]);
+            break;
     }
 }
 
@@ -81,19 +81,19 @@ void handle_events() {
         // better.
         //       Two levels of switch cases is not optimal.
         switch (application.window_event.type) {
-        case SDL_QUIT:
-            application.is_running = false;
-            break;
-        case SDL_KEYDOWN ... SDL_KEYUP: // This syntax is radical
-            HandleKeyboardInput();
-            break;
-        case SDL_MOUSEBUTTONDOWN ... SDL_MOUSEBUTTONUP:
-            switch (application.current_context) {
-            case MAIN_MENU:
-                HandleMouseInputMainMenu(main_menu);
+            case SDL_QUIT:
+                application.is_running = false;
                 break;
-            }
-            break;
+            case SDL_KEYDOWN ... SDL_KEYUP: // This syntax is radical
+                HandleKeyboardInput();
+                break;
+            case SDL_MOUSEBUTTONDOWN ... SDL_MOUSEBUTTONUP:
+                switch (application.current_context) {
+                    case MAIN_MENU:
+                        HandleMouseInputMainMenu(main_menu);
+                        break;
+                }
+                break;
         }
     }
 }
