@@ -3,7 +3,6 @@
 #include "main_menu/main_menu.h"
 
 MainMenu* main_menu;
-SceneManager* scene_manager;
 
 struct Application application;
 
@@ -16,9 +15,9 @@ int main() {
     }
 
     main_menu = InitMainMenu();
-    scene_manager = InitSceneManager();
+    application.scene_manager = InitSceneManager();
 
-    create_level_one(scene_manager);
+    create_level_one(application.scene_manager);
 
     int fps_count = 0;
     long long fps_timer = current_timestamp();
@@ -62,7 +61,8 @@ void render() {
             RenderMainMenu(main_menu);
             break;
         case LEVEL_ONE:
-            RenderScene(application.renderer, scene_manager->scenes[0]);
+            RenderScene(application.renderer,
+                        application.scene_manager->scenes[0]);
             break;
     }
 }
@@ -72,7 +72,7 @@ void update() {
         case MAIN_MENU:
             break;
         case LEVEL_ONE:
-            UpdateScene(scene_manager->scenes[0]);
+            UpdateScene(application.scene_manager->scenes[0]);
             break;
     }
 }

@@ -4,6 +4,7 @@
 #define SCREEN_WIDTH 1280
 #define SCREEN_HEIGHT 720
 
+#include "scene/scene_manager.h"
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 #include <SDL2/SDL_ttf.h>
@@ -17,6 +18,7 @@ struct Application {
     SDL_Window* window;
     SDL_Surface* window_surface;
     SDL_Renderer* renderer;
+    SceneManager* scene_manager;
     SDL_Event window_event;
     bool is_running;
     bool keys[322];

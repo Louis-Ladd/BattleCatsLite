@@ -11,8 +11,7 @@
 typedef struct {
     u16 entity_count;
     Entity** entities;
-    Image*
-        scene_images[3]; // Background, enemy spritesheet, friendly spritesheet
+    Image* scene_images[3];
 } Scene;
 
 Scene* CreateScene();

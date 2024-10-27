@@ -1,4 +1,5 @@
 #include "scene.h"
+#include "../log.h"
 #include <SDL2/SDL_keycode.h>
 
 Scene* CreateScene() {
@@ -25,9 +26,14 @@ void AddEntity(Scene* scene, Entity* entity) {
 
         scene->entities[i] = entity;
         scene->entities[i]->id = i;
+
+        LOG("Added entity with ID %i", i);
+
         return;
     }
-    // TODO: Do something if we were unable to add the entity
+    LOG("Unable to add entity as there's no more room!");
+    e_DestroyEntity(entity);
+    return;
 }
 
 void UpdateScene(Scene* scene) {
