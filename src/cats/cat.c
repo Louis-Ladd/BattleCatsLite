@@ -6,7 +6,7 @@
 Entity* e_CreateGenericGoodCat(Image* sprite_sheet) {
     Sprite* sprite = r_CreateSprite(0, sprite_sheet, 1280.0f, 700.0f, 1.0f);
     Entity* cat = e_CreateEntity(0, sprite, 0, 100, false, e_UpdateGoodCat,
-                                 e_RenderGoodCat);
+                                 r_RenderGoodCat);
     cat->speed = 100;
 
     return cat;
@@ -15,7 +15,7 @@ Entity* e_CreateGenericGoodCat(Image* sprite_sheet) {
 Entity* e_CreateGenericBadCat(Image* sprite_sheet) {
     Sprite* sprite = r_CreateSprite(1, sprite_sheet, 0.0f, 700.0f, 1.0f);
     Entity* cat =
-        e_CreateEntity(0, sprite, 0, 100, true, e_UpdateBadCat, e_RenderBadCat);
+        e_CreateEntity(0, sprite, 0, 100, true, e_UpdateBadCat, r_RenderBadCat);
     cat->speed = 100;
 
     return cat;
@@ -74,7 +74,24 @@ void e_UpdateBadCat(Entity* self, Entity* other) {
     return;
 }
 
-void e_RenderGoodCat(Entity* self) {
+void r_DrawHealthBar(Entity* entity) {
+    SDL_Rect health_bar_background = {
+        entity->position.x - 50,
+        (entity->position.y -
+         entity->sprite->f_rect.h * entity->sprite->scale) -
+            50,
+        100, 20};
+    SDL_Rect health_bar_fill = health_bar_background;
+
+    health_bar_fill.w = entity->health;
+
+    SDL_SetRenderDraw_SDL_Color(application.renderer, BLACK);
+    SDL_RenderFillRect(application.renderer, &health_bar_background);
+    SDL_SetRenderDraw_SDL_Color(application.renderer, RED);
+    SDL_RenderFillRect(application.renderer, &health_bar_fill);
+}
+
+void r_RenderGoodCat(Entity* self) {
     if (!self) {
         return;
     }
@@ -84,22 +101,12 @@ void e_RenderGoodCat(Entity* self) {
     self->sprite->f_rect.y =
         self->position.y - (self->sprite->f_rect.h * self->sprite->scale);
 
-    SDL_Rect health_bar_background = {
-        self->position.x - 50,
-        (self->position.y - self->sprite->f_rect.h * self->sprite->scale) - 50,
-        100, 20};
-    SDL_Rect health_bar_fill = health_bar_background;
-
-    health_bar_fill.w = self->health;
-
     r_DrawSprite(application.renderer, self->sprite);
-    SDL_SetRenderDraw_SDL_Color(application.renderer, BLACK);
-    SDL_RenderFillRect(application.renderer, &health_bar_background);
-    SDL_SetRenderDraw_SDL_Color(application.renderer, RED);
-    SDL_RenderFillRect(application.renderer, &health_bar_fill);
+
+    r_DrawHealthBar(self);
 }
 
-void e_RenderBadCat(Entity* self) {
+void r_RenderBadCat(Entity* self) {
     if (!self) {
         return;
     }
