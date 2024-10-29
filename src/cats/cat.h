@@ -12,6 +12,10 @@ void e_UpdateGoodCat(Entity* self, Entity* other);
 
 void e_UpdateBadCat(Entity* self, Entity* other);
 
+void e_RenderGoodCat(Entity* self);
+
+void e_RenderBadCat(Entity* self);
+
 void e_GoodCatAttack(Entity* self, Entity* other);
 
 void e_BadCatAttack(Entity* self, Entity* other);

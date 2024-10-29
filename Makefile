@@ -23,5 +23,9 @@ run:
 	make -B
 	./build/game
 
+debug:
+	make -B
+	gdb -ex run ./build/game
+
 clean:
 	rm -f $(TARGET)

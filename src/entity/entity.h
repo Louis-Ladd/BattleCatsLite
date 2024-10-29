@@ -11,6 +11,7 @@ typedef struct Entity Entity;
 
 typedef struct {
     void (*update)(Entity* self, Entity* other);
+    void (*render)(Entity* self);
 } EntityBehavior;
 
 struct Entity {
@@ -18,7 +19,7 @@ struct Entity {
     Sprite* sprite;
     u8 current_frame;
     u16 speed;
-    u16 health;
+    s16 health;
     bool is_enemy;
     Vec2 position;
     Vec2 velocity;
@@ -27,9 +28,11 @@ struct Entity {
 
 Entity* e_CreateEntity(EntityID id, Sprite* sprite, u8 current_frame,
                        u16 health, bool is_enemy,
-                       void (*update_func)(Entity* self, Entity* other));
+                       void (*update_func)(Entity* self, Entity* other),
+                       void (*render_func)(Entity* self));
 
-void r_RenderEntity(SDL_Renderer* renderer, Entity* entity);
+// Generic Render for any entity
+void r_RenderEntity(Entity* entity);
 
 void e_ApplyVelocity(Entity* entity);
 

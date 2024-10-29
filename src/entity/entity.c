@@ -5,7 +5,8 @@
 
 Entity* e_CreateEntity(EntityID id, Sprite* sprite, u8 current_frame,
                        u16 health, bool is_enemy,
-                       void (*update_func)(Entity* self, Entity* other)) {
+                       void (*update_func)(Entity* self, Entity* other),
+                       void (*render_func)(Entity* self)) {
 
     Entity* entity = malloc(sizeof(*entity));
 
@@ -19,11 +20,12 @@ Entity* e_CreateEntity(EntityID id, Sprite* sprite, u8 current_frame,
     entity->velocity.x = 0;
     entity->velocity.y = 0;
     entity->behavior.update = update_func;
+    entity->behavior.render = render_func;
 
     return entity;
 }
 
-void r_RenderEntity(SDL_Renderer* renderer, Entity* entity) {
+void r_RenderEntity(Entity* entity) {
     if (!entity) {
         return;
     }
@@ -35,9 +37,7 @@ void r_RenderEntity(SDL_Renderer* renderer, Entity* entity) {
         entity->position.y - (entity->sprite->f_rect.h * entity->sprite->scale);
     // TODO: Add animation support
 
-    r_DrawSprite(renderer, entity->sprite);
-
-    // TODO: add health bars
+    r_DrawSprite(application.renderer, entity->sprite);
 }
 
 void e_ApplyVelocity(Entity* entity) {

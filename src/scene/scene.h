@@ -16,9 +16,11 @@ typedef struct {
 
 Scene* CreateScene();
 
-void RenderScene(SDL_Renderer* renderer, Scene* scene);
+void RenderScene(Scene* scene);
 
 void AddEntity(Scene* scene, Entity* entity);
+
+void RemoveEntity(Scene* scene, Entity* entity);
 
 void UpdateScene(Scene* scene);
 

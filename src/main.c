@@ -61,8 +61,7 @@ void render() {
             RenderMainMenu(main_menu);
             break;
         case LEVEL_ONE:
-            RenderScene(application.renderer,
-                        application.scene_manager->scenes[0]);
+            RenderScene(application.scene_manager->scenes[0]);
             break;
     }
 }
