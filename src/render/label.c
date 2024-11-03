@@ -1,4 +1,5 @@
 #include "label.h"
+#include "../log.h"
 
 Label* r_CreateLabel(SDL_Renderer* renderer, float x, float y, char text[],
                      TTF_Font* font, SDL_Color color)
@@ -32,8 +33,8 @@ void r_DrawText(int x, int y, TTF_Font* font, char text[],
 
     if (!label_surface)
     {
-        printf("Unable to draw \"%s\" due to an error. ERROR: %s\n", text,
-               TTF_GetError());
+        LOG("Unable to draw \"%s\" due to an error. ERROR: %s\n", text,
+            TTF_GetError());
         SDL_FreeSurface(label_surface);
         return;
     }

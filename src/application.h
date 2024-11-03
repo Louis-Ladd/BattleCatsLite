@@ -35,9 +35,9 @@ struct Application
     bool is_running;
     bool keys[322];
     TTF_Font* fonts[4];
+    double fps;
     float delta_time;
     int current_context;
-    int fps;
     int timer;
 };
 

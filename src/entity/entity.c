@@ -1,6 +1,4 @@
 #include "entity.h"
-#include <SDL2/SDL_render.h>
-
 #include "../application.h"
 
 Entity* e_CreateEntity(EntityID id, Sprite* sprite, u8 current_frame,

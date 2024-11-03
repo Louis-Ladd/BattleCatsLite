@@ -1,6 +1,11 @@
 #include "main.h"
 #include "application.h"
 #include "main_menu/main_menu.h"
+#include "render/label.h"
+#include "utils/current_time.h"
+#include "utils/types.h"
+#include <SDL2/SDL_timer.h>
+#include <stdio.h>
 
 MainMenu* main_menu;
 
@@ -22,19 +27,20 @@ int main()
     create_level_one(application.scene_manager);
 
     int fps_count = 0;
-    long long fps_timer = current_timestamp();
+    /*long long fps_timer = current_timestamp();*/
 
-    long long time_since_last_call = current_timestamp();
-    long long time_now = current_timestamp();
+    u32 last_time = SDL_GetTicks();
+    u32 fps_start_time = SDL_GetTicks();
 
-    LOG("Application Starting...");
+    LOG("Game Starting...");
+
+    char fps_string[50] = "FPS: ";
 
     while (application.is_running)
     {
-        time_now = current_timestamp();
-        application.delta_time =
-            (float)((time_now - time_since_last_call)) / 1000;
-        time_since_last_call = time_now;
+        u32 current_time = SDL_GetTicks();
+        application.delta_time = (current_time - last_time) / 1000.0f;
+        last_time = current_time;
 
         handle_events();
 
@@ -44,15 +50,19 @@ int main()
         update();
         render();
 
+        snprintf(fps_string, sizeof(fps_string), "FPS: %.2f", application.fps);
+
+        r_DrawText(20, 20, application.fonts[3], fps_string,
+                   application.renderer, GREEN);
+
         SDL_RenderPresent(application.renderer); // Flips our double buffer
 
         application.timer++;
         fps_count++;
-        if (((float)(current_timestamp() - fps_timer)) / 1000.f >= 1)
+        if (current_time - fps_start_time >= 1000)
         {
-            application.fps = fps_count;
+            application.fps = fps_count / (application.delta_time);
             fps_count = 0;
-            fps_timer = current_timestamp();
         }
     }
 
