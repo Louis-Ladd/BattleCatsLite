@@ -7,7 +7,7 @@
 #include "../render/label.h"
 #include "../render/sprite.h"
 #include "../scene/scene_manager.h"
-#include "SDL2/SDL_image.h"
+#include <SDL2/SDL_image.h>
 
 void create_level_one(SceneManager* scene_manager);
 

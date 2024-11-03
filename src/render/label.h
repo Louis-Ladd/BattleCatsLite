@@ -4,7 +4,8 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_ttf.h>
 
-typedef struct {
+typedef struct
+{
     char* text;
     SDL_FRect rect;
     SDL_Color color;

@@ -4,7 +4,8 @@
 #include "../color.h"
 #include "../render/label.h"
 
-typedef struct {
+typedef struct
+{
     Label* label;
     SDL_Color color;
     SDL_FRect f_rect;

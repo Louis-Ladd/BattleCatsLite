@@ -9,12 +9,14 @@ typedef u16 EntityID;
 
 typedef struct Entity Entity;
 
-typedef struct {
+typedef struct
+{
     void (*update)(Entity* self, Entity* other);
     void (*render)(Entity* self);
 } EntityBehavior;
 
-struct Entity {
+struct Entity
+{
     EntityID id;
     Sprite* sprite;
     u8 current_frame;

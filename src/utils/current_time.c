@@ -1,6 +1,7 @@
 #include "current_time.h"
 
-long long current_timestamp() {
+long long current_timestamp()
+{
     struct timeval te;
     gettimeofday(&te, NULL); // get current time
     long long milliseconds =

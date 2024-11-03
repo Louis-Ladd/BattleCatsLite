@@ -3,7 +3,8 @@
 
 #include <math.h>
 
-typedef struct {
+typedef struct
+{
     float x;
     float y;
 } Vec2;

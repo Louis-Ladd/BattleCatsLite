@@ -6,7 +6,8 @@
 #include "../ui/button.h"
 #include "button_events.h"
 
-typedef struct {
+typedef struct
+{
     Button* buttons[MAX_BUTTON_COUNT];
     // Other elements like images, text, etc
 } MainMenu;

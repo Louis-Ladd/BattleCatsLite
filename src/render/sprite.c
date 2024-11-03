@@ -7,7 +7,8 @@ const int ROWS = 2560 / SPRITE_SIZE;
 // Writing this code made me thirsty for a sprite
 
 Sprite* r_CreateSprite(int sprite_offset, Image* sprite_sheet, float x, float y,
-                       float scale) {
+                       float scale)
+{
     Sprite* sprite = malloc(sizeof(*sprite));
     sprite->sprite_sheet = sprite_sheet;
     sprite->sprite_offset = sprite_offset;
@@ -18,7 +19,8 @@ Sprite* r_CreateSprite(int sprite_offset, Image* sprite_sheet, float x, float y,
     return sprite;
 }
 
-void r_DrawSprite(SDL_Renderer* renderer, Sprite* sprite) {
+void r_DrawSprite(SDL_Renderer* renderer, Sprite* sprite)
+{
     SDL_Rect sprite_rect;
 
     sprite_rect.w = SPRITE_SIZE;

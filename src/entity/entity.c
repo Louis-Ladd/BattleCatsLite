@@ -6,7 +6,8 @@
 Entity* e_CreateEntity(EntityID id, Sprite* sprite, u8 current_frame,
                        u16 health, bool is_enemy,
                        void (*update_func)(Entity* self, Entity* other),
-                       void (*render_func)(Entity* self)) {
+                       void (*render_func)(Entity* self))
+{
 
     Entity* entity = malloc(sizeof(*entity));
 
@@ -25,8 +26,10 @@ Entity* e_CreateEntity(EntityID id, Sprite* sprite, u8 current_frame,
     return entity;
 }
 
-void r_RenderEntity(Entity* entity) {
-    if (!entity) {
+void r_RenderEntity(Entity* entity)
+{
+    if (!entity)
+    {
         return;
     }
 
@@ -40,12 +43,14 @@ void r_RenderEntity(Entity* entity) {
     r_DrawSprite(application.renderer, entity->sprite);
 }
 
-void e_ApplyVelocity(Entity* entity) {
+void e_ApplyVelocity(Entity* entity)
+{
     entity->position.x += entity->velocity.x * application.delta_time;
     entity->position.y += entity->velocity.y * application.delta_time;
 }
 
-void e_DestroyEntity(Entity* entity) {
+void e_DestroyEntity(Entity* entity)
+{
     r_DestroySprite(entity->sprite);
     free(entity);
 }

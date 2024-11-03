@@ -2,10 +2,12 @@
 
 #include "../application.h"
 
-MainMenu* InitMainMenu() {
+MainMenu* InitMainMenu()
+{
     MainMenu* menu = malloc(sizeof(*menu));
 
-    for (int i = 0; i < MAX_BUTTON_COUNT; i++) {
+    for (int i = 0; i < MAX_BUTTON_COUNT; i++)
+    {
         menu->buttons[i] = NULL;
     }
 
@@ -19,10 +21,13 @@ MainMenu* InitMainMenu() {
     return menu;
 }
 
-void RenderMainMenu(MainMenu* menu) {
+void RenderMainMenu(MainMenu* menu)
+{
     // Render Buttons
-    for (int i = 0; i < MAX_BUTTON_COUNT; i++) {
-        if (!menu->buttons[i]) {
+    for (int i = 0; i < MAX_BUTTON_COUNT; i++)
+    {
+        if (!menu->buttons[i])
+        {
             continue;
         }
 

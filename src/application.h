@@ -10,11 +10,23 @@
 #include <SDL2/SDL_ttf.h>
 #include <stdbool.h>
 
-enum FontEnum { SMALL_FONT, MEDIUM_FONT, LARGE_FONT, XLARGE_FONT };
+enum FontEnum
+{
+    SMALL_FONT,
+    MEDIUM_FONT,
+    LARGE_FONT,
+    XLARGE_FONT
+};
 
-enum ContextEnum { MAIN_MENU, LEVEL_ONE, LEVEL_TWO };
+enum ContextEnum
+{
+    MAIN_MENU,
+    LEVEL_ONE,
+    LEVEL_TWO
+};
 
-struct Application {
+struct Application
+{
     SDL_Window* window;
     SDL_Surface* window_surface;
     SDL_Renderer* renderer;

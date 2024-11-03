@@ -8,7 +8,8 @@
 #include "../render/sprite.h"
 #include "SDL2/SDL.h"
 
-typedef struct {
+typedef struct
+{
     u16 entity_count;
     Entity** entities;
     Image* scene_images[3];

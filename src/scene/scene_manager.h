@@ -5,7 +5,8 @@
 
 #include "scene.h"
 
-typedef struct {
+typedef struct
+{
     Scene* scenes[SCENE_COUNT];
 } SceneManager;
 

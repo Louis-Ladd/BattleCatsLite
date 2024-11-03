@@ -3,7 +3,8 @@
 
 #include <SDL2/SDL.h>
 
-typedef struct {
+typedef struct
+{
     SDL_Texture* texture;
     SDL_FRect f_rect;
 } Image;

@@ -3,7 +3,8 @@
 #include "../color.h"
 #include "../log.h"
 
-Entity* e_CreateGenericGoodCat(Image* sprite_sheet) {
+Entity* e_CreateGenericGoodCat(Image* sprite_sheet)
+{
     Sprite* sprite = r_CreateSprite(0, sprite_sheet, 1280.0f, 700.0f, 1.0f);
     Entity* cat = e_CreateEntity(0, sprite, 0, 100, false, e_UpdateGoodCat,
                                  r_RenderGoodCat);
@@ -12,7 +13,8 @@ Entity* e_CreateGenericGoodCat(Image* sprite_sheet) {
     return cat;
 }
 
-Entity* e_CreateGenericBadCat(Image* sprite_sheet) {
+Entity* e_CreateGenericBadCat(Image* sprite_sheet)
+{
     Sprite* sprite = r_CreateSprite(1, sprite_sheet, 0.0f, 700.0f, 1.0f);
     Entity* cat =
         e_CreateEntity(0, sprite, 0, 100, true, e_UpdateBadCat, r_RenderBadCat);
@@ -21,30 +23,36 @@ Entity* e_CreateGenericBadCat(Image* sprite_sheet) {
     return cat;
 }
 
-bool e_LifeUpdate(Entity* entity) {
-    if (entity->health <= 0 && entity) {
+bool e_LifeUpdate(Entity* entity)
+{
+    if (entity->health <= 0 && entity)
+    {
         RemoveEntity(application.scene_manager->scenes[0], entity);
         return true;
     }
     return false;
 }
 
-void e_UpdateGoodCat(Entity* self, Entity* other) {
-    if (e_LifeUpdate(self)) {
+void e_UpdateGoodCat(Entity* self, Entity* other)
+{
+    if (e_LifeUpdate(self))
+    {
         return;
     }
 
     other->current_frame = 0;
-    if (fabs(self->velocity.x) < self->speed) {
+    if (fabs(self->velocity.x) < self->speed)
+    {
         self->velocity.x -= 10.0f;
     }
 
-    if (self == other) {
+    if (self == other)
+    {
         return;
     }
 
-    if (DistanceVec2(self->position, other->position) < 200 &&
-        other->is_enemy) {
+    if (DistanceVec2(self->position, other->position) < 200 && other->is_enemy)
+    {
         LOG("Good cat attacking entity with ID %i", other->id);
         e_GoodCatAttack(self, other);
     }
@@ -52,29 +60,34 @@ void e_UpdateGoodCat(Entity* self, Entity* other) {
     return;
 }
 
-void e_UpdateBadCat(Entity* self, Entity* other) {
-    if (e_LifeUpdate(self)) {
+void e_UpdateBadCat(Entity* self, Entity* other)
+{
+    if (e_LifeUpdate(self))
+    {
         return;
     }
 
     other->current_frame = 0;
-    if (fabs(self->velocity.x) < self->speed) {
+    if (fabs(self->velocity.x) < self->speed)
+    {
         self->velocity.x += 10.0f;
     }
 
-    if (self == other) {
+    if (self == other)
+    {
         return;
     }
 
-    if (DistanceVec2(self->position, other->position) < 200 &&
-        !other->is_enemy) {
+    if (DistanceVec2(self->position, other->position) < 200 && !other->is_enemy)
+    {
         e_BadCatAttack(self, other);
     }
 
     return;
 }
 
-void r_DrawHealthBar(Entity* entity) {
+void r_DrawHealthBar(Entity* entity)
+{
     SDL_Rect health_bar_background = {
         entity->position.x - 50,
         (entity->position.y -
@@ -91,8 +104,10 @@ void r_DrawHealthBar(Entity* entity) {
     SDL_RenderFillRect(application.renderer, &health_bar_fill);
 }
 
-void r_RenderGoodCat(Entity* self) {
-    if (!self) {
+void r_RenderGoodCat(Entity* self)
+{
+    if (!self)
+    {
         return;
     }
 
@@ -106,8 +121,10 @@ void r_RenderGoodCat(Entity* self) {
     r_DrawHealthBar(self);
 }
 
-void r_RenderBadCat(Entity* self) {
-    if (!self) {
+void r_RenderBadCat(Entity* self)
+{
+    if (!self)
+    {
         return;
     }
 
@@ -119,7 +136,8 @@ void r_RenderBadCat(Entity* self) {
     r_DrawSprite(application.renderer, self->sprite);
 }
 
-void e_GoodCatAttack(Entity* self, Entity* other) {
+void e_GoodCatAttack(Entity* self, Entity* other)
+{
     self->position.x++;
     other->health -= 80;
     other->velocity.x = -1200;
@@ -127,7 +145,8 @@ void e_GoodCatAttack(Entity* self, Entity* other) {
     return;
 }
 
-void e_BadCatAttack(Entity* self, Entity* other) {
+void e_BadCatAttack(Entity* self, Entity* other)
+{
     self->position.x--;
     other->health -= 80;
     other->velocity.x = 1200;

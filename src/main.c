@@ -6,10 +6,12 @@ MainMenu* main_menu;
 
 struct Application application;
 
-int main() {
+int main()
+{
     int application_status = InitApplication(&application);
 
-    if (application_status > 0) {
+    if (application_status > 0)
+    {
         fprintf(stderr, "Application failed to initalize\n");
         return application_status;
     }
@@ -27,7 +29,8 @@ int main() {
 
     LOG("Application Starting...");
 
-    while (application.is_running) {
+    while (application.is_running)
+    {
         time_now = current_timestamp();
         application.delta_time =
             (float)((time_now - time_since_last_call)) / 1000;
@@ -45,7 +48,8 @@ int main() {
 
         application.timer++;
         fps_count++;
-        if (((float)(current_timestamp() - fps_timer)) / 1000.f >= 1) {
+        if (((float)(current_timestamp() - fps_timer)) / 1000.f >= 1)
+        {
             application.fps = fps_count;
             fps_count = 0;
             fps_timer = current_timestamp();
@@ -55,8 +59,10 @@ int main() {
     return 0;
 }
 
-void render() {
-    switch (application.current_context) {
+void render()
+{
+    switch (application.current_context)
+    {
         case MAIN_MENU:
             RenderMainMenu(main_menu);
             break;
@@ -66,8 +72,10 @@ void render() {
     }
 }
 
-void update() {
-    switch (application.current_context) {
+void update()
+{
+    switch (application.current_context)
+    {
         case MAIN_MENU:
             break;
         case LEVEL_ONE:
@@ -76,12 +84,15 @@ void update() {
     }
 }
 
-void handle_events() {
-    while (SDL_PollEvent(&application.window_event) > 0) {
+void handle_events()
+{
+    while (SDL_PollEvent(&application.window_event) > 0)
+    {
         // TODO: Pull this out into it's own file and organize it
         // better.
         //       Two levels of switch cases is not optimal.
-        switch (application.window_event.type) {
+        switch (application.window_event.type)
+        {
             case SDL_QUIT:
                 application.is_running = false;
                 break;
@@ -89,7 +100,8 @@ void handle_events() {
                 HandleKeyboardInput();
                 break;
             case SDL_MOUSEBUTTONDOWN ... SDL_MOUSEBUTTONUP:
-                switch (application.current_context) {
+                switch (application.current_context)
+                {
                     case MAIN_MENU:
                         HandleMouseInputMainMenu(main_menu);
                         break;

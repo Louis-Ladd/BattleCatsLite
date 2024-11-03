@@ -5,7 +5,8 @@
 #include "sprite_enum.h"
 #include <SDL2/SDL.h>
 
-typedef struct {
+typedef struct
+{
     int sprite_offset;
     Image* sprite_sheet;
     SDL_FRect f_rect;

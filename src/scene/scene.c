@@ -3,19 +3,24 @@
 #include "../log.h"
 #include <SDL2/SDL_keycode.h>
 
-Scene* CreateScene() {
+Scene* CreateScene()
+{
     Scene* scene = malloc(sizeof(*scene));
 
     return scene;
 }
 
-void RenderScene(Scene* scene) {
-    if (scene->scene_images[0]) {
+void RenderScene(Scene* scene)
+{
+    if (scene->scene_images[0])
+    {
         r_DrawImage(application.renderer, scene->scene_images[0]);
     }
 
-    for (int i = 0; i < scene->entity_count; i++) {
-        if (!scene->entities[i]) {
+    for (int i = 0; i < scene->entity_count; i++)
+    {
+        if (!scene->entities[i])
+        {
             continue;
         }
         Entity* current_entity = scene->entities[i];
@@ -24,9 +29,12 @@ void RenderScene(Scene* scene) {
     }
 }
 
-void AddEntity(Scene* scene, Entity* entity) {
-    for (int i = 0; i < scene->entity_count; i++) {
-        if (scene->entities[i] != NULL) {
+void AddEntity(Scene* scene, Entity* entity)
+{
+    for (int i = 0; i < scene->entity_count; i++)
+    {
+        if (scene->entities[i] != NULL)
+        {
             continue;
         }
 
@@ -42,12 +50,16 @@ void AddEntity(Scene* scene, Entity* entity) {
     return;
 }
 
-void RemoveEntity(Scene* scene, Entity* entity) {
-    for (int i = 0; i < scene->entity_count; i++) {
-        if (!scene->entities[i]) {
+void RemoveEntity(Scene* scene, Entity* entity)
+{
+    for (int i = 0; i < scene->entity_count; i++)
+    {
+        if (!scene->entities[i])
+        {
             continue;
         }
-        if (scene->entities[i] != entity) {
+        if (scene->entities[i] != entity)
+        {
             continue;
         }
         LOG("Removed entity with id %i", entity->id);
@@ -58,23 +70,29 @@ void RemoveEntity(Scene* scene, Entity* entity) {
     }
 }
 
-void UpdateScene(Scene* scene) {
+void UpdateScene(Scene* scene)
+{
     Entity* entity = NULL;
-    for (int i = 0; i < scene->entity_count; i++) {
+    for (int i = 0; i < scene->entity_count; i++)
+    {
         entity = scene->entities[i];
-        if (entity == NULL) {
+        if (entity == NULL)
+        {
             continue;
         }
 
-        for (int j = 0; j < scene->entity_count; j++) {
-            if (scene->entities[j] == NULL) {
+        for (int j = 0; j < scene->entity_count; j++)
+        {
+            if (scene->entities[j] == NULL)
+            {
                 continue;
             }
 
             entity->behavior.update(entity, scene->entities[j]);
         }
 
-        if (!entity) {
+        if (!entity)
+        {
             continue;
         }
 
@@ -84,8 +102,10 @@ void UpdateScene(Scene* scene) {
     }
 }
 
-void DestroyScene(Scene* scene) {
-    for (int i = 0; i < scene->entity_count; i++) {
+void DestroyScene(Scene* scene)
+{
+    for (int i = 0; i < scene->entity_count; i++)
+    {
         e_DestroyEntity(scene->entities[i]);
     }
 }
