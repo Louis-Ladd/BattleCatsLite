@@ -16,7 +16,7 @@ void create_level_one(SceneManager* scene_manager)
         application.renderer, IMG_Load("./assets/catspritesheet.png"), 0, 0,
         2560, 2560);
 
-    scene->entity_count = 400;
+    scene->entity_count = 200;
     scene->entities = malloc(sizeof(Entity) * scene->entity_count);
 
     for (int i = 0; i < scene->entity_count; i++)
@@ -27,7 +27,7 @@ void create_level_one(SceneManager* scene_manager)
     // Scenes have responsibility for all objects.
     // We shouldn't be creating entities without giving ownership to a scene
 
-    for (int i = 0; i < 400; i++)
+    for (int i = 0; i < 20; i++)
     {
         Entity* entity = e_CreateGenericGoodCat(friendly_sprite_sheet);
         entity->position.x -= i * 5;

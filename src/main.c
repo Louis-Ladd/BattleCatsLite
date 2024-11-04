@@ -2,7 +2,6 @@
 #include "application.h"
 #include "main_menu/main_menu.h"
 #include "render/label.h"
-#include "utils/current_time.h"
 #include "utils/types.h"
 #include <SDL2/SDL_timer.h>
 #include <stdio.h>
@@ -26,9 +25,7 @@ int main()
 
     create_level_one(application.scene_manager);
 
-    int fps_count = 0;
-    /*long long fps_timer = current_timestamp();*/
-
+    u32 fps_count = 0;
     u32 last_time = SDL_GetTicks();
     u32 fps_start_time = SDL_GetTicks();
 
@@ -44,7 +41,6 @@ int main()
 
         handle_events();
 
-        SDL_SetRenderDraw_SDL_Color(application.renderer, DARK_BLUE);
         SDL_RenderClear(application.renderer);
 
         update();
@@ -52,16 +48,17 @@ int main()
 
         snprintf(fps_string, sizeof(fps_string), "FPS: %.2f", application.fps);
 
-        r_DrawText(20, 20, application.fonts[3], fps_string,
+        r_DrawText(20, 20, application.fonts[MEDIUM_FONT], fps_string,
                    application.renderer, GREEN);
 
         SDL_RenderPresent(application.renderer); // Flips our double buffer
 
         application.timer++;
         fps_count++;
-        if (current_time - fps_start_time >= 1000)
+        if (current_time - fps_start_time >= 2000)
         {
             application.fps = fps_count / (application.delta_time);
+            LOG("FPS: %f", application.fps);
             fps_count = 0;
         }
     }

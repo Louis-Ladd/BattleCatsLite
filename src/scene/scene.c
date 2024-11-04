@@ -2,6 +2,7 @@
 #include "../application.h"
 #include "../log.h"
 #include <SDL2/SDL_keycode.h>
+#include <string.h>
 
 Scene* CreateScene()
 {
@@ -72,10 +73,9 @@ void RemoveEntity(Scene* scene, Entity* entity)
 
 void UpdateScene(Scene* scene)
 {
-    Entity* entity = NULL;
     for (int i = 0; i < scene->entity_count; i++)
     {
-        entity = scene->entities[i];
+        Entity* entity = scene->entities[i];
         if (entity == NULL)
         {
             continue;
@@ -83,17 +83,12 @@ void UpdateScene(Scene* scene)
 
         for (int j = 0; j < scene->entity_count; j++)
         {
-            if (scene->entities[j] == NULL)
+            Entity* other_entity = scene->entities[j];
+            if (other_entity == NULL)
             {
                 continue;
             }
-
             entity->behavior.update(entity, scene->entities[j]);
-        }
-
-        if (!entity)
-        {
-            continue;
         }
 
         e_EntityGravity(entity);

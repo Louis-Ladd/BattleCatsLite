@@ -25,8 +25,8 @@ void r_DrawSprite(SDL_Renderer* renderer, Sprite* sprite)
 
     sprite_rect.w = SPRITE_SIZE;
     sprite_rect.h = SPRITE_SIZE;
-    sprite_rect.x = (sprite->sprite_offset % COLUMNS) *
-                    256; // Change this to dynamicly fetch sprite sheet size!!!
+    // Change this to dynamicly fetch sprite sheet size!!!
+    sprite_rect.x = (sprite->sprite_offset % COLUMNS) * 256;
     sprite_rect.y = (sprite->sprite_offset / ROWS) * 256;
 
     SDL_RenderCopyF(renderer, sprite->sprite_sheet->texture, &sprite_rect,

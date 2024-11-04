@@ -41,7 +41,7 @@ void r_RenderEntity(Entity* entity)
     r_DrawSprite(application.renderer, entity->sprite);
 }
 
-void e_ApplyVelocity(Entity* entity)
+inline void e_ApplyVelocity(Entity* entity)
 {
     entity->position.x += entity->velocity.x * application.delta_time;
     entity->position.y += entity->velocity.y * application.delta_time;

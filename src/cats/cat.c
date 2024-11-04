@@ -118,7 +118,7 @@ void r_RenderGoodCat(Entity* self)
 
     r_DrawSprite(application.renderer, self->sprite);
 
-    r_DrawHealthBar(self);
+    // r_DrawHealthBar(self);
 }
 
 void r_RenderBadCat(Entity* self)

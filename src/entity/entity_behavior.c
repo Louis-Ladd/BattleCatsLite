@@ -1,6 +1,6 @@
 #include "entity_behavior.h"
 
-void e_EntityGravity(Entity* entity)
+inline void e_EntityGravity(Entity* entity)
 {
     if (entity->position.y <= 700.0f)
     {
@@ -17,7 +17,7 @@ void e_EntityGravity(Entity* entity)
 
 #define ENTROPY_CONSTANT 6.0f
 
-void e_ApplyEntropy(Entity* entity)
+inline void e_ApplyEntropy(Entity* entity)
 {
     if (entity->velocity.x > -0.01 && entity->velocity.x < 0.01)
     {

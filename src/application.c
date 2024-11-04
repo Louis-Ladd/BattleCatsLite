@@ -31,6 +31,13 @@ int InitApplication(struct Application* application)
     application->fonts[LARGE_FONT] = TTF_OpenFont("assets/noodle.ttf", 64);
     application->fonts[XLARGE_FONT] = TTF_OpenFont("assets/noodle.ttf", 128);
 
+    if (!application->fonts[SMALL_FONT])
+    {
+        fprintf(stderr, "Failed to load fonts (make sure assets directory is "
+                        "accessable!)\n");
+        return 2;
+    }
+
     LOG("Loading SDL_Image");
     if (IMG_Init(IMG_INIT_PNG) < 0)
     {
