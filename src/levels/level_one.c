@@ -12,7 +12,7 @@ void create_level_one(SceneManager* scene_manager)
 
     scene->scene_images[0] = scene_background;
 
-    Image* friendly_sprite_sheet = r_CreateImage(
+    scene->scene_images[1] = r_CreateImage(
         application.renderer, IMG_Load("./assets/catspritesheet.png"), 0, 0,
         2560, 2560);
 
@@ -29,11 +29,11 @@ void create_level_one(SceneManager* scene_manager)
 
     for (int i = 0; i < 20; i++)
     {
-        Entity* entity = e_CreateGenericGoodCat(friendly_sprite_sheet);
+        Entity* entity = e_CreateGenericGoodCat(scene->scene_images[1]);
         entity->position.x -= i * 5;
         AddEntity(scene, entity);
 
-        entity = e_CreateGenericBadCat(friendly_sprite_sheet);
+        entity = e_CreateGenericBadCat(scene->scene_images[1]);
         entity->position.x += i * 5;
         AddEntity(scene, entity);
     }

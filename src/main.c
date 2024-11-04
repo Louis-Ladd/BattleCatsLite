@@ -2,6 +2,7 @@
 #include "application.h"
 #include "main_menu/main_menu.h"
 #include "render/label.h"
+#include "utils/current_time.h"
 #include "utils/types.h"
 #include <SDL2/SDL_timer.h>
 #include <stdio.h>
@@ -25,9 +26,9 @@ int main()
 
     create_level_one(application.scene_manager);
 
-    u32 fps_count = 0;
-    u32 last_time = SDL_GetTicks();
-    u32 fps_start_time = SDL_GetTicks();
+    u64 fps_count = 0;
+    u64 last_time = SDL_GetTicks();
+    u64 fps_start_time = SDL_GetTicks();
 
     LOG("Game Starting...");
 
@@ -35,7 +36,7 @@ int main()
 
     while (application.is_running)
     {
-        u32 current_time = SDL_GetTicks();
+        u64 current_time = SDL_GetTicks();
         application.delta_time = (current_time - last_time) / 1000.0f;
         last_time = current_time;
 
@@ -46,7 +47,8 @@ int main()
         update();
         render();
 
-        snprintf(fps_string, sizeof(fps_string), "FPS: %.2f", application.fps);
+        snprintf(fps_string, sizeof(fps_string), "FPS: %.2f",
+                 application.fps == INFINITY ? 1000 : application.fps);
 
         r_DrawText(20, 20, application.fonts[MEDIUM_FONT], fps_string,
                    application.renderer, GREEN);
@@ -55,10 +57,10 @@ int main()
 
         application.timer++;
         fps_count++;
-        if (current_time - fps_start_time >= 2000)
+        if (current_time - fps_start_time >= 1000)
         {
             application.fps = fps_count / (application.delta_time);
-            LOG("FPS: %f", application.fps);
+            // LOG("FPS: %f", application.fps);
             fps_count = 0;
         }
     }
@@ -91,7 +93,7 @@ void update()
     }
 }
 
-void handle_events()
+inline void handle_events()
 {
     while (SDL_PollEvent(&application.window_event) > 0)
     {
@@ -103,7 +105,8 @@ void handle_events()
             case SDL_QUIT:
                 application.is_running = false;
                 break;
-            case SDL_KEYDOWN ... SDL_KEYUP: // This syntax is radical
+            case SDL_KEYDOWN ... SDL_KEYUP: // This syntax is
+                                            // radical
                 HandleKeyboardInput();
                 break;
             case SDL_MOUSEBUTTONDOWN ... SDL_MOUSEBUTTONUP:

@@ -118,7 +118,7 @@ void r_RenderGoodCat(Entity* self)
 
     r_DrawSprite(application.renderer, self->sprite);
 
-    // r_DrawHealthBar(self);
+    r_DrawHealthBar(self);
 }
 
 void r_RenderBadCat(Entity* self)
@@ -134,6 +134,8 @@ void r_RenderBadCat(Entity* self)
         self->position.y - (self->sprite->f_rect.h * self->sprite->scale);
 
     r_DrawSprite(application.renderer, self->sprite);
+
+    r_DrawHealthBar(self);
 }
 
 void e_GoodCatAttack(Entity* self, Entity* other)
@@ -141,7 +143,7 @@ void e_GoodCatAttack(Entity* self, Entity* other)
     self->position.x++;
     other->health -= 80;
     other->velocity.x = -1200;
-    other->velocity.y = -900;
+    other->velocity.y = -1500;
     return;
 }
 
@@ -150,6 +152,6 @@ void e_BadCatAttack(Entity* self, Entity* other)
     self->position.x--;
     other->health -= 80;
     other->velocity.x = 1200;
-    other->velocity.y = -900;
+    other->velocity.y = -1500;
     return;
 }

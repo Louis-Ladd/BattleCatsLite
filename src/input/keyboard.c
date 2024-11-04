@@ -23,3 +23,5 @@ void HandleKeyboardInput()
             break;
     }
 }
+
+void ResetKey(int keycode) { application.keys[keycode] = false; }

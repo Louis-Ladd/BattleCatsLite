@@ -1,4 +1,5 @@
 #include "entity_behavior.h"
+#include "../application.h"
 
 inline void e_EntityGravity(Entity* entity)
 {
@@ -15,7 +16,7 @@ inline void e_EntityGravity(Entity* entity)
     }
 }
 
-#define ENTROPY_CONSTANT 6.0f
+#define ENTROPY_CONSTANT 2000.0f
 
 inline void e_ApplyEntropy(Entity* entity)
 {
@@ -25,5 +26,6 @@ inline void e_ApplyEntropy(Entity* entity)
         return;
     }
     entity->velocity.x +=
-        entity->velocity.x > 0 ? -ENTROPY_CONSTANT : ENTROPY_CONSTANT;
+        (entity->velocity.x > 0 ? -ENTROPY_CONSTANT : ENTROPY_CONSTANT) *
+        application.delta_time;
 }

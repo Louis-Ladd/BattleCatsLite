@@ -60,7 +60,7 @@ int InitApplication(struct Application* application)
 
     LOG("Creating renderer");
     application->renderer =
-        SDL_CreateRenderer(application->window, -1, SDL_RENDERER_SOFTWARE);
+        SDL_CreateRenderer(application->window, -1, SDL_RENDERER_ACCELERATED);
 
     if (!application->renderer)
     {

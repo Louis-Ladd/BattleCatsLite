@@ -95,6 +95,23 @@ void UpdateScene(Scene* scene)
         e_ApplyEntropy(entity);
         e_ApplyVelocity(entity);
     }
+
+    if (application.keys[SDLK_a])
+    {
+
+        Entity* new_entity = e_CreateGenericGoodCat(scene->scene_images[1]);
+
+        AddEntity(scene, new_entity);
+        ResetKey(SDLK_a);
+    }
+
+    if (application.keys[SDLK_d])
+    {
+        Entity* new_entity = e_CreateGenericBadCat(scene->scene_images[1]);
+
+        AddEntity(scene, new_entity);
+        ResetKey(SDLK_d);
+    }
 }
 
 void DestroyScene(Scene* scene)
