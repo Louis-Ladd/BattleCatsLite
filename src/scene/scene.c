@@ -27,6 +27,7 @@ void RenderScene(Scene* scene)
         Entity* current_entity = scene->entities[i];
 
         current_entity->behavior.render(current_entity);
+        e_UpdateAnimation(current_entity);
     }
 }
 

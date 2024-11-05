@@ -1,5 +1,6 @@
 #include "entity.h"
 #include "../application.h"
+#include "../log.h"
 
 Entity* e_CreateEntity(EntityID id, Sprite* sprite, u8 current_frame,
                        u16 health, bool is_enemy,
@@ -39,6 +40,28 @@ void r_RenderEntity(Entity* entity)
     // TODO: Add animation support
 
     r_DrawSprite(application.renderer, entity->sprite);
+}
+
+void e_UpdateAnimation(Entity* entity)
+{
+    u32 time_since_last_update =
+        SDL_GetTicks() - entity->sprite->last_animation_update;
+
+    if (time_since_last_update <= 250)
+    {
+        return;
+    }
+
+    entity->sprite->last_animation_update = SDL_GetTicks();
+
+    if (entity->sprite->animation_frame < 9)
+    {
+        entity->sprite->animation_frame++;
+    }
+    else
+    {
+        entity->sprite->animation_frame = 0;
+    }
 }
 
 inline void e_ApplyVelocity(Entity* entity)

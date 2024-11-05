@@ -36,6 +36,9 @@ Entity* e_CreateEntity(EntityID id, Sprite* sprite, u8 current_frame,
 // Generic Render for any entity
 void r_RenderEntity(Entity* entity);
 
+// Generic animation update for any entity
+void e_UpdateAnimation(Entity* entity);
+
 void e_ApplyVelocity(Entity* entity);
 
 void e_DestroyEntity(Entity* entity);

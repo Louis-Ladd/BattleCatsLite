@@ -1,4 +1,6 @@
 #include "sprite.h"
+#include "../log.h"
+#include <SDL2/SDL_timer.h>
 
 const int SPRITE_SIZE = 256;
 const int COLUMNS = 2560 / SPRITE_SIZE;
@@ -11,7 +13,9 @@ Sprite* r_CreateSprite(int sprite_offset, Image* sprite_sheet, float x, float y,
 {
     Sprite* sprite = malloc(sizeof(*sprite));
     sprite->sprite_sheet = sprite_sheet;
-    sprite->sprite_offset = sprite_offset;
+    sprite->sprite_offset = sprite_offset * 10;
+    sprite->last_animation_update = SDL_GetTicks();
+    sprite->animation_frame = 0;
     sprite->scale = scale;
     SDL_FRect cat_frect = {x, y, 256 * scale, 256 * scale};
     sprite->f_rect = cat_frect;
@@ -25,9 +29,8 @@ void r_DrawSprite(SDL_Renderer* renderer, Sprite* sprite)
 
     sprite_rect.w = SPRITE_SIZE;
     sprite_rect.h = SPRITE_SIZE;
-    // Change this to dynamicly fetch sprite sheet size!!!
-    sprite_rect.x = (sprite->sprite_offset % COLUMNS) * 256;
-    sprite_rect.y = (sprite->sprite_offset / ROWS) * 256;
+    sprite_rect.x = sprite->animation_frame * 256;
+    sprite_rect.y = (sprite->sprite_offset / 10) * 256;
 
     SDL_RenderCopyF(renderer, sprite->sprite_sheet->texture, &sprite_rect,
                     &sprite->f_rect);

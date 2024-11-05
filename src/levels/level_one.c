@@ -27,16 +27,19 @@ void create_level_one(SceneManager* scene_manager)
     // Scenes have responsibility for all objects.
     // We shouldn't be creating entities without giving ownership to a scene
 
-    for (int i = 0; i < 20; i++)
-    {
-        Entity* entity = e_CreateGenericGoodCat(scene->scene_images[1]);
-        entity->position.x -= i * 5;
-        AddEntity(scene, entity);
+    /*for (int i = 0; i < 20; i++)*/
+    /*{*/
+    /*    Entity* entity = e_CreateGenericGoodCat(scene->scene_images[1]);*/
+    /*    entity->position.x -= i * 5;*/
+    /*    AddEntity(scene, entity);*/
+    /**/
+    /*    entity = e_CreateGenericBadCat(scene->scene_images[1]);*/
+    /*    entity->position.x += i * 5;*/
+    /*    AddEntity(scene, entity);*/
+    /*}*/
 
-        entity = e_CreateGenericBadCat(scene->scene_images[1]);
-        entity->position.x += i * 5;
-        AddEntity(scene, entity);
-    }
+    Entity* entity = e_CreateGenericBadCat(scene->scene_images[1]);
+    AddEntity(scene, entity);
 
     AddScene(scene_manager, scene);
 }

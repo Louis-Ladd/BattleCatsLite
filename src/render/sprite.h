@@ -1,13 +1,16 @@
 #ifndef SPRITE_H_
 #define SPRITE_H_
 
+#include "../utils/types.h"
 #include "image.h"
 #include "sprite_enum.h"
 #include <SDL2/SDL.h>
 
 typedef struct
 {
-    int sprite_offset;
+    u8 sprite_offset;
+    u8 animation_frame;
+    u32 last_animation_update;
     Image* sprite_sheet;
     SDL_FRect f_rect;
     float scale;
