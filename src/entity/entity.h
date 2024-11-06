@@ -15,11 +15,18 @@ typedef struct
     void (*render)(Entity* self);
 } EntityBehavior;
 
+enum EntityState
+{
+    WALKING,
+    ATTACKING,
+    HURT
+};
+
 struct Entity
 {
     EntityID id;
     Sprite* sprite;
-    u8 current_frame;
+    enum EntityState current_state;
     u16 speed;
     s16 health;
     bool is_enemy;
@@ -28,8 +35,7 @@ struct Entity
     EntityBehavior behavior;
 };
 
-Entity* e_CreateEntity(EntityID id, Sprite* sprite, u8 current_frame,
-                       u16 health, bool is_enemy,
+Entity* e_CreateEntity(EntityID id, Sprite* sprite, u16 health, bool is_enemy,
                        void (*update_func)(Entity* self, Entity* other),
                        void (*render_func)(Entity* self));
 
@@ -38,6 +44,8 @@ void r_RenderEntity(Entity* entity);
 
 // Generic animation update for any entity
 void e_UpdateAnimation(Entity* entity);
+
+void e_SetEntityState(Entity* entity, enum EntityState state);
 
 void e_ApplyVelocity(Entity* entity);
 

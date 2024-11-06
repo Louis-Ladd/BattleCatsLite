@@ -6,8 +6,8 @@
 Entity* e_CreateGenericGoodCat(Image* sprite_sheet)
 {
     Sprite* sprite = r_CreateSprite(0, sprite_sheet, 1280.0f, 700.0f, 1.0f);
-    Entity* cat = e_CreateEntity(0, sprite, 0, 100, false, e_UpdateGoodCat,
-                                 r_RenderGoodCat);
+    Entity* cat =
+        e_CreateEntity(0, sprite, 100, false, e_UpdateGoodCat, r_RenderGoodCat);
     cat->speed = 100;
 
     return cat;
@@ -17,7 +17,7 @@ Entity* e_CreateGenericBadCat(Image* sprite_sheet)
 {
     Sprite* sprite = r_CreateSprite(1, sprite_sheet, 0.0f, 700.0f, 1.0f);
     Entity* cat =
-        e_CreateEntity(0, sprite, 0, 100, true, e_UpdateBadCat, r_RenderBadCat);
+        e_CreateEntity(0, sprite, 100, true, e_UpdateBadCat, r_RenderBadCat);
     cat->speed = 100;
 
     return cat;
@@ -40,7 +40,6 @@ void e_UpdateGoodCat(Entity* self, Entity* other)
         return;
     }
 
-    other->current_frame = 0;
     if (fabs(self->velocity.x) < self->speed)
     {
         self->velocity.x -= 10.0f;
@@ -53,7 +52,7 @@ void e_UpdateGoodCat(Entity* self, Entity* other)
 
     if (DistanceVec2(self->position, other->position) < 200 && other->is_enemy)
     {
-        LOG("Good cat attacking entity with ID %i", other->id);
+        e_SetEntityState(self, ATTACKING);
         e_GoodCatAttack(self, other);
     }
 
@@ -67,7 +66,6 @@ void e_UpdateBadCat(Entity* self, Entity* other)
         return;
     }
 
-    other->current_frame = 0;
     if (fabs(self->velocity.x) < self->speed)
     {
         self->velocity.x += 10.0f;
@@ -80,6 +78,7 @@ void e_UpdateBadCat(Entity* self, Entity* other)
 
     if (DistanceVec2(self->position, other->position) < 200 && !other->is_enemy)
     {
+        e_SetEntityState(self, ATTACKING);
         e_BadCatAttack(self, other);
     }
 
@@ -141,17 +140,19 @@ void r_RenderBadCat(Entity* self)
 void e_GoodCatAttack(Entity* self, Entity* other)
 {
     self->position.x++;
-    other->health -= 80;
+    other->health -= 20;
     other->velocity.x = -1200;
     other->velocity.y = -1500;
+    e_SetEntityState(other, HURT);
     return;
 }
 
 void e_BadCatAttack(Entity* self, Entity* other)
 {
     self->position.x--;
-    other->health -= 80;
+    other->health -= 20;
     other->velocity.x = 1200;
     other->velocity.y = -1500;
+    e_SetEntityState(other, HURT);
     return;
 }

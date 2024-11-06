@@ -2,8 +2,7 @@
 #include "../application.h"
 #include "../log.h"
 
-Entity* e_CreateEntity(EntityID id, Sprite* sprite, u8 current_frame,
-                       u16 health, bool is_enemy,
+Entity* e_CreateEntity(EntityID id, Sprite* sprite, u16 health, bool is_enemy,
                        void (*update_func)(Entity* self, Entity* other),
                        void (*render_func)(Entity* self))
 {
@@ -12,7 +11,7 @@ Entity* e_CreateEntity(EntityID id, Sprite* sprite, u8 current_frame,
 
     entity->id = id;
     entity->sprite = sprite;
-    entity->current_frame = current_frame;
+    entity->current_state = WALKING;
     entity->health = health;
     entity->is_enemy = is_enemy;
     entity->position.x = sprite->f_rect.x;
@@ -47,20 +46,66 @@ void e_UpdateAnimation(Entity* entity)
     u32 time_since_last_update =
         SDL_GetTicks() - entity->sprite->last_animation_update;
 
-    if (time_since_last_update <= 250)
+    switch (entity->current_state)
     {
-        return;
+        case WALKING:
+            if (entity->sprite->animation_frame >= 3)
+            {
+                entity->sprite->animation_frame = 0;
+                break;
+            }
+            if (time_since_last_update >= 250)
+            {
+                entity->sprite->animation_frame++;
+                entity->sprite->last_animation_update = SDL_GetTicks();
+            }
+            break;
+        case ATTACKING:
+            if (entity->sprite->animation_frame > 6)
+            {
+                e_SetEntityState(entity, WALKING);
+                break;
+            }
+            if (time_since_last_update >= 150)
+            {
+                entity->sprite->animation_frame++;
+                entity->sprite->last_animation_update = SDL_GetTicks();
+            }
+            break;
+        case HURT:
+            if (entity->sprite->animation_frame > 9)
+            {
+                e_SetEntityState(entity, WALKING);
+                break;
+            }
+            if (time_since_last_update >= 350)
+            {
+                entity->sprite->animation_frame++;
+                entity->sprite->last_animation_update = SDL_GetTicks();
+            }
+            break;
     }
+}
 
-    entity->sprite->last_animation_update = SDL_GetTicks();
-
-    if (entity->sprite->animation_frame < 9)
+void e_SetEntityState(Entity* entity, enum EntityState state)
+{
+    switch (state)
     {
-        entity->sprite->animation_frame++;
-    }
-    else
-    {
-        entity->sprite->animation_frame = 0;
+        case WALKING:
+            entity->sprite->animation_frame = 0;
+            entity->current_state = state;
+            break;
+        case ATTACKING:
+            entity->sprite->animation_frame = 4;
+            entity->current_state = state;
+            break;
+        case HURT:
+            entity->sprite->animation_frame = 7;
+            entity->current_state = state;
+            break;
+        default:
+            LOG("Unknown state set for entity");
+            break;
     }
 }
 
