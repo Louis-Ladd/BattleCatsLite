@@ -6,7 +6,6 @@ Entity* e_CreateEntity(EntityID id, Sprite* sprite, u16 health, bool is_enemy,
                        void (*update_func)(Entity* self, Entity* other),
                        void (*render_func)(Entity* self))
 {
-
     Entity* entity = malloc(sizeof(*entity));
 
     entity->id = id;
@@ -36,7 +35,6 @@ void r_RenderEntity(Entity* entity)
         (entity->sprite->f_rect.w * entity->sprite->scale) / 2;
     entity->sprite->f_rect.y =
         entity->position.y - (entity->sprite->f_rect.h * entity->sprite->scale);
-    // TODO: Add animation support
 
     r_DrawSprite(application.renderer, entity->sprite);
 }
@@ -84,6 +82,10 @@ void e_UpdateAnimation(Entity* entity)
                 entity->sprite->last_animation_update = SDL_GetTicks();
             }
             break;
+        default:
+            LOG_ERROR("The unthinkable has happened and the perfect case "
+                      "statement I've written has fallen through.");
+            break;
     }
 }
 
@@ -104,7 +106,7 @@ void e_SetEntityState(Entity* entity, enum EntityState state)
             entity->current_state = state;
             break;
         default:
-            LOG("Unknown state set for entity");
+            LOG_WARN("Unknown state set for entity");
             break;
     }
 }

@@ -43,6 +43,6 @@ void HandleMouseInputMainMenu(MainMenu* menu)
         {
             menu->buttons[i]->onClick();
         }
-        LOG("Clicked on: %s", menu->buttons[i]->label->text);
+        LOG_DEBUG("Clicked on: %s", menu->buttons[i]->label->text);
     }
 }

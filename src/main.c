@@ -17,6 +17,7 @@ int main()
 
     if (application_status > 0)
     {
+        LOG_ERROR("init failed!!! :(");
         fprintf(stderr, "Application failed to initalize\n");
         return application_status;
     }
@@ -60,7 +61,6 @@ int main()
         if (current_time - fps_start_time >= 1000)
         {
             application.fps = fps_count / (application.delta_time);
-            // LOG("FPS: %f", application.fps);
             fps_count = 0;
         }
     }

@@ -43,11 +43,11 @@ void AddEntity(Scene* scene, Entity* entity)
         scene->entities[i] = entity;
         scene->entities[i]->id = i;
 
-        LOG("Added entity with ID %i", i);
+        LOG_DEBUG("Added entity with ID %i", i);
 
         return;
     }
-    LOG("Unable to add entity as there's no more room!");
+    LOG_WARN("Unable to add entity as there's no more room!");
     e_DestroyEntity(entity);
     return;
 }
@@ -64,7 +64,7 @@ void RemoveEntity(Scene* scene, Entity* entity)
         {
             continue;
         }
-        LOG("Removed entity with id %i", entity->id);
+        LOG_DEBUG("Removed entity with id %i", entity->id);
         e_DestroyEntity(entity);
 
         scene->entities[i] = NULL;

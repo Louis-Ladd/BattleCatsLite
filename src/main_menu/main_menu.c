@@ -1,9 +1,11 @@
 #include "main_menu.h"
 
 #include "../application.h"
+#include "../log.h"
 
 MainMenu* InitMainMenu()
 {
+    LOG_DEBUG("Init main menu");
     MainMenu* menu = malloc(sizeof(*menu));
 
     for (int i = 0; i < MAX_BUTTON_COUNT; i++)
