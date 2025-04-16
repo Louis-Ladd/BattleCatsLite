@@ -2,6 +2,7 @@
 #include "application.h"
 #include "main_menu/main_menu.h"
 #include "render/label.h"
+#include "ui/uimanager.h"
 #include "utils/current_time.h"
 #include "utils/types.h"
 #include <SDL2/SDL_timer.h>
@@ -113,7 +114,6 @@ inline void handle_events()
                 switch (application.current_context)
                 {
                     case MAIN_MENU:
-                        HandleMouseInputMainMenu(main_menu);
                         break;
                 }
                 break;

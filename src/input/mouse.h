@@ -5,7 +5,8 @@
 #include <SDL2/SDL_version.h>
 
 #include "../main_menu/main_menu.h"
+#include "../ui/uimanager.h"
 
-void HandleMouseInputMainMenu(MainMenu* menu);
+void HandleMouseInput(GenericUIElementList* element_list);
 
 #endif

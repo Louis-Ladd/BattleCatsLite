@@ -1,5 +1,6 @@
 #include "application.h"
 #include "log.h"
+#include <SDL2/SDL_render.h>
 
 int InitApplication(struct Application* application)
 {

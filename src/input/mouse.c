@@ -15,34 +15,17 @@ SDL_FORCE_INLINE SDL_bool SDL_PointInFRect(const SDL_FPoint* p,
 }
 #endif
 
-void HandleMouseInputMainMenu(MainMenu* menu)
+void HandleMouseInput(GenericUIElementList* element_list)
 {
     if (application.window_event.type != SDL_MOUSEBUTTONDOWN)
     {
         return;
     }
 
+    LOG("Not implemented %i", element_list->element_count);
+
     SDL_FPoint mouse_position;
 
     mouse_position.x = application.window_event.motion.x;
     mouse_position.y = application.window_event.motion.y;
-
-    for (int i = 0; i < MAX_BUTTON_COUNT; i++)
-    {
-        if (!menu->buttons[i])
-        {
-            continue;
-        }
-
-        if (!SDL_PointInFRect(&mouse_position, &menu->buttons[i]->f_rect))
-        {
-            continue;
-        }
-
-        if (menu->buttons[i]->onClick)
-        {
-            menu->buttons[i]->onClick();
-        }
-        LOG_DEBUG("Clicked on: %s", menu->buttons[i]->label->text);
-    }
 }

@@ -3,6 +3,7 @@
 
 #include "../color.h"
 #include "../render/label.h"
+#include "uigeneric.h"
 
 typedef struct
 {
@@ -17,7 +18,7 @@ Button* CreateButton(float x, float y, float w, float h, char button_text[],
 
 void SetButtonFuncPointer(Button* button, void (*f)(void));
 
-void r_RenderButton(SDL_Renderer* renderer, Button* button);
+void r_RenderButton(SDL_Renderer* renderer, GenericUIElement* element);
 
 void DestroyButton(Button* button);
 
