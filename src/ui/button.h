@@ -11,15 +11,15 @@ typedef struct
     SDL_Color color;
     SDL_FRect f_rect;
     void (*onClick)();
-} Button;
+} UIButton;
 
-Button* CreateButton(float x, float y, float w, float h, char button_text[],
-                     SDL_Color button_color, SDL_Color text_color);
+UIButton* CreateButton(float x, float y, float w, float h, char button_text[],
+                       SDL_Color button_color, SDL_Color text_color);
 
-void SetButtonFuncPointer(Button* button, void (*f)(void));
+void SetUIButtonFuncPointer(UIButton* button, void (*f)(void));
 
-void r_RenderButton(SDL_Renderer* renderer, GenericUIElement* element);
+void r_RenderUIButton(SDL_Renderer* renderer, UIButton* button);
 
-void DestroyButton(Button* button);
+void DestroyUIButton(UIButton* button);
 
 #endif

@@ -28,9 +28,8 @@ void SetButtonFuncPointer(Button* button, void (*f)(void))
     button->onClick = f;
 }
 
-void r_RenderButton(SDL_Renderer* renderer, GenericUIElement* element)
+void r_RenderButton(SDL_Renderer* renderer, Button* button)
 {
-    Button* button = (Button*)element->ui_element;
     SDL_SetRenderDraw_SDL_Color(renderer, button->color);
     SDL_RenderFillRectF(renderer, &button->f_rect);
     r_RenderLabel(renderer, button->label);

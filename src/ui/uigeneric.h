@@ -7,7 +7,7 @@
 
 typedef enum
 {
-    LABEL,
+    TEXT,
     IMAGE,
     BUTTON,
     ICON_BUTTON
