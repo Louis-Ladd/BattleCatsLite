@@ -16,15 +16,7 @@ MainMenu* InitMainMenu()
 
     GenericUIElement title_generic = {"title", NULL, NULL, title, TEXT};
 
-    GenericUIElement* title_generic_p = malloc(sizeof(*title_generic_p));
-
-    SetRenderFunc(title_generic_p);
-
-    *title_generic_p = title_generic;
-
-    ResizeElements(&menu->ui_list, 1);
-
-    menu->ui_list.elements[0] = title_generic_p;
+    AddUIElement(&menu->ui_list, title_generic);
 
     return menu;
 }

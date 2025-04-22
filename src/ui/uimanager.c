@@ -12,12 +12,7 @@ GenericUIElementList CreateElementList(u32 start_count)
 
     new_list.elements = malloc(sizeof(**new_list.elements) * start_count);
 
-    // memset(new_list.elements, 0, sizeof(*new_list.elements) * start_count);
-
-    for (u32 i = 0; i < start_count; i++)
-    {
-        new_list.elements[i] = NULL;
-    }
+    memset(new_list.elements, 0, sizeof(*new_list.elements) * start_count);
 
     LOG_DEBUG("Created new element list...");
 
@@ -28,6 +23,10 @@ void RenderUIElementList(GenericUIElementList* list)
 {
     for (u32 i = 0; i < list->element_count; i++)
     {
+        if (list->elements[i] == NULL)
+        {
+            break;
+        }
         list->elements[i]->render(application.renderer, list->elements[i]);
     }
 }
@@ -66,11 +65,11 @@ void AddUIElement(GenericUIElementList* list, GenericUIElement element)
 
     *alloc_element = element;
 
+    SetRenderFunc(alloc_element);
+
     ResizeElements(list, list->element_count + 1);
 
-    list->elements[list->element_count] = alloc_element;
-
-    SetRenderFunc(alloc_element);
+    list->elements[list->element_count - 1] = alloc_element;
 }
 
 GenericUIElement* GetUIElementByName(GenericUIElementList* list,
@@ -93,6 +92,8 @@ GenericUIElement* GetUIElementByName(GenericUIElementList* list,
 void RemoveUIElementByPointer(GenericUIElementList* list,
                               GenericUIElement* element)
 {
+    // TODO: This is hack for now, but these removals will cause issues since we
+    // don't reorganize the pointer array to remove the NULL gaps.
     GenericUIElement* found_element = NULL;
 
     for (u32 i = 0; i < list->element_count; i++)
