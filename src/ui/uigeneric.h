@@ -1,7 +1,6 @@
 #ifndef UIGENERIC_H_
 #define UIGENERIC_H_
 
-#include "../application.h"
 #include "../utils/util.h"
 #include "../utils/vec2.h"
 #include <SDL2/SDL_render.h>

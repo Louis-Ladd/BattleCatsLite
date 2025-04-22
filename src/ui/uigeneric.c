@@ -33,6 +33,10 @@ void SetRenderFunc(GenericUIElement* ui_element)
         case BUTTON:
             ui_element->render = ui_RenderButton;
             break;
+        case TEXT:
+            ui_element->render = ui_RenderText;
+            LOG_DEBUG("Set ui_element of type TEXT");
+            break;
         default:
             ui_element->render = NULL;
             break;

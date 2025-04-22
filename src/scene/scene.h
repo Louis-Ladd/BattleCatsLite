@@ -6,13 +6,15 @@
 #include "../entity/entity_behavior.h"
 #include "../input/keyboard.h"
 #include "../render/sprite.h"
+#include "../ui/uimanager.h"
 #include "SDL2/SDL.h"
 
 typedef struct
 {
     u16 entity_count;
     Entity** entities;
-    Image* scene_images[3];
+    Image* scene_assets[2];
+    GenericUIElementList* scene_ui;
 } Scene;
 
 Scene* CreateScene();

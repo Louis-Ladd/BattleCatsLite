@@ -8,16 +8,13 @@ Scene* CreateScene()
 {
     Scene* scene = malloc(sizeof(*scene));
 
+    GenericUIElementList generic_list = CreateElementList(0);
+
     return scene;
 }
 
 void RenderScene(Scene* scene)
 {
-    if (scene->scene_images[0])
-    {
-        r_DrawImage(application.renderer, scene->scene_images[0]);
-    }
-
     for (int i = 0; i < scene->entity_count; i++)
     {
         if (!scene->entities[i])
@@ -100,7 +97,7 @@ void UpdateScene(Scene* scene)
     if (application.keys[SDLK_a])
     {
 
-        Entity* new_entity = e_CreateGenericGoodCat(scene->scene_images[1]);
+        Entity* new_entity = e_CreateGenericGoodCat(scene->scene_assets[1]);
 
         AddEntity(scene, new_entity);
         ResetKey(SDLK_a);
@@ -108,7 +105,7 @@ void UpdateScene(Scene* scene)
 
     if (application.keys[SDLK_d])
     {
-        Entity* new_entity = e_CreateGenericBadCat(scene->scene_images[1]);
+        Entity* new_entity = e_CreateGenericBadCat(scene->scene_assets[1]);
 
         AddEntity(scene, new_entity);
         ResetKey(SDLK_d);

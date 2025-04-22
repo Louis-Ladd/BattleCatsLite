@@ -24,7 +24,7 @@ run:
 	./build/game
 
 debug:
-	make -B
+	$(MAKE) CFLAGS="$(CFLAGS) -DDEBUG" -B
 	gdb -ex run ./build/game
 
 clean:

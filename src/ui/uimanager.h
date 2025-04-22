@@ -12,9 +12,11 @@ typedef struct
 
 GenericUIElementList CreateElementList(u32 start_count);
 
+void RenderUIElementList(GenericUIElementList* list);
+
 void ResizeElements(GenericUIElementList* list, u32 new_size);
 
-void AddUIElement(GenericUIElementList* list, GenericUIElement* element);
+void AddUIElement(GenericUIElementList* list, GenericUIElement element);
 
 GenericUIElement* GetUIElementByName(GenericUIElementList* list,
                                      char element_name[]);

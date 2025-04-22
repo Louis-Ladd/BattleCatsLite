@@ -1,4 +1,5 @@
 #include "uiimage.h"
+#include "../application.h"
 
 UIImage* CreateUIImage(SDL_Surface image_surface, float x, float y, float w,
                        float h)

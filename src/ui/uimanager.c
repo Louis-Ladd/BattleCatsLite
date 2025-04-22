@@ -1,4 +1,5 @@
 #include "uimanager.h"
+#include "../application.h"
 #include "../log.h"
 #include "uigeneric.h"
 #include <stdlib.h>
@@ -11,9 +12,24 @@ GenericUIElementList CreateElementList(u32 start_count)
 
     new_list.elements = malloc(sizeof(**new_list.elements) * start_count);
 
-    memset(new_list.elements, 0, sizeof(*new_list.elements) * start_count);
+    // memset(new_list.elements, 0, sizeof(*new_list.elements) * start_count);
+
+    for (u32 i = 0; i < start_count; i++)
+    {
+        new_list.elements[i] = NULL;
+    }
+
+    LOG_DEBUG("Created new element list...");
 
     return new_list;
+}
+
+void RenderUIElementList(GenericUIElementList* list)
+{
+    for (u32 i = 0; i < list->element_count; i++)
+    {
+        list->elements[i]->render(application.renderer, list->elements[i]);
+    }
 }
 
 void ResizeElements(GenericUIElementList* list, u32 new_size)
@@ -27,17 +43,36 @@ void ResizeElements(GenericUIElementList* list, u32 new_size)
         }
     }
 
-    list->elements =
-        realloc(list->elements,
-                sizeof(**list->elements) * (new_size - list->element_count));
+    LOG_DEBUG("Resizing elements to... %ld bytes or %i elements",
+              sizeof(*list->elements) * new_size, new_size);
+
+    GenericUIElement** new_elements =
+        realloc(list->elements, sizeof(*list->elements) * new_size);
+
+    if (!new_elements)
+    {
+        LOG_ERROR("Mother fuck, realloc failed");
+        return;
+    }
+
+    list->elements = new_elements;
+
+    list->element_count = new_size;
 }
 
-void AddUIElement(GenericUIElementList* list, GenericUIElement* element)
+void AddUIElement(GenericUIElementList* list, GenericUIElement element)
 {
+    GenericUIElement* alloc_element = malloc(sizeof(*alloc_element));
+
+    *alloc_element = element;
+
     ResizeElements(list, list->element_count + 1);
 
-    list->elements[list->element_count + 1] = element;
+    list->elements[list->element_count] = alloc_element;
+
+    SetRenderFunc(alloc_element);
 }
+
 GenericUIElement* GetUIElementByName(GenericUIElementList* list,
                                      char element_name[])
 {

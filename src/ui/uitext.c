@@ -1,4 +1,5 @@
 #include "uitext.h"
+#include "../application.h"
 #include "../log.h"
 
 UIText* CreateUIText(float x, float y, char text_content[], TTF_Font* font,

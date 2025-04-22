@@ -1,5 +1,6 @@
 #include "main.h"
 #include "application.h"
+#include "log.h"
 #include "main_menu/main_menu.h"
 #include "render/label.h"
 #include "ui/uimanager.h"
@@ -26,8 +27,6 @@ int main()
     main_menu = InitMainMenu();
     application.scene_manager = InitSceneManager();
 
-    create_level_one(application.scene_manager);
-
     u64 fps_count = 0;
     u64 last_time = SDL_GetTicks();
     u64 fps_start_time = SDL_GetTicks();
@@ -47,7 +46,8 @@ int main()
         SDL_RenderClear(application.renderer);
 
         main_update();
-        main_render();
+        // main_render();
+        RenderMainMenu(main_menu);
 
         snprintf(fps_string, sizeof(fps_string), "FPS: %.2f",
                  application.fps == INFINITY ? 1000 : application.fps);
