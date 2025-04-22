@@ -46,8 +46,8 @@ int main()
 
         SDL_RenderClear(application.renderer);
 
-        update();
-        render();
+        main_update();
+        main_render();
 
         snprintf(fps_string, sizeof(fps_string), "FPS: %.2f",
                  application.fps == INFINITY ? 1000 : application.fps);
@@ -69,7 +69,7 @@ int main()
     return 0;
 }
 
-void render()
+void main_render()
 {
     switch (application.current_context)
     {
@@ -82,7 +82,7 @@ void render()
     }
 }
 
-void update()
+void main_update()
 {
     switch (application.current_context)
     {

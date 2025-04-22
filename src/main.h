@@ -23,9 +23,9 @@
 
 int main();
 
-void render();
+void main_render();
 
-void update();
+void main_update();
 
 void handle_events();
 

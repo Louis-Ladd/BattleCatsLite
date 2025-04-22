@@ -3,7 +3,7 @@
 
 #define MAX_BUTTON_COUNT 3
 
-#include "../ui/button.h"
+#include "../ui/uibutton.h"
 #include "../ui/uigeneric.h"
 #include "../ui/uimanager.h"
 #include "button_events.h"

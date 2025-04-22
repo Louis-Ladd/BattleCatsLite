@@ -2,8 +2,8 @@
 #define UIRENDER_H_
 
 #include "../render/label.h"
-#include "text.h"
 #include "uigeneric.h"
+#include "uitext.h"
 
 void ui_RenderText(SDL_Renderer* renderer, GenericUIElement* element);
 

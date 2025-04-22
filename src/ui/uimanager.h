@@ -14,6 +14,14 @@ GenericUIElementList CreateElementList(u32 start_count);
 
 void ResizeElements(GenericUIElementList* list, u32 new_size);
 
-// void AddUIElement(GenericUIElement* element) {}
+void AddUIElement(GenericUIElementList* list, GenericUIElement* element);
+
+GenericUIElement* GetUIElementByName(GenericUIElementList* list,
+                                     char element_name[]);
+
+void RemoveUIElementByPointer(GenericUIElementList* list,
+                              GenericUIElement* element);
+
+void RemoveUIElementByName(GenericUIElementList* list, char element_name[]);
 
 #endif
