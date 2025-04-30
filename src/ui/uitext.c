@@ -6,8 +6,22 @@ UIText* CreateUIText(float x, float y, char text_content[], TTF_Font* font,
                      SDL_Color text_color)
 {
     UIText* ui_text = malloc(sizeof(*ui_text));
+
+    if (!ui_text)
+    {
+        LOG_ERROR("Failed to allocate memory for UIText!");
+        return NULL;
+    }
+
     ui_text->label = r_CreateLabel(application.renderer, x, y, text_content,
                                    font, text_color);
+
+    if (!ui_text->label)
+    {
+        LOG_ERROR("Something went wrong creating a UITexts' label!");
+        return NULL;
+    }
+
     return ui_text;
 }
 
@@ -24,9 +38,9 @@ void r_RenderUIText(SDL_Renderer* renderer, UIText* ui_text)
 
 void DestroyUIText(UIText* ui_text)
 {
-    if (ui_text == NULL)
+    if (!ui_text)
     {
-        LOG_ERROR("NULL pointer passed!");
+        LOG_ERROR("NULL passed to destroy!");
         return;
     }
 

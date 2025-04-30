@@ -1,9 +1,16 @@
 #include "image.h"
+#include "../log.h"
+#include <SDL2/SDL_error.h>
 
 Image* r_CreateImage(SDL_Renderer* renderer, SDL_Surface* image_surface,
                      float x, float y, float w, float h)
 {
     Image* image = malloc(sizeof(*image));
+    if (!image)
+    {
+        LOG_ERROR("Failed to allocate memory for Image!");
+        return NULL;
+    }
     SDL_FRect rect;
 
     rect.w = w;
@@ -17,6 +24,13 @@ Image* r_CreateImage(SDL_Renderer* renderer, SDL_Surface* image_surface,
     image->f_rect.h = rect.h;
 
     image->texture = SDL_CreateTextureFromSurface(renderer, image_surface);
+
+    if (!image->texture)
+    {
+        LOG_ERROR("Failed to create texture from surface due to: %s\n",
+                  SDL_GetError());
+        return NULL;
+    }
 
     SDL_FreeSurface(image_surface);
 

@@ -10,9 +10,10 @@ UIButton* CreateUIButton(float x, float y, float w, float h, char button_text[],
     LOG_DEBUG("Creating UI Button...");
     UIButton* button = malloc(sizeof(*button));
 
-    if (button == NULL)
+    if (!button)
     {
-        LOG_ERROR("Failed to allocate memory for new button!");
+        LOG_ERROR("Failed to allocate memory for UIButton!");
+        return NULL;
     }
 
     button->color = button_color;
@@ -21,9 +22,10 @@ UIButton* CreateUIButton(float x, float y, float w, float h, char button_text[],
         r_CreateLabel(application.renderer, x + (w / 2), y + (h / 2),
                       button_text, application.fonts[LARGE_FONT], text_color);
 
-    if (button->label == NULL)
+    if (!button->label)
     {
-        LOG_ERROR("Something went wrong creating label a UI Button!");
+        LOG_ERROR("Something went wrong creating UIButtons' label!");
+        return NULL;
     }
 
     int label_width, label_height = 0;
@@ -43,7 +45,7 @@ UIButton* CreateUIButton(float x, float y, float w, float h, char button_text[],
     return button;
 }
 
-void SetButtonFuncPointer(UIButton* ui_button, void (*f)(void))
+void SetUIButtonFuncPointer(UIButton* ui_button, void (*f)(void))
 {
     ui_button->onClick = f;
 }
@@ -60,9 +62,9 @@ void r_RenderUIButton(SDL_Renderer* renderer, UIButton* ui_button)
 
 void DestroyUIButton(UIButton* button)
 {
-    if (button == NULL)
+    if (!button)
     {
-        LOG_ERROR("Null pointer passed!");
+        LOG_ERROR("NULL passed to destroy!");
         return;
     }
     r_DestroyLabel(button->label);

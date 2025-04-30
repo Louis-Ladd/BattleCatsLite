@@ -12,13 +12,22 @@ Sprite* r_CreateSprite(int sprite_offset, Image* sprite_sheet, float x, float y,
                        float scale)
 {
     Sprite* sprite = malloc(sizeof(*sprite));
+
+    if (!sprite)
+    {
+        LOG_ERROR("Failed to allocate memory for sprite!");
+        return NULL;
+    }
+
     sprite->sprite_sheet = sprite_sheet;
     sprite->sprite_offset = sprite_offset * 10;
     sprite->last_animation_update = SDL_GetTicks();
     sprite->animation_frame = 0;
     sprite->scale = scale;
-    SDL_FRect cat_frect = {x, y, 256 * scale, 256 * scale};
-    sprite->f_rect = cat_frect;
+
+    SDL_FRect sprite_frect = {x, y, 256 * scale, 256 * scale};
+
+    sprite->f_rect = sprite_frect;
 
     return sprite;
 }
