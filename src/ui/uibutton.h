@@ -13,8 +13,8 @@ typedef struct
     void (*onClick)();
 } UIButton;
 
-UIButton* CreateButton(float x, float y, float w, float h, char button_text[],
-                       SDL_Color button_color, SDL_Color text_color);
+UIButton* CreateUIButton(float x, float y, float w, float h, char button_text[],
+                         SDL_Color button_color, SDL_Color text_color);
 
 void SetUIButtonFuncPointer(UIButton* button, void (*f)(void));
 

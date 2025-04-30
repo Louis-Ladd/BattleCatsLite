@@ -1,17 +1,38 @@
 #include "uibutton.h"
 #include "../application.h"
 #include "../log.h"
+#include "SDL2/SDL_render.h"
+#include <string.h>
 
-UIButton* CreateButton(float x, float y, float w, float h, char button_text[],
-                       SDL_Color button_color, SDL_Color text_color)
+UIButton* CreateUIButton(float x, float y, float w, float h, char button_text[],
+                         SDL_Color button_color, SDL_Color text_color)
 {
+    LOG_DEBUG("Creating UI Button...");
     UIButton* button = malloc(sizeof(*button));
+
+    if (button == NULL)
+    {
+        LOG_ERROR("Failed to allocate memory for new button!");
+    }
 
     button->color = button_color;
 
     button->label =
-        r_CreateLabel(application.renderer, x + 5, y + (h / 2), button_text,
-                      application.fonts[LARGE_FONT], text_color);
+        r_CreateLabel(application.renderer, x + (w / 2), y + (h / 2),
+                      button_text, application.fonts[LARGE_FONT], text_color);
+
+    if (button->label == NULL)
+    {
+        LOG_ERROR("Something went wrong creating label a UI Button!");
+    }
+
+    int label_width, label_height = 0;
+
+    SDL_QueryTexture(button->label->texture, NULL, NULL, &label_width,
+                     &label_height);
+
+    button->label->rect.x = x + (w / 2) - (int)(label_width / 2);
+    button->label->rect.y = y + (h / 2) - (int)(label_height / 2);
 
     SDL_FRect button_rect = {x, y, w, h};
 

@@ -2,6 +2,7 @@
 
 #include "../application.h"
 #include "../log.h"
+#include "../ui/uibutton.h"
 #include "../ui/uitext.h"
 
 MainMenu* InitMainMenu()
@@ -16,7 +17,15 @@ MainMenu* InitMainMenu()
 
     GenericUIElement title_generic = {"title", NULL, NULL, title, TEXT};
 
+    UIButton* play_button = CreateUIButton((SCREEN_WIDTH / 2) - 200, 100, 400,
+                                           100, "Play", GRAY, WHITE);
+
+    GenericUIElement play_generic = {"playbtn", NULL, NULL, play_button,
+                                     BUTTON};
+
     AddUIElement(&menu->ui_list, title_generic);
+
+    AddUIElement(&menu->ui_list, play_generic);
 
     return menu;
 }
