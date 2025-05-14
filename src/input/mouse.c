@@ -1,6 +1,8 @@
 #include "mouse.h"
 #include "../application.h"
 #include "../log.h"
+#include <SDL2/SDL_events.h>
+#include <SDL2/SDL_rect.h>
 
 #if SDL_VERSION_ATLEAST(2, 0, 22)
 // Why the hell doesn't ubuntu's pre-built SDL2 package not have this?
@@ -15,7 +17,8 @@ SDL_FORCE_INLINE SDL_bool SDL_PointInFRect(const SDL_FPoint* p,
 }
 #endif
 
-void HandleMouseInput(GenericUIElementList* element_list)
+void HandleMouseInput(GenericUIElementList* element_list,
+                      SDL_MouseMotionEvent mouse_event)
 {
     if (application.window_event.type != SDL_MOUSEBUTTONDOWN)
     {
@@ -25,7 +28,8 @@ void HandleMouseInput(GenericUIElementList* element_list)
     LOG("Not implemented %i", element_list->element_count);
 
     SDL_FPoint mouse_position;
+    int x = mouse_event.x;
+    int y = mouse_event.y;
 
-    mouse_position.x = application.window_event.motion.x;
-    mouse_position.y = application.window_event.motion.y;
+    ProcessMouseClickEventForList(element_list, x, y);
 }

@@ -1,5 +1,6 @@
 #include "main.h"
 #include "application.h"
+#include "input/mouse.h"
 #include "log.h"
 #include "main_menu/main_menu.h"
 #include "render/label.h"
@@ -110,10 +111,13 @@ inline void handle_events()
                                             // radical
                 HandleKeyboardInput();
                 break;
-            case SDL_MOUSEBUTTONDOWN ... SDL_MOUSEBUTTONUP:
+            case SDL_MOUSEBUTTONDOWN:
                 switch (application.current_context)
                 {
                     case MAIN_MENU:
+                        LOG_DEBUG("Handling main menu click!");
+                        HandleMouseInput(&main_menu->ui_list,
+                                         application.window_event.motion);
                         break;
                 }
                 break;

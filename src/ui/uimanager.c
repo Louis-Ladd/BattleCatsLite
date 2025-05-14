@@ -2,6 +2,7 @@
 #include "../application.h"
 #include "../log.h"
 #include "uigeneric.h"
+#include <SDL2/SDL_rect.h>
 #include <stdlib.h>
 #include <string.h>
 
@@ -125,4 +126,53 @@ void RemoveUIElementByName(GenericUIElementList* list, char element_name[])
     }
 
     CleanUpGenericElement(found_element);
+}
+
+void HandleMouseEventForElement(GenericUIElement* element, int x, int y)
+{
+    LOG_DEBUG("At X:%i Y:%i", x, y);
+    SDL_FPoint click_point = {x, y};
+
+    switch (element->element_type)
+    {
+        case TEXT:
+        {
+            UIText* text = (UIText*)element->ui_element;
+
+            if (SDL_PointInFRect(&click_point, &text->label->rect))
+            {
+                LOG_DEBUG("Clicked on type %i", element->element_type);
+            }
+            break;
+        }
+        case IMAGE:
+        {
+            LOG_DEBUG("Clicked on type %i", element->element_type);
+            break;
+        }
+        case BUTTON:
+        {
+            LOG_DEBUG("Clicked on type %i", element->element_type);
+            break;
+        }
+        default:
+            LOG_DEBUG("Clicked on unknown type %i", element->element_type);
+            break;
+    }
+}
+
+void ProcessMouseClickEventForList(GenericUIElementList* list, int x, int y)
+{
+    LOG_DEBUG("Checking %i elements for click at X: %i Y: %i",
+              list->element_count, x, y);
+    for (u32 i = 0; i < list->element_count; i++)
+    {
+        if (list->elements[i])
+        {
+            HandleMouseEventForElement(list->elements[i], x, y);
+            continue;
+        }
+
+        LOG_ERROR("Null element processed");
+    }
 }

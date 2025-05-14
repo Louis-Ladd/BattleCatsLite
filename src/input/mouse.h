@@ -7,6 +7,7 @@
 #include "../main_menu/main_menu.h"
 #include "../ui/uimanager.h"
 
-void HandleMouseInput(GenericUIElementList* element_list);
+void HandleMouseInput(GenericUIElementList* element_list,
+                      SDL_MouseMotionEvent mouse_event);
 
 #endif
