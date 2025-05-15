@@ -1,7 +1,9 @@
 #include "uimanager.h"
 #include "../application.h"
 #include "../log.h"
+#include "uibutton.h"
 #include "uigeneric.h"
+#include "uiimage.h"
 #include <SDL2/SDL_rect.h>
 #include <stdlib.h>
 #include <string.h>
@@ -26,7 +28,7 @@ void RenderUIElementList(GenericUIElementList* list)
     {
         if (list->elements[i] == NULL)
         {
-            break;
+            return;
         }
         list->elements[i]->render(application.renderer, list->elements[i]);
     }
@@ -130,7 +132,6 @@ void RemoveUIElementByName(GenericUIElementList* list, char element_name[])
 
 void HandleMouseEventForElement(GenericUIElement* element, int x, int y)
 {
-    LOG_DEBUG("At X:%i Y:%i", x, y);
     SDL_FPoint click_point = {x, y};
 
     switch (element->element_type)
@@ -139,26 +140,39 @@ void HandleMouseEventForElement(GenericUIElement* element, int x, int y)
         {
             UIText* text = (UIText*)element->ui_element;
 
-            if (SDL_PointInFRect(&click_point, &text->label->rect))
+            if (SDL_PointInFRect(&click_point, &text->label->f_rect))
             {
                 LOG_DEBUG("Clicked on type %i", element->element_type);
+                return;
             }
             break;
         }
         case IMAGE:
         {
-            LOG_DEBUG("Clicked on type %i", element->element_type);
+            UIImage* image = (UIImage*)element->ui_element;
+            if (SDL_PointInFRect(&click_point, &image->f_rect))
+            {
+                LOG_DEBUG("Clicked on type %i", element->element_type);
+                return;
+            }
             break;
         }
         case BUTTON:
         {
-            LOG_DEBUG("Clicked on type %i", element->element_type);
+            UIButton* button = (UIButton*)element->ui_element;
+            if (SDL_PointInFRect(&click_point, &button->f_rect))
+            {
+                LOG_DEBUG("Clicked on type %i", element->element_type);
+                HandleButtonClick(button);
+                return;
+            }
             break;
         }
         default:
-            LOG_DEBUG("Clicked on unknown type %i", element->element_type);
-            break;
+            LOG_DEBUG("unknown type %i", element->element_type);
+            return;
     }
+    LOG_DEBUG("Clicked on nothing~");
 }
 
 void ProcessMouseClickEventForList(GenericUIElementList* list, int x, int y)

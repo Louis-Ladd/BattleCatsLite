@@ -33,8 +33,8 @@ UIButton* CreateUIButton(float x, float y, float w, float h, char button_text[],
     SDL_QueryTexture(button->label->texture, NULL, NULL, &label_width,
                      &label_height);
 
-    button->label->rect.x = x + (w / 2) - (int)(label_width / 2);
-    button->label->rect.y = y + (h / 2) - (int)(label_height / 2);
+    button->label->f_rect.x = x + (w / 2) - (int)(label_width / 2);
+    button->label->f_rect.y = y + (h / 2) - (int)(label_height / 2);
 
     SDL_FRect button_rect = {x, y, w, h};
 
@@ -58,6 +58,15 @@ void r_RenderUIButton(SDL_Renderer* renderer, UIButton* ui_button)
     SDL_SetRenderDraw_SDL_Color(
         renderer, BLACK); // Whenever we're done rendering something, we clean
                           // up by setting draw color to black.
+}
+void HandleButtonClick(UIButton* button)
+{
+    if (!button->onClick)
+    {
+        LOG_DEBUG("Button Function null");
+        return;
+    }
+    button->onClick();
 }
 
 void DestroyUIButton(UIButton* button)

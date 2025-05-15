@@ -25,7 +25,7 @@ void HandleMouseInput(GenericUIElementList* element_list,
         return;
     }
 
-    LOG("Not implemented %i", element_list->element_count);
+    LOG("Click!");
 
     SDL_FPoint mouse_position;
     int x = mouse_event.x;

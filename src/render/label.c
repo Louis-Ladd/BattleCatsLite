@@ -47,7 +47,7 @@ Label* r_CreateLabel(SDL_Renderer* renderer, float x, float y, char text[],
 
     SDL_FRect text_rect = {x, y, label_surface->w, label_surface->h};
 
-    label->rect = text_rect;
+    label->f_rect = text_rect;
 
     SDL_FreeSurface(label_surface);
 
@@ -86,7 +86,7 @@ void r_UpdateLabel() { printf("Not Implemented!!!"); }
 
 void r_RenderLabel(SDL_Renderer* renderer, Label* label)
 {
-    SDL_RenderCopyF(renderer, label->texture, NULL, &label->rect);
+    SDL_RenderCopyF(renderer, label->texture, NULL, &label->f_rect);
 }
 
 void r_DestroyLabel(Label* label)

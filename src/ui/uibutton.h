@@ -20,6 +20,8 @@ void SetUIButtonFuncPointer(UIButton* button, void (*f)(void));
 
 void r_RenderUIButton(SDL_Renderer* renderer, UIButton* button);
 
+void HandleButtonClick(UIButton* button);
+
 void DestroyUIButton(UIButton* button);
 
 #endif

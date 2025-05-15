@@ -27,8 +27,8 @@ UIText* CreateUIText(float x, float y, char text_content[], TTF_Font* font,
 
 void SetUITextPosition(UIText* ui_text, Vec2 new_position)
 {
-    ui_text->label->rect.x = new_position.x;
-    ui_text->label->rect.y = new_position.y;
+    ui_text->label->f_rect.x = new_position.x;
+    ui_text->label->f_rect.y = new_position.y;
 }
 
 void r_RenderUIText(SDL_Renderer* renderer, UIText* ui_text)
