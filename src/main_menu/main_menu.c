@@ -24,7 +24,7 @@ MainMenu* InitMainMenu()
     UIButton* play_button = CreateUIButton(((float)SCREEN_WIDTH / 2) - 200, 300,
                                            400, 100, "Play", GRAY, WHITE);
 
-    SetUIButtonFuncPointer(play_button, start);
+    SetUIButtonFuncPointer(play_button, mainmenustart);
 
     GenericUIElement play_generic = {"playbtn", NULL, NULL, play_button,
                                      BUTTON};

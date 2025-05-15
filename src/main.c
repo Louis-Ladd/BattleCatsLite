@@ -47,8 +47,7 @@ int main()
         SDL_RenderClear(application.renderer);
 
         main_update();
-        // main_render();
-        RenderMainMenu(main_menu);
+        main_render();
 
         snprintf(fps_string, sizeof(fps_string), "FPS: %.2f",
                  application.fps == INFINITY ? 1000 : application.fps);

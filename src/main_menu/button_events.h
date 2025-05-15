@@ -1,7 +1,7 @@
 #ifndef BUTTON_EVENTS_H_
 #define BUTTON_EVENTS_H_
 
-void start();
+void mainmenustart();
 void quit();
 
 #endif
