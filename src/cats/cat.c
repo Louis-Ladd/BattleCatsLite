@@ -137,12 +137,15 @@ void r_RenderBadCat(Entity* self)
     r_DrawHealthBar(self);
 }
 
+#define ATTACK_X_KNOCKBACK 400 
+#define ATTACK_Y_KNOCKBACK 200
+
 void e_GoodCatAttack(Entity* self, Entity* other)
 {
     self->position.x++;
     other->health -= 20;
-    other->velocity.x = -1200;
-    other->velocity.y = -1500;
+    other->velocity.x = -ATTACK_X_KNOCKBACK;
+    other->velocity.y = -ATTACK_Y_KNOCKBACK;
     e_SetEntityState(other, HURT);
     return;
 }
@@ -151,8 +154,8 @@ void e_BadCatAttack(Entity* self, Entity* other)
 {
     self->position.x--;
     other->health -= 20;
-    other->velocity.x = 1200;
-    other->velocity.y = -1500;
+    other->velocity.x = ATTACK_X_KNOCKBACK;
+    other->velocity.y = -ATTACK_Y_KNOCKBACK;
     e_SetEntityState(other, HURT);
     return;
 }

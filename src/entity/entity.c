@@ -52,7 +52,7 @@ void e_UpdateAnimation(Entity* entity)
                 entity->sprite->animation_frame = 0;
                 break;
             }
-            if (time_since_last_update >= 250)
+            if (time_since_last_update >= 150)
             {
                 entity->sprite->animation_frame++;
                 entity->sprite->last_animation_update = SDL_GetTicks();

@@ -6,15 +6,23 @@ void create_level_one(SceneManager* scene_manager)
 {
     Scene* scene = CreateScene();
 
-    Image* scene_background =
-        r_CreateImage(application.renderer, IMG_Load("./assets/background.png"),
-                      0, 0, 1280, 720);
+    SceneAsset scene_background = {
+        BACKDROP, 
+		(void*)(r_CreateImage(application.renderer,
+                              IMG_Load("./assets/background.png"),
+							  0, 0, 1280, 720))};
+
+    SceneAsset scene_spritesheet = {
+        SPRITESHEET,
+        r_CreateImage(application.renderer,
+                      IMG_Load("./assets/catspritesheet.png"),
+					  0, 0, 2560, 2560)
+
+    };
 
     scene->scene_assets[0] = scene_background;
 
-    scene->scene_assets[1] = r_CreateImage(
-        application.renderer, IMG_Load("./assets/catspritesheet.png"), 0, 0,
-        2560, 2560);
+    scene->scene_assets[1] = scene_spritesheet;
 
     scene->entity_count = 200;
     scene->entities = malloc(sizeof(Entity) * scene->entity_count);
@@ -41,7 +49,7 @@ void create_level_one(SceneManager* scene_manager)
     /*    AddEntity(scene, entity);*/
     /*}*/
 
-    Entity* entity = e_CreateGenericBadCat(scene->scene_assets[1]);
+    Entity* entity = e_CreateGenericBadCat((Image*)scene->scene_assets[1].asset);
     AddEntity(scene, entity);
 
     AddScene(scene_manager, scene);

@@ -4,8 +4,6 @@
 #include "log.h"
 #include "main_menu/main_menu.h"
 #include "render/label.h"
-#include "ui/uimanager.h"
-#include "utils/current_time.h"
 #include "utils/types.h"
 #include <SDL2/SDL_timer.h>
 #include <stdio.h>
@@ -46,8 +44,7 @@ int main()
 
         SDL_RenderClear(application.renderer);
 
-        main_update();
-        main_render();
+		main_context_loop();
 
         snprintf(fps_string, sizeof(fps_string), "FPS: %.2f",
                  application.fps == INFINITY ? 1000 : application.fps);
@@ -69,7 +66,7 @@ int main()
     return 0;
 }
 
-void main_render()
+void main_context_loop()
 {
     switch (application.current_context)
     {
@@ -77,18 +74,7 @@ void main_render()
             RenderMainMenu(main_menu);
             break;
         case LEVEL_ONE:
-            RenderScene(application.scene_manager->scenes[0]);
-            break;
-    }
-}
-
-void main_update()
-{
-    switch (application.current_context)
-    {
-        case MAIN_MENU:
-            break;
-        case LEVEL_ONE:
+			RenderScene(application.scene_manager->scenes[0]);
             UpdateScene(application.scene_manager->scenes[0]);
             break;
     }

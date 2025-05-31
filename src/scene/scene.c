@@ -1,8 +1,8 @@
 #include "scene.h"
 #include "../application.h"
 #include "../log.h"
+#include "../render/image.h"
 #include <SDL2/SDL_keycode.h>
-#include <string.h>
 
 Scene* CreateScene()
 {
@@ -15,6 +15,7 @@ Scene* CreateScene()
 
 void RenderScene(Scene* scene)
 {
+    RenderAssets(scene->scene_assets);
     for (int i = 0; i < scene->entity_count; i++)
     {
         if (!scene->entities[i])
@@ -25,6 +26,30 @@ void RenderScene(Scene* scene)
 
         current_entity->behavior.render(current_entity);
         e_UpdateAnimation(current_entity);
+    }
+}
+
+void RenderAssets(SceneAsset assets[SCENE_ASSET_COUNT])
+{
+    for (int i = 0; i < SCENE_ASSET_COUNT; i++)
+    {
+        if (!assets[i].asset)
+        {
+            // Treat null as a terminator, we shouldn't have gaps in this arr.
+            return;
+        }
+        switch (assets[i].type)
+        {
+            case BACKDROP:
+                r_DrawImage(application.renderer, (Image*)(assets[i].asset));
+                break;
+            case SPRITESHEET:
+                continue;
+            default:
+                LOG_WARN("Unknown AssetType, unable to render type: %i",
+                         assets[i].type);
+                continue;
+        }
     }
 }
 
@@ -97,7 +122,8 @@ void UpdateScene(Scene* scene)
     if (application.keys[SDLK_a])
     {
 
-        Entity* new_entity = e_CreateGenericGoodCat(scene->scene_assets[1]);
+        Entity* new_entity =
+            e_CreateGenericGoodCat((Image*)scene->scene_assets[1].asset);
 
         AddEntity(scene, new_entity);
         ResetKey(SDLK_a);
@@ -105,7 +131,8 @@ void UpdateScene(Scene* scene)
 
     if (application.keys[SDLK_d])
     {
-        Entity* new_entity = e_CreateGenericBadCat(scene->scene_assets[1]);
+        Entity* new_entity =
+            e_CreateGenericBadCat((Image*)scene->scene_assets[1].asset);
 
         AddEntity(scene, new_entity);
         ResetKey(SDLK_d);

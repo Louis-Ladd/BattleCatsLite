@@ -9,17 +9,33 @@
 #include "../ui/uimanager.h"
 #include "SDL2/SDL.h"
 
+#define SCENE_ASSET_COUNT 2
+
+enum AssetType 
+{
+	BACKDROP,
+	SPRITESHEET
+};
+
+typedef struct
+{
+	enum AssetType type;
+	void* asset;
+} SceneAsset;
+
 typedef struct
 {
     u16 entity_count;
     Entity** entities;
-    Image* scene_assets[2];
+    SceneAsset scene_assets[SCENE_ASSET_COUNT];
     GenericUIElementList* scene_ui;
 } Scene;
 
 Scene* CreateScene();
 
 void RenderScene(Scene* scene);
+
+void RenderAssets(SceneAsset assets[SCENE_ASSET_COUNT]);
 
 void AddEntity(Scene* scene, Entity* entity);
 
