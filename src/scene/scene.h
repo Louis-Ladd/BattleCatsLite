@@ -11,16 +11,16 @@
 
 #define SCENE_ASSET_COUNT 2
 
-enum AssetType 
+enum AssetType
 {
-	BACKDROP,
-	SPRITESHEET
+    BACKDROP,
+    SPRITESHEET
 };
 
 typedef struct
 {
-	enum AssetType type;
-	void* asset;
+    enum AssetType type;
+    void* asset;
 } SceneAsset;
 
 typedef struct
@@ -28,7 +28,7 @@ typedef struct
     u16 entity_count;
     Entity** entities;
     SceneAsset scene_assets[SCENE_ASSET_COUNT];
-    GenericUIElementList* scene_ui;
+    GenericUIElementList scene_ui;
 } Scene;
 
 Scene* CreateScene();

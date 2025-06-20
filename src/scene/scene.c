@@ -27,6 +27,8 @@ void RenderScene(Scene* scene)
         current_entity->behavior.render(current_entity);
         e_UpdateAnimation(current_entity);
     }
+
+    RenderUIElementList(&scene->scene_ui);
 }
 
 void RenderAssets(SceneAsset assets[SCENE_ASSET_COUNT])
