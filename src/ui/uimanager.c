@@ -95,10 +95,8 @@ GenericUIElement* GetUIElementByName(GenericUIElementList* list,
 void RemoveUIElementByPointer(GenericUIElementList* list,
                               GenericUIElement* element)
 {
-    // TODO: This is hack for now, but these removals will cause issues since we
-    // don't reorganize the pointer array to remove the NULL gaps.
     GenericUIElement* found_element = NULL;
-    u32 removed_index = -1;
+    u32 removed_index = 0;
 
     for (u32 i = 0; i < list->element_count; i++)
     {
@@ -110,12 +108,6 @@ void RemoveUIElementByPointer(GenericUIElementList* list,
         }
     }
 
-    if (removed_index == -1)
-    {
-        LOG_WARN("Unable to remove null gap");
-        goto skip_bubble;
-    }
-
     for (u32 i = removed_index; i < list->element_count - 1; i++)
     {
         GenericUIElement* temp = list->elements[i];
@@ -123,13 +115,13 @@ void RemoveUIElementByPointer(GenericUIElementList* list,
         list->elements[i] = temp;
     }
 
-skip_bubble:
-
     if (found_element == NULL)
     {
         LOG_WARN("Unable to find element by pointer: %p", element);
         return;
     }
+
+    ResizeElements(list, list->element_count - 1);
 
     CleanUpGenericElement(element);
 }
