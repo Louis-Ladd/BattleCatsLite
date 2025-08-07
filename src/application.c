@@ -75,5 +75,9 @@ int InitApplication(struct Application* application)
 
     application->current_context = MAIN_MENU;
 
+	GlobalGameSettings game_state = { 0 };
+
+	application->game_state = game_state;
+
     return 0;
 }

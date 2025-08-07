@@ -24,4 +24,14 @@ void HandleKeyboardInput()
     }
 }
 
-void ResetKey(int keycode) { application.keys[keycode] = false; }
+bool KeyDown(int keycode)
+{
+	return application.keys[keycode];
+}
+
+bool ResetKey(int keycode)
+{
+	int state = application.keys[keycode];
+	application.keys[keycode] = false;
+	return state;
+}

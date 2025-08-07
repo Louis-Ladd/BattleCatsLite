@@ -2,6 +2,7 @@
 #define ENTITY_BEHAVIOR_H_
 
 #include "entity.h"
+#define GROUND_Y 550 
 
 void e_EntityGravity(Entity* entity);
 

@@ -36,9 +36,21 @@ void create_level_one(SceneManager* scene_manager)
     // We shouldn't be creating entities without giving ownership
     // to a scene
 
-    Entity* entity =
-        e_CreateGenericBadCat((Image*)scene->scene_assets[1].asset);
-    AddEntity(scene, entity);
+
+    /*for (int i = 0; i < 20; i++)*/
+    /*{*/
+    /*    Entity* entity =
+     * e_CreateGenericGoodCat(scene->scene_images[1]);*/
+    /*    entity->position.x -= i * 5;*/
+    /*    AddEntity(scene, entity);*/
+    /**/
+    /*    entity =
+     * e_CreateGenericBadCat(scene->scene_images[1]);*/
+    /*    entity->position.x += i * 5;*/
+    /*    AddEntity(scene, entity);*/
+    /*}*/
+
+    AddEntity(scene, e_CreateGenericBadCat((Image*)scene->scene_assets[1].asset));
 
     UIText* some_text = CreateUIText(400, 400, "Level One LAMO",
                                      application.fonts[XLARGE_FONT], RED);

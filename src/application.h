@@ -25,6 +25,12 @@ enum ContextEnum
     LEVEL_TWO
 };
 
+typedef struct
+{
+	bool ShowHealthBar;
+	bool ShowBoundingBoxes;
+} GlobalGameSettings;
+
 struct Application
 {
     SDL_Window* window;
@@ -39,6 +45,7 @@ struct Application
     float delta_time;
     int current_context;
     int timer;
+	GlobalGameSettings game_state;
 };
 
 int InitApplication(struct Application* application);

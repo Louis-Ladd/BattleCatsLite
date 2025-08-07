@@ -29,6 +29,7 @@ struct Entity
     enum EntityState current_state;
     u16 speed;
     s16 health;
+	u16 atk_dst;
     bool is_enemy;
     Vec2 position;
     Vec2 velocity;

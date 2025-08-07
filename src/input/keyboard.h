@@ -6,6 +6,8 @@
 
 void HandleKeyboardInput();
 
-void ResetKey(int keycode);
+bool KeyDown(int keycode);
+
+bool ResetKey(int keycode);
 
 #endif

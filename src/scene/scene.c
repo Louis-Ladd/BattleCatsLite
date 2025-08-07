@@ -121,24 +121,32 @@ void UpdateScene(Scene* scene)
         e_ApplyVelocity(entity);
     }
 
-    if (application.keys[SDLK_a])
+    if (ResetKey(SDLK_a))
     {
 
         Entity* new_entity =
             e_CreateGenericGoodCat((Image*)scene->scene_assets[1].asset);
 
         AddEntity(scene, new_entity);
-        ResetKey(SDLK_a);
     }
 
-    if (application.keys[SDLK_d])
+    if (ResetKey(SDLK_d))
     {
         Entity* new_entity =
             e_CreateGenericBadCat((Image*)scene->scene_assets[1].asset);
 
         AddEntity(scene, new_entity);
-        ResetKey(SDLK_d);
     }
+
+	if (ResetKey(SDLK_h))
+	{
+		application.game_state.ShowHealthBar = !application.game_state.ShowHealthBar;
+	}
+	if (ResetKey(SDLK_b))
+	{
+		application.game_state.ShowBoundingBoxes = !application.game_state.ShowBoundingBoxes;
+		LOG_DEBUG("Set bounding box to: %i", application.game_state.ShowBoundingBoxes);
+	}
 }
 
 void DestroyScene(Scene* scene)

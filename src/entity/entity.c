@@ -1,6 +1,7 @@
 #include "entity.h"
 #include "../application.h"
 #include "../log.h"
+#include <SDL2/SDL_log.h>
 
 Entity* e_CreateEntity(EntityID id, Sprite* sprite, u16 health, bool is_enemy,
                        void (*update_func)(Entity* self, Entity* other),
@@ -37,6 +38,8 @@ void r_RenderEntity(Entity* entity)
         entity->position.y - (entity->sprite->f_rect.h * entity->sprite->scale);
 
     r_DrawSprite(application.renderer, entity->sprite);
+
+	
 }
 
 void e_UpdateAnimation(Entity* entity)
