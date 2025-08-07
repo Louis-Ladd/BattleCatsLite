@@ -121,7 +121,7 @@ void r_DrawBoundingBox(Entity* entity)
 	{
 		return;
 	}
-	SDL_SetRenderDraw_SDL_Color(application.renderer, RED);	
+	SDL_SetRenderDraw_SDL_Color(application.renderer, GREEN);	
 	SDL_RenderDrawRectF(application.renderer, &entity->sprite->f_rect);
 
 	Vec2 dis_vis_a = {entity->sprite->f_rect.x + entity->sprite->f_rect.w/2,
@@ -133,7 +133,7 @@ void r_DrawBoundingBox(Entity* entity)
 
 	dis_vis_b.y = dis_vis_a.y;
 
-	SDL_SetRenderDraw_SDL_Color(application.renderer, BLUE);
+	SDL_SetRenderDraw_SDL_Color(application.renderer, RED);
 	SDL_RenderDrawLine(application.renderer, dis_vis_a.x, dis_vis_a.y,
 											 dis_vis_b.x, dis_vis_b.y);
 }
