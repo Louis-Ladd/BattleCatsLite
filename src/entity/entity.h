@@ -29,7 +29,7 @@ struct Entity
     enum EntityState current_state;
     u16 speed;
     s16 health;
-	u16 atk_dst;
+    u16 atk_dst;
     bool is_enemy;
     Vec2 position;
     Vec2 velocity;
@@ -51,5 +51,7 @@ void e_SetEntityState(Entity* entity, enum EntityState state);
 void e_ApplyVelocity(Entity* entity);
 
 void e_DestroyEntity(Entity* entity);
+
+bool e_IsVisible(Entity* entity);
 
 #endif
