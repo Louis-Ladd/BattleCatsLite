@@ -9,7 +9,7 @@
 
 Entity* e_CreateGenericGoodCat(Image* sprite_sheet)
 {
-    Sprite* sprite = r_CreateSprite(0, sprite_sheet, 1280.0f, GROUND_Y, 0.5f);
+    Sprite* sprite = r_CreateSprite(0, sprite_sheet, 1400.0f, GROUND_Y, 0.5f);
     Entity* cat =
         e_CreateEntity(0, sprite, 100, false, e_UpdateGoodCat, r_RenderGoodCat);
     cat->speed = 100;
@@ -95,7 +95,7 @@ void e_UpdateBadCat(Entity* self, Entity* other)
 
 void r_DrawHealthBar(Entity* entity)
 {
-    if (!application.game_state.ShowHealthBar)
+    if (!application.game_state.show_health_bar)
     {
         return;
     }
@@ -119,7 +119,7 @@ void r_DrawHealthBar(Entity* entity)
 
 void r_DrawBoundingBox(Entity* entity)
 {
-    if (!application.game_state.ShowBoundingBoxes)
+    if (!application.game_state.show_bounding_boxes)
     {
         return;
     }

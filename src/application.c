@@ -2,6 +2,16 @@
 #include "log.h"
 #include <SDL2/SDL_render.h>
 
+int GetScreenHeight()
+{
+	return application.game_state.screen_height;
+}
+
+int GetScreenWidth()
+{
+	return application.game_state.screen_width;
+}
+
 #define SCREEN_WIDTH 1280
 #define SCREEN_HEIGHT 720
 
@@ -62,7 +72,7 @@ int InitApplication(struct Application* application)
     LOG_DEBUG("Creating window");
     application->window = SDL_CreateWindow(
         "Battle Cats!", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
-        SCREEN_WIDTH, SCREEN_HEIGHT, 0);
+        GetScreenWidth(), GetScreenHeight(), 0);
 
     if (!application->window)
     {

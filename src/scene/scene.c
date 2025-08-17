@@ -143,15 +143,15 @@ void UpdateScene(Scene* scene)
 
     if (ResetKey(SDLK_h))
     {
-        application.game_state.ShowHealthBar =
-            !application.game_state.ShowHealthBar;
+        application.game_state.show_health_bar =
+            !application.game_state.show_health_bar;
     }
     if (ResetKey(SDLK_b))
     {
-        application.game_state.ShowBoundingBoxes =
-            !application.game_state.ShowBoundingBoxes;
+        application.game_state.show_bounding_boxes =
+            !application.game_state.show_bounding_boxes;
         LOG_DEBUG("Set bounding box to: %i",
-                  application.game_state.ShowBoundingBoxes);
+                  application.game_state.show_bounding_boxes);
     }
 }
 

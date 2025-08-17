@@ -48,6 +48,10 @@ struct Application
     GlobalGameSettings game_state;
 };
 
+int GetScreenHeight();
+
+int GetScreenWidth();
+
 int InitApplication(struct Application* application);
 
 extern struct Application application;

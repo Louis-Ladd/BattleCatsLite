@@ -15,13 +15,13 @@ MainMenu* InitMainMenu()
     UIText* title = CreateUIText(0, 0, "Battle Cats!",
                                  application.fonts[LARGE_FONT], WHITE);
     Vec2 title_position = {
-        ((float)SCREEN_WIDTH / 2) - (title->label->f_rect.w / 2), 100};
+        ((float)GetScreenWidth() / 2) - (title->label->f_rect.w / 2), 100};
 
     SetUITextPosition(title, title_position);
 
     GenericUIElement title_generic = {"title", NULL, NULL, title, TEXT};
 
-    UIButton* play_button = CreateUIButton(((float)SCREEN_WIDTH / 2) - 200, 300,
+    UIButton* play_button = CreateUIButton(((float)GetScreenWidth() / 2) - 200, 300,
                                            400, 100, "Play", GRAY, WHITE);
 
     SetUIButtonFuncPointer(play_button, mainmenustart);

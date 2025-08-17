@@ -128,11 +128,11 @@ bool e_IsVisible(Entity* entity)
 {
     if (entity->position.x < (0 - entity->sprite->f_rect.w))
         return false;
-    if (entity->position.x > (SCREEN_WIDTH + entity->sprite->f_rect.w))
+    if (entity->position.x > (GetScreenWidth() + entity->sprite->f_rect.w))
         return false;
     if (entity->position.y < (0 - entity->sprite->f_rect.h))
         return false;
-    if (entity->position.y > (SCREEN_HEIGHT + entity->sprite->f_rect.h))
+    if (entity->position.y > (GetScreenHeight() + entity->sprite->f_rect.h))
         return false;
 
     return true;
