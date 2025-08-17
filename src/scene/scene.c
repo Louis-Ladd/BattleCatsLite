@@ -24,7 +24,10 @@ void RenderScene(Scene* scene)
         }
         Entity* current_entity = scene->entities[i];
 
-        current_entity->behavior.render(current_entity);
+        if (e_IsVisible(current_entity))
+        {
+            current_entity->behavior.render(current_entity);
+        }
         e_UpdateAnimation(current_entity);
     }
 
@@ -138,15 +141,18 @@ void UpdateScene(Scene* scene)
         AddEntity(scene, new_entity);
     }
 
-	if (ResetKey(SDLK_h))
-	{
-		application.game_state.ShowHealthBar = !application.game_state.ShowHealthBar;
-	}
-	if (ResetKey(SDLK_b))
-	{
-		application.game_state.ShowBoundingBoxes = !application.game_state.ShowBoundingBoxes;
-		LOG_DEBUG("Set bounding box to: %i", application.game_state.ShowBoundingBoxes);
-	}
+    if (ResetKey(SDLK_h))
+    {
+        application.game_state.ShowHealthBar =
+            !application.game_state.ShowHealthBar;
+    }
+    if (ResetKey(SDLK_b))
+    {
+        application.game_state.ShowBoundingBoxes =
+            !application.game_state.ShowBoundingBoxes;
+        LOG_DEBUG("Set bounding box to: %i",
+                  application.game_state.ShowBoundingBoxes);
+    }
 }
 
 void DestroyScene(Scene* scene)
