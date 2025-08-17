@@ -13,7 +13,7 @@ Entity* e_CreateGenericGoodCat(Image* sprite_sheet)
     Entity* cat =
         e_CreateEntity(0, sprite, 100, false, e_UpdateGoodCat, r_RenderGoodCat);
     cat->speed = 100;
-	cat->atk_dst = 150;
+    cat->atk_dst = 150;
 
     return cat;
 }
@@ -24,7 +24,7 @@ Entity* e_CreateGenericBadCat(Image* sprite_sheet)
     Entity* cat =
         e_CreateEntity(0, sprite, 100, true, e_UpdateBadCat, r_RenderBadCat);
     cat->speed = 100;
-	cat->atk_dst = 150;
+    cat->atk_dst = 150;
 
     return cat;
 }
@@ -56,7 +56,8 @@ void e_UpdateGoodCat(Entity* self, Entity* other)
         return;
     }
 
-    if (DistanceVec2(self->position, other->position) < self->atk_dst && other->is_enemy)
+    if (DistanceVec2(self->position, other->position) < self->atk_dst &&
+        other->is_enemy)
     {
         e_SetEntityState(self, ATTACKING);
         e_GoodCatAttack(self, other);
@@ -82,7 +83,8 @@ void e_UpdateBadCat(Entity* self, Entity* other)
         return;
     }
 
-    if (DistanceVec2(self->position, other->position) < self->atk_dst && !other->is_enemy)
+    if (DistanceVec2(self->position, other->position) < self->atk_dst &&
+        !other->is_enemy)
     {
         e_SetEntityState(self, ATTACKING);
         e_BadCatAttack(self, other);
@@ -93,18 +95,17 @@ void e_UpdateBadCat(Entity* self, Entity* other)
 
 void r_DrawHealthBar(Entity* entity)
 {
-	if (!application.game_state.ShowHealthBar)
-	{
-		return;
-	}
+    if (!application.game_state.ShowHealthBar)
+    {
+        return;
+    }
 
     SDL_Rect health_bar_background = {
         entity->position.x - 50,
         (entity->position.y -
          entity->sprite->f_rect.h * entity->sprite->scale) -
-		 50,
-		 100,
-		 20};
+            50,
+        100, 20};
     SDL_Rect health_bar_fill = health_bar_background;
 
     health_bar_fill.w = entity->health;
@@ -113,29 +114,32 @@ void r_DrawHealthBar(Entity* entity)
     SDL_RenderFillRect(application.renderer, &health_bar_background);
     SDL_SetRenderDraw_SDL_Color(application.renderer, RED);
     SDL_RenderFillRect(application.renderer, &health_bar_fill);
+    SDL_SetRenderDraw_SDL_Color(application.renderer, BLACK);
 }
 
 void r_DrawBoundingBox(Entity* entity)
 {
-	if (!application.game_state.ShowBoundingBoxes)
-	{
-		return;
-	}
-	SDL_SetRenderDraw_SDL_Color(application.renderer, GREEN);	
-	SDL_RenderDrawRectF(application.renderer, &entity->sprite->f_rect);
+    if (!application.game_state.ShowBoundingBoxes)
+    {
+        return;
+    }
+    SDL_SetRenderDraw_SDL_Color(application.renderer, GREEN);
+    SDL_RenderDrawRectF(application.renderer, &entity->sprite->f_rect);
 
-	Vec2 dis_vis_a = {entity->sprite->f_rect.x + entity->sprite->f_rect.w/2,
-					  entity->sprite->f_rect.y + entity->sprite->f_rect.h/2};
-	Vec2 dis_vis_b;
+    Vec2 dis_vis_a = {entity->sprite->f_rect.x + entity->sprite->f_rect.w / 2,
+                      entity->sprite->f_rect.y + entity->sprite->f_rect.h / 2};
+    Vec2 dis_vis_b;
 
-	dis_vis_b.x = entity->is_enemy ? (dis_vis_a.x + entity->atk_dst) - entity->sprite->f_rect.w/2:
-									 (dis_vis_a.x - entity->atk_dst) + entity->sprite->f_rect.w/2;
+    dis_vis_b.x =
+        entity->is_enemy
+            ? (dis_vis_a.x + entity->atk_dst) - entity->sprite->f_rect.w / 2
+            : (dis_vis_a.x - entity->atk_dst) + entity->sprite->f_rect.w / 2;
 
-	dis_vis_b.y = dis_vis_a.y;
+    dis_vis_b.y = dis_vis_a.y;
 
-	SDL_SetRenderDraw_SDL_Color(application.renderer, RED);
-	SDL_RenderDrawLine(application.renderer, dis_vis_a.x, dis_vis_a.y,
-											 dis_vis_b.x, dis_vis_b.y);
+    SDL_SetRenderDraw_SDL_Color(application.renderer, RED);
+    SDL_RenderDrawLine(application.renderer, dis_vis_a.x, dis_vis_a.y,
+                       dis_vis_b.x, dis_vis_b.y);
 }
 
 void r_RenderGoodCat(Entity* self)
@@ -153,7 +157,7 @@ void r_RenderGoodCat(Entity* self)
     r_DrawSprite(application.renderer, self->sprite);
 
     r_DrawHealthBar(self);
-	r_DrawBoundingBox(self);
+    r_DrawBoundingBox(self);
 }
 
 void r_RenderBadCat(Entity* self)
@@ -171,10 +175,10 @@ void r_RenderBadCat(Entity* self)
     r_DrawSprite(application.renderer, self->sprite);
 
     r_DrawHealthBar(self);
-	r_DrawBoundingBox(self);
+    r_DrawBoundingBox(self);
 }
 
-#define ATTACK_X_KNOCKBACK 400 
+#define ATTACK_X_KNOCKBACK 400
 #define ATTACK_Y_KNOCKBACK 200
 
 void e_GoodCatAttack(Entity* self, Entity* other)

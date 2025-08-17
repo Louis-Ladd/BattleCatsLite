@@ -2,9 +2,21 @@
 #include "log.h"
 #include <SDL2/SDL_render.h>
 
+#define SCREEN_WIDTH 1280
+#define SCREEN_HEIGHT 720
+
+#define DEFAULT_HEALTH_BAR false
+#define DEFAULT_SHOW_BOUNDING_BOXES false
+
 int InitApplication(struct Application* application)
 {
     LOG("Starting application...");
+
+    GlobalGameSettings game_state = {DEFAULT_HEALTH_BAR,
+                                     DEFAULT_SHOW_BOUNDING_BOXES, SCREEN_WIDTH,
+                                     SCREEN_HEIGHT};
+
+    application->game_state = game_state;
 
     for (int i = 0; i < 322; i++)
     {
@@ -74,10 +86,6 @@ int InitApplication(struct Application* application)
     application->timer = 0;
 
     application->current_context = MAIN_MENU;
-
-	GlobalGameSettings game_state = { 0 };
-
-	application->game_state = game_state;
 
     return 0;
 }

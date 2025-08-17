@@ -1,9 +1,6 @@
 #ifndef APPLICATION_H_
 #define APPLICATION_H_
 
-#define SCREEN_WIDTH 1280
-#define SCREEN_HEIGHT 720
-
 #include "scene/scene_manager.h"
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
@@ -27,8 +24,11 @@ enum ContextEnum
 
 typedef struct
 {
-	bool ShowHealthBar;
-	bool ShowBoundingBoxes;
+    bool show_health_bar;
+    bool show_bounding_boxes;
+    int screen_width;
+    int screen_height;
+
 } GlobalGameSettings;
 
 struct Application
@@ -45,7 +45,7 @@ struct Application
     float delta_time;
     int current_context;
     int timer;
-	GlobalGameSettings game_state;
+    GlobalGameSettings game_state;
 };
 
 int InitApplication(struct Application* application);
