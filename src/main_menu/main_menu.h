@@ -10,7 +10,7 @@
 
 typedef struct
 {
-    GenericUIElementList ui_list;
+	GenericUIElementList ui_list;
 } MainMenu;
 
 MainMenu* InitMainMenu();

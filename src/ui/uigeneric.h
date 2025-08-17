@@ -7,10 +7,10 @@
 
 typedef enum
 {
-    TEXT,
-    IMAGE,
-    BUTTON,
-    ICON_BUTTON
+	TEXT,
+	IMAGE,
+	BUTTON,
+	ICON_BUTTON
 } ElementType;
 
 typedef struct GenericUIElement GenericUIElement;
@@ -20,11 +20,11 @@ typedef void (*UIUpdateFunc)(SDL_Renderer*, GenericUIElement*);
 
 struct GenericUIElement
 {
-    char name[33]; // Leaving room for null terminator
-    UIRenderFunc render;
-    UIUpdateFunc update;
-    void* ui_element;
-    ElementType element_type;
+	char name[33]; // Leaving room for null terminator
+	UIRenderFunc render;
+	UIUpdateFunc update;
+	void* ui_element;
+	ElementType element_type;
 };
 
 void SetGenericElementPosition(GenericUIElement* ui_element, Vec2 new_position);

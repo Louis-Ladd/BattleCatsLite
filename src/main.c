@@ -64,7 +64,7 @@ int main()
 		}
 	}
 
-    return 0;
+	return 0;
 }
 
 void main_context_loop()
@@ -83,33 +83,33 @@ void main_context_loop()
 
 inline void handle_events()
 {
-    while (SDL_PollEvent(&application.window_event) > 0)
-    {
-        // TODO: Pull this out into it's own file and organize it
-        // better.
-        //       Two levels of switch cases is not optimal.
-        switch (application.window_event.type)
-        {
-            case SDL_QUIT:
-                application.is_running = false;
-                break;
-            case SDL_KEYDOWN ... SDL_KEYUP: // This syntax is
-                                            // radical
-                HandleKeyboardInput();
-                break;
-            case SDL_MOUSEBUTTONDOWN:
-                switch (application.current_context)
-                {
-                    case MAIN_MENU:
-                        LOG_DEBUG("Handling main menu click!");
-                        HandleMouseInput(&main_menu->ui_list,
-                                         application.window_event.motion);
-                        break;
-                }
-                break;
+	while (SDL_PollEvent(&application.window_event) > 0)
+	{
+		// TODO: Pull this out into it's own file and organize it
+		// better.
+		//       Two levels of switch cases is not optimal.
+		switch (application.window_event.type)
+		{
+			case SDL_QUIT:
+				application.is_running = false;
+				break;
+			case SDL_KEYDOWN ... SDL_KEYUP: // This syntax is
+											// radical
+				HandleKeyboardInput();
+				break;
+			case SDL_MOUSEBUTTONDOWN:
+				switch (application.current_context)
+				{
+					case MAIN_MENU:
+						LOG_DEBUG("Handling main menu click!");
+						HandleMouseInput(&main_menu->ui_list,
+										 application.window_event.motion);
+						break;
+				}
+				break;
 			case SDL_WINDOWEVENT_RESIZED:
 				LOG("resized...");
 				break;
-        }
-    }
+		}
+	}
 }

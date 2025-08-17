@@ -5,8 +5,8 @@
 
 void mainmenustart()
 {
-    application.current_context = 1;
-    create_level_one(application.scene_manager);
+	application.current_context = 1;
+	create_level_one(application.scene_manager);
 }
 
 void quit() { application.is_running = false; }

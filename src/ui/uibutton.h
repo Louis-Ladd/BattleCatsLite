@@ -7,14 +7,14 @@
 
 typedef struct
 {
-    Label* label;
-    SDL_Color color;
-    SDL_FRect f_rect;
-    void (*onClick)();
+	Label* label;
+	SDL_Color color;
+	SDL_FRect f_rect;
+	void (*onClick)();
 } UIButton;
 
 UIButton* CreateUIButton(float x, float y, float w, float h, char button_text[],
-                         SDL_Color button_color, SDL_Color text_color);
+						 SDL_Color button_color, SDL_Color text_color);
 
 void SetUIButtonFuncPointer(UIButton* button, void (*f)(void));
 

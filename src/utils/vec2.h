@@ -5,8 +5,8 @@
 
 typedef struct
 {
-    float x;
-    float y;
+	float x;
+	float y;
 } Vec2;
 
 Vec2 AddVec2(Vec2 vec_a, Vec2 vec_b);

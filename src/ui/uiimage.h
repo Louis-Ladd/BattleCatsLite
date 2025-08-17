@@ -7,12 +7,12 @@
 
 typedef struct
 {
-    Image* image;
-    SDL_FRect f_rect;
+	Image* image;
+	SDL_FRect f_rect;
 } UIImage;
 
 UIImage* CreateUIImage(SDL_Surface image_surface, float x, float y, float w,
-                       float h);
+					   float h);
 
 void DestroyUIImage(UIImage* ui_image);
 

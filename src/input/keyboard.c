@@ -6,22 +6,22 @@
 
 void HandleKeyboardInput()
 {
-    int keycode = application.window_event.key.keysym.sym;
+	int keycode = application.window_event.key.keysym.sym;
 
-    if (keycode <= 0 || keycode > MAX_KEYS)
-    {
-        return;
-    }
+	if (keycode <= 0 || keycode > MAX_KEYS)
+	{
+		return;
+	}
 
-    switch (application.window_event.type)
-    {
-        case SDL_KEYDOWN:
-            application.keys[keycode] = true;
-            break;
-        case SDL_KEYUP:
-            application.keys[keycode] = false;
-            break;
-    }
+	switch (application.window_event.type)
+	{
+		case SDL_KEYDOWN:
+			application.keys[keycode] = true;
+			break;
+		case SDL_KEYUP:
+			application.keys[keycode] = false;
+			break;
+	}
 }
 
 bool KeyDown(int keycode)

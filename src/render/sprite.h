@@ -8,16 +8,16 @@
 
 typedef struct
 {
-    u8 sprite_offset;
-    u8 animation_frame;
-    u32 last_animation_update;
-    Image* sprite_sheet;
-    SDL_FRect f_rect;
-    float scale;
+	u8 sprite_offset;
+	u8 animation_frame;
+	u32 last_animation_update;
+	Image* sprite_sheet;
+	SDL_FRect f_rect;
+	float scale;
 } Sprite;
 
 Sprite* r_CreateSprite(int sprite_offset, Image* sprice_sheet, float x, float y,
-                       float scale);
+					   float scale);
 
 void r_DrawSprite(SDL_Renderer* renderer, Sprite* sprite);
 

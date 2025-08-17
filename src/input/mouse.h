@@ -8,6 +8,6 @@
 #include "../ui/uimanager.h"
 
 void HandleMouseInput(GenericUIElementList* element_list,
-                      SDL_MouseMotionEvent mouse_event);
+					  SDL_MouseMotionEvent mouse_event);
 
 #endif

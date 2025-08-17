@@ -7,7 +7,7 @@
 
 typedef struct
 {
-    Scene* scenes[SCENE_COUNT];
+	Scene* scenes[SCENE_COUNT];
 } SceneManager;
 
 SceneManager* InitSceneManager();

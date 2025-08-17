@@ -3,14 +3,14 @@
 
 inline void e_EntityGravity(Entity* entity)
 {
-    if (entity->position.y <= GROUND_Y)
-    {
-        entity->velocity.y += 900.8f * application.delta_time;
-    }
-    else if (entity->velocity.y > 0)
-    {
-        entity->velocity.y = 0;
-    }
+	if (entity->position.y <= GROUND_Y)
+	{
+		entity->velocity.y += 900.8f * application.delta_time;
+	}
+	else if (entity->velocity.y > 0)
+	{
+		entity->velocity.y = 0;
+	}
 }
 
 #define ENTROPY_CONSTANT 600.0f
@@ -21,11 +21,11 @@ inline void e_ApplyEntropy(Entity* entity)
 	{
 		return;
 	} if (entity->velocity.x > -0.01 && entity->velocity.x < 0.01)
-    {
-        entity->velocity.x = 0;
-        return;
-    }
-    entity->velocity.x +=
-        (entity->velocity.x > 0 ? -ENTROPY_CONSTANT : ENTROPY_CONSTANT) *
-        application.delta_time;
+	{
+		entity->velocity.x = 0;
+		return;
+	}
+	entity->velocity.x +=
+		(entity->velocity.x > 0 ? -ENTROPY_CONSTANT : ENTROPY_CONSTANT) *
+		application.delta_time;
 }

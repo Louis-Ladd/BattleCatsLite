@@ -4,7 +4,7 @@
 #include <SDL2/SDL_pixels.h>
 
 #define SDL_SetRenderDraw_SDL_Color(renderer, color)                           \
-    SDL_SetRenderDrawColor(renderer, color.r, color.g, color.b, color.a)
+	SDL_SetRenderDrawColor(renderer, color.r, color.g, color.b, color.a)
 
 extern const SDL_Color BLACK;
 extern const SDL_Color WHITE;

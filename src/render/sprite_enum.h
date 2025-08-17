@@ -3,13 +3,13 @@
 
 enum CatSpriteOffset
 {
-    CAT,
-    TALL_CAT
+	CAT,
+	TALL_CAT
 };
 
 enum EnemySpriteOffets
 {
-    DOG
+	DOG
 };
 
 #endif

@@ -9,8 +9,8 @@
 
 typedef struct
 {
-    u32 element_count;
-    GenericUIElement** elements;
+	u32 element_count;
+	GenericUIElement** elements;
 } GenericUIElementList;
 
 GenericUIElementList CreateElementList(u32 start_count);
@@ -22,10 +22,10 @@ void ResizeElements(GenericUIElementList* list, u32 new_size);
 void AddUIElement(GenericUIElementList* list, GenericUIElement element);
 
 GenericUIElement* GetUIElementByName(GenericUIElementList* list,
-                                     char element_name[]);
+									 char element_name[]);
 
 void RemoveUIElementByPointer(GenericUIElementList* list,
-                              GenericUIElement* element);
+							  GenericUIElement* element);
 
 void RemoveUIElementByName(GenericUIElementList* list, char element_name[]);
 

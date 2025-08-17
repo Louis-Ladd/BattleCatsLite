@@ -8,11 +8,11 @@
 
 typedef struct
 {
-    Label* label;
+	Label* label;
 } UIText;
 
 UIText* CreateUIText(float x, float y, char text_content[], TTF_Font* font,
-                     SDL_Color text_color);
+					 SDL_Color text_color);
 
 void SetUITextPosition(UIText* ui_text, Vec2 new_position);
 
