@@ -7,6 +7,8 @@
 #include <SDL2/SDL_rect.h>
 #include <SDL2/SDL_render.h>
 
+
+
 Entity* e_CreateGenericGoodCat(Image* sprite_sheet)
 {
 	Sprite* sprite = r_CreateSprite(0, sprite_sheet, 1400.0f, GROUND_Y, 0.5f);
@@ -95,7 +97,7 @@ void e_UpdateBadCat(Entity* self, Entity* other)
 
 void r_DrawHealthBar(Entity* entity)
 {
-	if (!application.game_state.show_health_bar)
+	if (!application.game_state.debug.show_health_bar)
 	{
 		return;
 	}
@@ -119,7 +121,7 @@ void r_DrawHealthBar(Entity* entity)
 
 void r_DrawBoundingBox(Entity* entity)
 {
-	if (!application.game_state.show_bounding_boxes)
+	if (!application.game_state.debug.show_bounding_boxes)
 	{
 		return;
 	}

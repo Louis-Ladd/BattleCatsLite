@@ -24,11 +24,16 @@ enum ContextEnum
 
 typedef struct
 {
-	bool show_health_bar;
-	bool show_bounding_boxes;
-	int screen_width;
-	int screen_height;
-
+	struct 
+	{
+		bool show_health_bar;
+		bool show_bounding_boxes;
+	} debug;
+	struct
+	{
+		int screen_width;
+		int screen_height;
+	} window;
 } GlobalGameSettings;
 
 struct Application

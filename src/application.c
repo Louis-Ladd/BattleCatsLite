@@ -4,12 +4,12 @@
 
 int GetScreenHeight()
 {
-	return application.game_state.screen_height;
+	return application.game_state.window.screen_height;
 }
 
 int GetScreenWidth()
 {
-	return application.game_state.screen_width;
+	return application.game_state.window.screen_width;
 }
 
 #define SCREEN_WIDTH 1280
@@ -22,9 +22,17 @@ int InitApplication(struct Application* application)
 {
 	LOG("Starting application...");
 
-	GlobalGameSettings game_state = {DEFAULT_HEALTH_BAR,
-									 DEFAULT_SHOW_BOUNDING_BOXES, SCREEN_WIDTH,
-									 SCREEN_HEIGHT};
+	GlobalGameSettings game_state = 
+	{
+		{
+			DEFAULT_HEALTH_BAR,
+			DEFAULT_SHOW_BOUNDING_BOXES,
+		},
+		{
+			SCREEN_WIDTH,
+			SCREEN_HEIGHT
+		}
+	};
 
 	application->game_state = game_state;
 
@@ -57,8 +65,9 @@ int InitApplication(struct Application* application)
 
 	if (!application->fonts[SMALL_FONT])
 	{
-		fprintf(stderr, "Failed to load fonts (make sure assets directory is "
-						"accessable!)\n");
+		fprintf(stderr, 
+			"Failed to load fonts (make sure assets directory is "
+			"accessable!)\n");
 		return 2;
 	}
 
