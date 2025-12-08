@@ -5,6 +5,6 @@
 #include "types.h"
 #include "vec2.h"
 
-double clamp(double d, double min, double max);
+double clampd(double d, double min, double max);
 
 #endif
