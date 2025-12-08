@@ -43,6 +43,7 @@ struct Application
 	SDL_Renderer* renderer;
 	SceneManager* scene_manager;
 	SDL_Event window_event;
+	GlobalGameSettings game_state;
 	bool is_running;
 	bool keys[322];
 	TTF_Font* fonts[4];
@@ -50,7 +51,6 @@ struct Application
 	float delta_time;
 	int current_context;
 	int timer;
-	GlobalGameSettings game_state;
 };
 
 int GetScreenHeight();
