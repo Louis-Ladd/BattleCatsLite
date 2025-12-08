@@ -1,5 +1,6 @@
 #include "../application.h"
 #include "level.h"
+#include "../ui/common/spawnbuttons.h"
 #include <SDL2/SDL_image.h>
 
 void create_level_one(SceneManager* scene_manager)
@@ -59,4 +60,6 @@ void create_level_one(SceneManager* scene_manager)
 	AddUIElement(&scene->scene_ui, some_generic);
 
 	AddScene(scene_manager, scene);
+
+	create_spawn_buttons(&scene->scene_ui, 20, 20, 4, 2);
 }
