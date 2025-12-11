@@ -8,8 +8,6 @@ void create_level_one(SceneManager* scene_manager)
 {
 	Scene* scene = CreateScene();
 
-	scene->scene_ui = CreateElementList(0);
-
 	if (SetGlobalUIList(&scene->scene_ui) != 0)
 	{
 		LOG_ERROR("Unable to set global UI list to level one. Click events will be ignored");
@@ -44,7 +42,7 @@ void create_level_one(SceneManager* scene_manager)
 	// to a scene
 
 
-	/*for (int i = 0; i < 20; i++)*/
+	/*for (int i = 0; i <f20; i++)*/
 	/*{*/
 	/*    Entity* entity =
 	 * e_CreateGenericGoodCat(scene->scene_images[1]);*/
@@ -63,9 +61,9 @@ void create_level_one(SceneManager* scene_manager)
 									 application.fonts[XLARGE_FONT], RED);
 	GenericUIElement some_generic = {"lvltext", NULL, NULL, some_text, TEXT};
 
-	AddUIElement(&scene->scene_ui, some_generic);
-
 	AddScene(scene_manager, scene);
+
+	AddUIElement(&scene->scene_ui, some_generic);
 
 	create_spawn_buttons(&scene->scene_ui, 20, 20, 4, 2);
 }

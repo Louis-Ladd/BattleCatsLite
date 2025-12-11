@@ -10,6 +10,8 @@ Scene* CreateScene()
 
 	GenericUIElementList generic_list = CreateElementList(0);
 
+	scene->scene_ui = generic_list;
+
 	return scene;
 }
 

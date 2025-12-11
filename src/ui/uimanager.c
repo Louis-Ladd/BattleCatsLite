@@ -84,8 +84,8 @@ void AddUIElement(GenericUIElementList* list, GenericUIElement element)
 
 	SetRenderFunc(alloc_element);
 
-	if ((list->element_count == 0 ||
-		 list->elements[list->element_count-1] != NULL))
+	if (list->element_count == 0 ||
+		 (list->element_count-1) <= (sizeof(*list)/sizeof(list[0]))) // sus line right here
 	{
 		LOG_DEBUG("Resizing elements because we're out of space! [%i]", list->element_count);
 		ResizeElements(list, list->element_count + 1);
@@ -163,6 +163,12 @@ void RemoveUIElementByName(GenericUIElementList* list, char element_name[])
 void HandleMouseEventForElement(GenericUIElement* element, int x, int y)
 {
 	SDL_FPoint click_point = {x, y};
+
+	if (element == NULL)
+	{
+		LOG_WARN("Unable to parse null element at %p", element);
+		return;
+	}
 
 	switch (element->element_type)
 	{
