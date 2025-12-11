@@ -12,6 +12,8 @@ MainMenu* InitMainMenu()
 
 	menu->ui_list = CreateElementList(0);
 
+	SetGlobalUIList(&menu->ui_list);
+
 	UIText* title = CreateUIText(0, 0, "Battle Cats!",
 								 application.fonts[LARGE_FONT], WHITE);
 	Vec2 title_position = {

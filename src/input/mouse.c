@@ -24,6 +24,12 @@ void HandleMouseInput(GenericUIElementList* element_list,
 	{
 		return;
 	}
+	
+	if (element_list == NULL)
+	{
+		LOG_ERROR("Cannot handle mouse input for null element list");
+		return;
+	}
 
 	LOG("Click!");
 

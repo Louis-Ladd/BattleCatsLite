@@ -1,5 +1,6 @@
 #include "application.h"
 #include "log.h"
+#include "ui/uimanager.h"
 #include <SDL2/SDL_render.h>
 
 int GetScreenHeight()
@@ -108,3 +109,43 @@ int InitApplication(struct Application* application)
 
 	return 0;
 }
+
+int SetGlobalUIList(GenericUIElementList* new_ui_list)
+{
+	if (application.m_current_ui_list != NULL)
+	{
+		LOG_ERROR("Cannot set current UI list until it has been released.");
+		return -1;
+	}
+
+	LOG_DEBUG("Set global UI list to %p", new_ui_list);
+	application.m_current_ui_list = new_ui_list;
+
+	return 0;
+}
+
+GenericUIElementList* GetGlobalUIList()
+{
+	if (application.m_current_ui_list == NULL)
+	{
+		LOG_ERROR("Attempted to fetch a null current UI list.");
+		return NULL;
+	}
+
+	return application.m_current_ui_list;
+}
+
+int ReleaseGlobalUIList() 
+{
+	if (application.m_current_ui_list == NULL)
+	{
+		LOG_WARN("UI List has already been released...");
+		return -1;
+	}
+
+	LOG_DEBUG("Released global UI list");
+	application.m_current_ui_list = NULL;
+
+	return 0;
+}
+

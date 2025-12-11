@@ -13,6 +13,8 @@ GenericUIElementList CreateElementList(u32 start_count)
 	GenericUIElementList new_list;
 	new_list.element_count = start_count;
 
+	new_list.top = -1;
+
 	new_list.elements = malloc(sizeof(**new_list.elements) * start_count);
 
 	memset(new_list.elements, 0, sizeof(*new_list.elements) * start_count);
@@ -24,7 +26,7 @@ GenericUIElementList CreateElementList(u32 start_count)
 
 void RenderUIElementList(GenericUIElementList* list)
 {
-	for (u32 i = 0; i < list->element_count; i++)
+	for (u32 i = 0; i <= list->top; i++)
 	{
 		if (list->elements[i] == NULL)
 		{
@@ -36,12 +38,24 @@ void RenderUIElementList(GenericUIElementList* list)
 
 void ResizeElements(GenericUIElementList* list, u32 new_size)
 {
+	if (new_size == list->element_count)
+	{
+		return;
+	}
+
 	if (new_size < list->element_count)
 	{
 		while (list->element_count > new_size)
 		{
-			free(list->elements[list->element_count]);
+			if (list->elements[list->element_count-1] != NULL)
+			{
+				free(list->elements[list->element_count - 1]);
+				list->elements[list->element_count-1] = NULL;
+			}
 			list->element_count--;
+			list->top -= list->top == list->element_count - 1 ? 1 : 0;
+			LOG_DEBUG("top is pointing at [%i] out of [%i]", 
+					  list->top, list->element_count);
 		}
 	}
 
@@ -70,9 +84,16 @@ void AddUIElement(GenericUIElementList* list, GenericUIElement element)
 
 	SetRenderFunc(alloc_element);
 
-	ResizeElements(list, list->element_count + 1);
-
-	list->elements[list->element_count - 1] = alloc_element;
+	if ((list->element_count == 0 ||
+		 list->elements[list->element_count-1] != NULL))
+	{
+		LOG_DEBUG("Resizing elements because we're out of space! [%i]", list->element_count);
+		ResizeElements(list, list->element_count + 1);
+	}
+	list->top++;
+	list->elements[list->top] = alloc_element;
+	LOG_DEBUG("top is pointing at [%i] out of [%i]", 
+			  list->top, list->element_count);
 }
 
 GenericUIElement* GetUIElementByName(GenericUIElementList* list,
@@ -181,7 +202,6 @@ void HandleMouseEventForElement(GenericUIElement* element, int x, int y)
 			LOG_DEBUG("unknown type %i", element->element_type);
 			return;
 	}
-	LOG_DEBUG("Clicked on nothing~");
 }
 
 void ProcessMouseClickEventForList(GenericUIElementList* list, int x, int y)

@@ -2,7 +2,9 @@
 #define APPLICATION_H_
 
 #include "scene/scene_manager.h"
+#include "ui/uimanager.h"
 #include <SDL2/SDL.h>
+#include <SDL2/SDL_events.h>
 #include <SDL2/SDL_image.h>
 #include <SDL2/SDL_ttf.h>
 #include <stdbool.h>
@@ -44,6 +46,7 @@ struct Application
 	SceneManager* scene_manager;
 	SDL_Event window_event;
 	GlobalGameSettings game_state;
+	GenericUIElementList* m_current_ui_list;
 	bool is_running;
 	bool keys[322];
 	TTF_Font* fonts[4];
@@ -58,6 +61,12 @@ int GetScreenHeight();
 int GetScreenWidth();
 
 int InitApplication(struct Application* application);
+
+int SetGlobalUIList(GenericUIElementList* new_ui_list);
+
+GenericUIElementList* GetGlobalUIList();
+
+int ReleaseGlobalUIList();
 
 extern struct Application application;
 

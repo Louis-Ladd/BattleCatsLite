@@ -11,6 +11,8 @@ UIButton* _create_button(int x, int y)
 
 void create_spawn_buttons(GenericUIElementList* list, int x_offset, int y_offset, int columns, int rows)
 {
+	ResizeElements(list, list->element_count + (columns * rows));
+
 	for (int c = 0; c < columns; c++)
 	{
 		for (int r = 0; r < rows; r++)

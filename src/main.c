@@ -98,14 +98,8 @@ inline void handle_events()
 				HandleKeyboardInput();
 				break;
 			case SDL_MOUSEBUTTONDOWN:
-				switch (application.current_context)
-				{
-					case MAIN_MENU:
-						LOG_DEBUG("Handling main menu click!");
-						HandleMouseInput(&main_menu->ui_list,
-										 application.window_event.motion);
-						break;
-				}
+					HandleMouseInput(GetGlobalUIList(),
+									 application.window_event.motion);	
 				break;
 			case SDL_WINDOWEVENT_RESIZED:
 				LOG("resized...");

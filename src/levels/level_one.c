@@ -2,12 +2,18 @@
 #include "level.h"
 #include "../ui/common/spawnbuttons.h"
 #include <SDL2/SDL_image.h>
+#include "../log.h"
 
 void create_level_one(SceneManager* scene_manager)
 {
 	Scene* scene = CreateScene();
 
 	scene->scene_ui = CreateElementList(0);
+
+	if (SetGlobalUIList(&scene->scene_ui) != 0)
+	{
+		LOG_ERROR("Unable to set global UI list to level one. Click events will be ignored");
+	}
 
 	SceneAsset scene_background = {
 		BACKDROP, (void*)(r_CreateImage(application.renderer,
