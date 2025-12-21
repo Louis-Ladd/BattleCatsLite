@@ -115,7 +115,9 @@ GenericUIElement* GetUIElementByName(GenericUIElementList* list,
 	return found_element;
 }
 
-void RemoveUIElementByPointer(GenericUIElementList* list,
+// This function WILL NOT cleanup elements, 
+// it is the callers responsibility to clean up the reference.
+void _RemoveUIElementFromList(GenericUIElementList* list,
 							  GenericUIElement* element)
 {
 	GenericUIElement* found_element = NULL;
@@ -145,8 +147,23 @@ void RemoveUIElementByPointer(GenericUIElementList* list,
 	}
 
 	ResizeElements(list, list->element_count - 1);
+}
 
-	CleanUpGenericElement(element);
+// Kinda dumb we can't find the element index even with a direct ref to it.
+// I should hash map this shit.
+void RemoveUIElementByPointer(GenericUIElementList* list, GenericUIElement* element_pointer)
+{
+	GenericUIElement* found_element = NULL;
+
+	for (u32 i = 0; i < list->element_count; i++ )
+	{
+		if (element_pointer == list->elements[i])
+		{
+			_RemoveUIElementFromList(list, element_pointer);
+		}
+	}
+
+	CleanUpGenericElement(element_pointer);
 }
 
 void RemoveUIElementByName(GenericUIElementList* list, char element_name[])

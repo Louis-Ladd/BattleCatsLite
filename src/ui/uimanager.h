@@ -25,8 +25,13 @@ void AddUIElement(GenericUIElementList* list, GenericUIElement element);
 GenericUIElement* GetUIElementByName(GenericUIElementList* list,
 									 char element_name[]);
 
+void _RemoveUIElementFromList(GenericUIElementList* list,
+							  GenericUIElement* element);
+
 void RemoveUIElementByPointer(GenericUIElementList* list,
 							  GenericUIElement* element);
+
+void RemoveUIElementByPointer(GenericUIElementList* list, GenericUIElement* element_pointer);
 
 void RemoveUIElementByName(GenericUIElementList* list, char element_name[]);
 
