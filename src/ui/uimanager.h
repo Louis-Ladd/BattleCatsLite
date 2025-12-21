@@ -10,7 +10,7 @@
 typedef struct
 {
 	u32 element_count;
-	u32 top;
+	u32 capacity;
 	GenericUIElement** elements;
 } GenericUIElementList;
 

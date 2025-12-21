@@ -13,7 +13,7 @@ GenericUIElementList CreateElementList(u32 start_count)
 	GenericUIElementList new_list;
 	new_list.element_count = start_count;
 
-	new_list.top = -1;
+	new_list.capacity = 0;
 
 	new_list.elements = malloc(sizeof(**new_list.elements) * start_count);
 
@@ -26,7 +26,7 @@ GenericUIElementList CreateElementList(u32 start_count)
 
 void RenderUIElementList(GenericUIElementList* list)
 {
-	for (u32 i = 0; i <= list->top; i++)
+	for (u32 i = 0; i < list->element_count; i++)
 	{
 		if (list->elements[i] == NULL)
 		{
@@ -38,24 +38,27 @@ void RenderUIElementList(GenericUIElementList* list)
 
 void ResizeElements(GenericUIElementList* list, u32 new_size)
 {
-	if (new_size == list->element_count)
+	if (new_size == list->capacity)
 	{
+		LOG_DEBUG("No need to resize... new capacity is the same as current capacity");
 		return;
 	}
 
-	if (new_size < list->element_count)
+	list->capacity = new_size;
+
+	if (new_size < list->capacity)
 	{
-		while (list->element_count > new_size)
+		while (list->element_count > list->capacity)
 		{
 			if (list->elements[list->element_count-1] != NULL)
 			{
 				free(list->elements[list->element_count - 1]);
 				list->elements[list->element_count-1] = NULL;
+				list->element_count--;
 			}
-			list->element_count--;
-			list->top -= list->top == list->element_count - 1 ? 1 : 0;
-			LOG_DEBUG("top is pointing at [%i] out of [%i]", 
-					  list->top, list->element_count);
+			list->capacity--;
+			LOG_DEBUG("element_count is pointing at [%i] out of [%i]", 
+					  list->element_count, list->capacity);
 		}
 	}
 
@@ -72,8 +75,6 @@ void ResizeElements(GenericUIElementList* list, u32 new_size)
 	}
 
 	list->elements = new_elements;
-
-	list->element_count = new_size;
 }
 
 void AddUIElement(GenericUIElementList* list, GenericUIElement element)
@@ -85,15 +86,16 @@ void AddUIElement(GenericUIElementList* list, GenericUIElement element)
 	SetRenderFunc(alloc_element);
 
 	if (list->element_count == 0 ||
-		 (list->element_count-1) <= (sizeof(*list)/sizeof(list[0]))) // sus line right here
+		list->element_count > list->capacity) // sus line right here
 	{
-		LOG_DEBUG("Resizing elements because we're out of space! [%i]", list->element_count);
+		LOG_DEBUG("Resizing elements because we're out of space! [%i]", 
+				  list->element_count);
 		ResizeElements(list, list->element_count + 1);
 	}
-	list->top++;
-	list->elements[list->top] = alloc_element;
-	LOG_DEBUG("top is pointing at [%i] out of [%i]", 
-			  list->top, list->element_count);
+	list->element_count ++;
+	list->elements[list->element_count-1] = alloc_element;
+	LOG_DEBUG("element_count is pointing at [%i] out of [%i]", 
+					  list->element_count, list->capacity);
 }
 
 GenericUIElement* GetUIElementByName(GenericUIElementList* list,
@@ -170,6 +172,7 @@ void HandleMouseEventForElement(GenericUIElement* element, int x, int y)
 		return;
 	}
 
+	LOG_DEBUG("Parsing element type...");
 	switch (element->element_type)
 	{
 		case TEXT:
