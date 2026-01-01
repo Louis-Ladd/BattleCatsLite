@@ -52,7 +52,7 @@ void ResizeElements(GenericUIElementList* list, u32 new_size)
 		{
 			if (list->elements[list->element_count-1] != NULL)
 			{
-				free(list->elements[list->element_count - 1]);
+				CleanUpGenericElement(list->elements[list->element_count - 1]);
 				list->elements[list->element_count-1] = NULL;
 				list->element_count--;
 			}
